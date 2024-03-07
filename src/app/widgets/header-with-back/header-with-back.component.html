@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="toolbar">
+    <ion-buttons *ngIf="showBackButton" slot="start">
+      <ion-button (click)="onBackButtonClick()">
+        <img  src="assets/icon/leftArrow/leftArrow.svg" alt="">
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title" [ngClass]="{'noBackButton' : !showBackButton}">{{title}}</ion-title>
+    <ion-buttons slot="end" *ngIf="showNotificationIcon">
+      <ion-button (click) = "notification()">
+        <img *ngIf="unreadNotifications.length == 0" src="assets/images/bell.svg" alt="">
+        <img *ngIf="unreadNotifications.length > 0" src="assets/ui_icons/notification.svg" alt="">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

@@ -1,0 +1,658 @@
+* {
+  box-shadow: none;
+}
+
+ion-toolbar.toolbar,
+ion-item {
+  --background: white;
+  --box-shadow: none;
+  border: none;
+}
+
+.page-body {
+  background-color: #F6D3C1;
+  color: #F6D3C1;
+}
+
+h2,
+p,
+h1,
+h3,
+h4,
+h5,
+h6 {
+  color: #F5ACA4;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+ion-back-button,
+ion-icon,
+ion-title {
+  color: #F5ACA4;
+  padding: 0;
+}
+
+ion-content {
+  .divider {
+    height: 2px;
+    background-color: whitesmoke;
+    width: 100vw;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .order-card {
+    padding: 19px 12px;
+    // background-color: gold;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 3px solid #e6e6e6;
+    align-items: center;
+    padding-top: 0;
+  }
+  .serviceTitle {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Lato", sans-serif;
+    color: #F5ACA4;
+    margin: 0px;
+    padding: 10px 30px;
+    background: #f5f5f5;
+  }
+
+  .card-right {
+    flex-grow: 1;
+    padding: 0 5px;
+    margin-left: 7px;
+    justify-content: space-around;
+    // background-color: yellowgreen;
+  }
+
+  .card-right-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card-right-mid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .card-subtitle {
+    color: #F6D3C1;
+    font-size: 11px;
+  }
+
+  .spacer {
+    width: 10px;
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: row;
+    width: 56px;
+    margin: 0;
+    justify-content: space-around;
+  }
+
+  .rating-text {
+    font-size: 12px;
+    color:#F6D3C1;
+  }
+
+  .rating-user {
+    color: #F6D3C1;
+  }
+
+  .discounted-price {
+    color: #579540;
+    font-size: 16px;
+  }
+
+  .original-price {
+    color: #F5ACA4;
+    // text-decoration: line-through;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .stock {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-right-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .price {
+      width: 50%;
+    }
+
+    .stock {
+      width: 30%;
+      .add-btn {
+        width: 23px;
+        height: 24px;
+        border-radius: 6px;
+        border: 0px solid #3b71fe;
+        background: var(--primary, #F5ACA4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    // background-color: cyan;
+  }
+
+  .item-count {
+    margin: 0px 10px;
+  }
+  .maskimage {
+    width: 22%;
+
+    img {
+      width: 100%;
+      height: 76px;
+      border-radius: 9px;
+    }
+  }
+}
+.apply-coupon {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.coupon-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-details {
+  padding: 16px;
+  .total-duration-container{
+    margin-bottom: 15px;
+    p{
+      font-weight: bold;
+      font-size: 16px;
+      color: #F5ACA4;
+      img{
+        width: 16px;
+      }
+    }
+  }
+  .coupon-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px auto;
+    background: #ebffe3;
+    padding: 6px 56px;
+    p {
+      color: #2b780e;
+      font-size: 12px;
+    }
+  }
+
+  .items{
+    .row1{
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 3px;
+      p{
+        color: #F6D3C1;
+      }
+    }
+  }
+}
+
+.payment-detials-text {
+  margin-bottom: 6px;
+}
+
+.breakup-item {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-title {
+  color: #F6D3C1;
+  font-size: 13px;
+}
+
+.right-sub {
+  font-size: 13px;
+  color: #F5ACA4;
+}
+.apply-coupon-text {
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  color:#F6D3C1;
+}
+.offer-count-text {
+  color: #51295C;
+  font-weight: 700;
+  font-family: "Lato", sans-serif;
+}
+.discount-off {
+  color: #579540;
+}
+
+.dotted-line {
+  border: none;
+  border-top: 2px dashed #d7d7d7;
+  width: 100%;
+  margin: 16px auto;
+  border-spacing: 8px;
+}
+
+.total-text {
+  color: #F5ACA4;
+  font-size: 16px;
+}
+
+.offer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: #ebffe3;
+  margin: 0 5vw;
+  margin-bottom: 78px;
+}
+
+.tag-image {
+  padding-right: 8px;
+}
+
+.tag-text {
+  font-size: 12px;
+  color: #1a5f00;
+}
+
+.btn-select-addr {
+  --background-color: #F5ACA4;
+}
+.background-none {
+  background: none;
+}
+
+.select-address-button,
+.got-it-button {
+  width: 90%;
+  margin: 0 5%;
+  background-color: #F5ACA4;
+  color: #ffffff;
+  border: none;
+  padding: 16px 20px;
+  border-radius: 10px;
+  animation-name: slideInRight;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  margin-top: 27px;
+}
+.select-address-button {
+  margin-bottom: 20px;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.applied-coupon {
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  margin: 14px;
+  background-color: #cdf4df;
+  justify-content: space-between;
+
+  .line-style {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .circle-top {
+      z-index: 2;
+      top: 12px;
+      position: absolute;
+      height: 20px;
+      background-color: #fff;
+      width: 20px;
+      border-radius: 50%;
+    }
+
+    .circle-bottom {
+      z-index: 2;
+      bottom: 12px;
+      position: absolute;
+      height: 20px;
+      background-color: #fff;
+      width: 20px;
+      border-radius: 50%;
+    }
+  }
+
+  .verti-line {
+    height: 100%;
+    border: none;
+    border-left: 2px dashed #579540;
+    margin: 0;
+    padding: 0;
+  }
+
+  .vertical-dotted-line {
+    border-left: 2px dashed #579540;
+    height: 49px; /* Adjust the height as needed */
+    // border-spacing: 20px;
+  }
+
+  .remove-coupon {
+    margin-top: 5px;
+    margin-right: 4px;
+  }
+
+  .text {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .saved-rs {
+      color: #F5ACA4;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: "Lato", sans-serif;
+      line-height: 20px;
+    }
+    .coupon-applied-successfuly {
+      color: #555555;
+      font-size: 12px;
+      font-family: "Lato", sans-serif;
+      line-height: 20px;
+    }
+  }
+  .applied-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .applied-text {
+      color: #F5ACA4;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: "Lato", sans-serif;
+      line-height: 20px;
+      margin: 14px;
+      margin-left: 5px;
+    }
+  }
+}
+ion-modal {
+  // --height: 30%;
+  --width: 100%;
+  --border-radius: 16px 16px 0 0;
+  --position: absolute;
+  --bottom: 0;
+  --left: 0;
+  --transform: translate3d(0, 100%, 0);
+  --animation-duration: 300ms;
+}
+
+ion-content {
+  --ion-background-color: #ffffff;
+}
+
+.action-sheet-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 16px;
+  margin-bottom: 0px;
+
+  .action-sheet-header-text {
+    margin: 12px 0px;
+    color: #F5ACA4;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Lato", sans-serif;
+  }
+  .action-sheet-header-img {
+    margin: 12px 0px;
+  }
+}
+.got-it-button {
+  margin: 30px 16px;
+}
+.modal-bottom-text {
+  color: #6f767e;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  margin-left: 16px;
+}
+
+//
+// <div class="orderCard" *ngFor="let booking of cartService.cart">
+// <div class="detail">
+// <img [src]="booking.subCategory.image" alt="">
+// <div class="categories">
+//   <p class="main">{{booking.mainCategory.name}}</p>
+//   <p class="sub">{{booking.subCategory.name}}</p>
+// </div>
+// </div>
+// <ol class="items">
+// <li *ngFor="let item of booking.services">{{item.name}} - {{item.price | currency:'INR'}}</li>
+// </ol>
+// <ion-button color="dark" (click)="selectedBooking = booking" shape="round">Continue</ion-button>
+// </div>
+
+.header {
+  margin: 20px;
+}
+.orderCard {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0px 0px 10px #cfcfcf;
+  padding: 10px 14px;
+  border-bottom: 2px solid #e6e6e6;
+  margin-bottom: 9px;
+  .detail {
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 80px;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px #cdcdcd;
+    }
+    .categories {
+      display: flex;
+      flex-direction: column;
+      .main {
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        justify-content: end;
+        margin-bottom: 5px;
+
+        p {
+          color: var(--primary, #F5ACA4);
+          text-align: right;
+          font-family: Lato;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          letter-spacing: -0.36px;
+        }
+      }
+      .sub {
+        font-size: 16px;
+        font-weight: 500;
+        color: grey;
+        display: flex;
+        justify-content: space-between;
+        font-family: Lato;
+        font-style: normal;
+        line-height: normal;
+
+        p {
+          text-align: right;
+          color: grey;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        span {
+          color: #579540;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  // hr.dashed-line {
+  //   border: 1px dashed #d7d7d7;
+  //   margin: 10px 0;
+  // }
+  .items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 17px;
+    border-top: 2px dashed #d7d7d7;
+    padding-top: 8px;
+
+    ul {
+      padding-left: 17px;
+      margin-bottom: 0px;
+
+      li {
+        font-size: 14px;
+        font-weight: 500;
+        color: grey;
+      }
+    }
+  }
+  ion-button {
+    margin-top: 10px;
+    --border-radius: 12px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-weight: 700;
+
+    button {
+      color: var(--Neutral-01, #fcfcfc);
+      text-align: center;
+      font-family: Lato;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: -0.16px;
+    }
+  }
+}
+ion-content.noItems {
+  .empty-cart-img {
+    margin: 40px;
+    margin-top: 100px;
+  }
+  .spacer {
+    height: 50px;
+    width: 100%;
+  }
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .cart-empty-text {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: "Lato", sans-serif;
+      color: #F5ACA4;
+      margin: -10px;
+      // line-height: 10px;
+    }
+    .bottom-text {
+      font-size: 14px;
+      // font-weight: 700;
+      line-height: 15px;
+      font-family: "Lato", sans-serif;
+      color: #F6D3C1;
+      line-height: 20px;
+      text-align: center;
+      width: 80%;
+      margin-top: 10px;
+    }
+  }
+}
+
+.recommended-container {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 14px;
+
+  .recommended-text {
+    margin-bottom: 12px;
+    color: var(--neutral-07, #F5ACA4);
+    font-size: 18px;
+  }
+  .recommended-items-box-parent {
+    display: flex;
+    gap: 7px 2%;
+    flex-wrap: wrap;
+    .recommended-items-box {
+      // flex: 0 0 49%;
+      flex: 0 0 32%;
+
+      position: relative;
+      img {
+        border-radius: 15px;
+        width: 100%;
+        height: 100px;
+      }
+
+      .text {
+        border-radius: 10px 0px 10px 0px;
+        text-align: center;
+      }
+    }
+  }
+}
+.par-info {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6f767e;
+}

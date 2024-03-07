@@ -1,0 +1,10 @@
+{
+  "name": "kittyconnect",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {
+      
+    }
+  },
+  "type": "angular"
+}

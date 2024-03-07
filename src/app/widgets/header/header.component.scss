@@ -1,0 +1,15 @@
+ion-toolbar{
+    $secondaryTextColor:#2D82F9;
+    ion-text{
+        p{
+            color:$secondaryTextColor;
+        }
+    }
+    ion-buttons:nth-child(1){
+        ion-button{
+            img{
+                height: 23px;
+            }
+        }
+    }
+}

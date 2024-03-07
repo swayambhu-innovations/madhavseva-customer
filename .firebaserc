@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "kittyconnect-68a81",
+    "customer": "kittyconnect-customer"
+  },
+  "targets": {
+    "kittyconnect-6d6e8": {
+      "hosting": {
+        "customer": [
+          "kittyconnect-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,0 +1,44 @@
+.loading-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    height: 100%;
+    top: 0px;
+    z-index: 9999;
+    background-color: white;
+    .loading-container-inner{
+        padding: 20px;
+        position: relative;
+        .image{
+            width:70vw;
+            margin: 0 auto;
+            margin-bottom: 5px;
+        }
+        .text{
+            position: absolute;
+            text-align: center;
+            font-size: 18px;
+            color:#F5ACA4;
+        }
+    }
+}
+
+
+.image-carousel {
+    max-width: 600px; /* Adjust the maximum width according to your design */
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .image-container {
+    display: flex;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .image-container img {
+    flex: 0 0 100%; /* Ensure each image takes the full width */
+  }
+  

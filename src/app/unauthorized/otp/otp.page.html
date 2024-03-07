@@ -1,0 +1,21 @@
+<app-header-with-back [title]="'Login/SignUp'" [showNotificationIcon]="false" [showBackButton]="true"></app-header-with-back>
+
+<ion-content class="container">
+  <h1>Enter verification code</h1>
+  <p>We have sent you a 6 digit verification code on</p>
+  <div class="phone-no">+91 {{dataProvider.userMobile}}</div>
+
+  <div class="otp-inputs">
+    <ng-otp-input 
+    ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config"></ng-otp-input>
+  </div>
+
+
+  <div class="resend">
+    <div id="recaptcha-container2"></div>
+    <p style="color:#F6D3C1">Didn't receive code?</p> &nbsp;
+    <p *ngIf="resendOtpTime == 0" style="color: #5E0080; cursor: pointer;" (click)="sendOTP()" >Resend OTP</p>
+    <p *ngIf="resendOtpTime > 0" style="color: #85454B; cursor: pointer;" class="link">Resend OTP in {{resendOtpTime}} sec</p>
+  </div>
+  <ion-button class="signup" style="--background:#F5ACA4;--background-activated: #A9706E;" (click)="login()">Login</ion-button>
+</ion-content>

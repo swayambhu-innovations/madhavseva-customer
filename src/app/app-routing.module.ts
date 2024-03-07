@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { PlanPartyComponent } from './authorized/plan-party/plan-party.component';
 
 const routes: Routes = [
 
@@ -20,7 +21,9 @@ const routes: Routes = [
   {
     path: 'no-internet',
     loadChildren: () => import('./no-internet/no-internet.module').then( m => m.NoInternetPageModule)
-  }
+  },
+  {path:'party',
+component:PlanPartyComponent}
 ];
 
 @NgModule({

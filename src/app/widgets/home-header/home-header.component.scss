@@ -23,6 +23,7 @@ ion-toolbar {
     }
   }
   ion-buttons:nth-child(1) {
+    
     ion-button {
       margin-bottom: 6px;
       img {
@@ -30,6 +31,23 @@ ion-toolbar {
       }
     }
   }
+}
+ion-buttons{
+  .button_back{
+    background-color:#F5ACA4 ;
+    padding: 0px 7px;
+    border-radius: 30px;
+  }
+  
+  .party{
+  --background:#F5ACA4;
+  --color:#844031;
+  img{
+    padding-left:12px;
+  
+  }
+}
+
 }
 
 .main-container {

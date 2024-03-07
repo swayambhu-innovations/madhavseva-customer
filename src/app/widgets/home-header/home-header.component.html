@@ -18,7 +18,11 @@
           name="caret-up-outline"></ion-icon>
       </p>
     </ion-text>
+    
     <ion-buttons slot="end">
+      <div class="button_back">
+      <ion-button class="party">Plan A Party <img src="assets/plan_a_party.svg" alt=""></ion-button>
+    </div>
       <ion-button (click)="notification()">
         <img *ngIf="!showUnreadNotification" src="assets/images/bell.svg" alt="">
         <img *ngIf="showUnreadNotification" src="assets/ui_icons/notification.svg" alt="">

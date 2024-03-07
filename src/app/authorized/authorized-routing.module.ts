@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthorizedPage } from './authorized.page';
 import { AuthGuard } from '../guards/auth.guard';
+import { PlanPartyComponent } from './plan-party/plan-party.component';
 
 const routes: Routes = [
   {
@@ -149,6 +150,10 @@ const routes: Routes = [
         path: 'service-detail/:mainCategoryId/:subCategoryId/:serviceId',
         loadChildren: () => import('./service-detail/service-detail.module').then( m => m.ServiceDetailPageModule)
       },
+      {
+        path:'party',
+        component:PlanPartyComponent
+      }
     ]
   },
 ];

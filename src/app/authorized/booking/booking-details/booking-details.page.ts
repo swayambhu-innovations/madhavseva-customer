@@ -286,7 +286,7 @@ export class BookingDetailsPage implements OnInit {
               columns: [
                 
                 {
-                    text: 'Sangam Services',
+                    text: 'Kitty Connect',
                     width: '50%',
                     fontSize: 18,
                     alignment: 'left',
@@ -314,7 +314,7 @@ export class BookingDetailsPage implements OnInit {
                                   text:'From:\n\n'
                               },
                               {
-                                  text:'Sangam Services\n',
+                                  text:'Kitty Connect\n',
                                   fontSize: 9
                               },
                               {

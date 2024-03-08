@@ -98,6 +98,10 @@ export class HomeHeaderComponent  implements OnInit {
     this.router.navigate(['/authorized/select-address']);
   }
 
+  party(){
+    this.router.navigate(['/authorized/home/party']);
+  }
+
   onWillDismiss(event){
     this.addressLineTwoVisible = false;
     this.showmodal = false;

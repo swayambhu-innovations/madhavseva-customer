@@ -7,7 +7,7 @@ ion-content {
 }
 
 ion-card {
-  background:linear-gradient(to bottom , #E513C3, #F5ACA4);
+  background:linear-gradient(to bottom , #FDA39A, #FBC2A5);
   padding-top: 50px;
   overflow-y: scroll;
   box-shadow: none;
@@ -99,7 +99,7 @@ ion-card {
     display: flex;
 
     color: var(--primary, #DA8281);
-    font-feature-settings: "clig" off, "liga" off;
+    font-feature-settings: "clig" off, "liga" off; 
     font-family: Lato;
     font-size: 14px;
     font-style: normal;

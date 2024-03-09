@@ -1,13 +1,13 @@
 {
   "projects": {
-    "default": "kittyconnect-68a81",
-    "customer": "kittyconnect-customer"
+    "default": "turbanlaundry",
+    "customer": "turbanlaundry-customer"
   },
   "targets": {
-    "kittyconnect-6d6e8": {
+    "turbanlaundry-6d6e8": {
       "hosting": {
         "customer": [
-          "kittyconnect-admin"
+          "turbanlaundry-admin"
         ]
       }
     }

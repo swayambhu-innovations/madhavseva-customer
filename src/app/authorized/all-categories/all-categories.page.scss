@@ -18,7 +18,8 @@
       border-radius: 58px;
       align-items: center;
       justify-content: center;
-      background: #f5f5f5;
+      background: #EBFFF4;
+      border: 1px solid  #589441;
     }
 
     span {
@@ -33,7 +34,7 @@
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      color:#F5ACA4
+      color:#589441
     }
   }
 }
@@ -45,7 +46,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid #F6D3C1;
+  border: 1px solid  #094A28;
   background: #fff;
   /* Drop Shadow */
   box-shadow: 0px 2px 6px 1px rgba(22, 22, 22, 0.1);
@@ -55,7 +56,7 @@
 
 
   input::placeholder {
-    color:#F6D3C1;
+    color: #094A28;
   }
 
   .left-arrow{
@@ -79,7 +80,7 @@
   span {
     // background-color: $primaryBackgroundColor;
     border-radius: 8px;
-    background: var(--primary, #F5ACA4);
+    background: var(--primary, #589441);
     border-radius: 8px;
     color: white;
     width: 40px;
@@ -91,7 +92,7 @@
 
 .container-fluid {
     h2 {
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-family: Lato;
       font-size: 18px;
       font-style: normal;

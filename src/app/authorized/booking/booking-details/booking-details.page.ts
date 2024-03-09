@@ -286,7 +286,7 @@ export class BookingDetailsPage implements OnInit {
               columns: [
                 
                 {
-                    text: 'Kitty Connect',
+                    text: 'Turban Laundary',
                     width: '50%',
                     fontSize: 18,
                     alignment: 'left',
@@ -314,7 +314,7 @@ export class BookingDetailsPage implements OnInit {
                                   text:'From:\n\n'
                               },
                               {
-                                  text:'Kitty Connect\n',
+                                  text:'Turban Laundary\n',
                                   fontSize: 9
                               },
                               {
@@ -342,7 +342,7 @@ export class BookingDetailsPage implements OnInit {
                                 fontSize: 9
                               },
                               {
-                                text:' Email: support@kittyconnect.com\n',
+                                text:' Email: support@turbanlaundry.com\n',
                                 fontSize: 9
                               },
                           ],

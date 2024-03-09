@@ -35,7 +35,7 @@
 
 ion-content {
   $secondaryTextColor: #9b9e9f;
-  $primaryBackgroundColor: #F5ACA4;
+  $primaryBackgroundColor: #589441;
   font-family: "Lato", sans-serif;
 
   #search {
@@ -130,14 +130,14 @@ ion-content {
 .searchresult-name {
   margin-top: -50px;
   margin-left: 10px;
-  color: var(--primary, #F5ACA4);
+  color: var(--primary, #589441);
   font-family: Lato;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.28px;
-  color: var(--primary, #F5ACA4);
+  color: var(--primary, #589441);
   font-family: Lato;
   font-size: 14px;
   font-style: normal;
@@ -167,7 +167,7 @@ ion-label {
   }
   ion-icon {
     margin-right: 10px;
-    color: #F5ACA4;
+    color: #589441;
   }
 }
 .clear {
@@ -185,12 +185,12 @@ ion-label {
   display: flex;
   align-items: center;
   ion-icon {
-    color: #F5ACA4;
+    color: #589441;
     margin-right: 5px;
     margin-bottom: 3px;
   }
   strong {
-    color: #F5ACA4;
+    color: #589441;
     font-weight: 700;
     font-size: 12px;
   }
@@ -203,13 +203,13 @@ ion-label {
 
   .service-name {
     margin-bottom: 4px;
-    color:#DA8281;
+    color:#094A28;
   }
 
   .col-price {
     // padding-left: 15px;
     span {
-      color: #F5ACA4;
+      color: #589441;
       font-family: Lato;
       font-size: 10px;
       font-style: normal;
@@ -280,5 +280,5 @@ ion-label {
   width: 15px;
     margin-top: -8px;
     margin-right: 5px;
-    color: #F5ACA4;
+    color: #589441;
 }

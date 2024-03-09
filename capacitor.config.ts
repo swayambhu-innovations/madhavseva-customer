@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.shreeva.kittyconnect',
-  appName: 'kittyconnect',
+  appId: 'com.shreeva.turbanlaundry',
+  appName: 'turbanlaundry',
   webDir: 'www',
   server: {
     androidScheme: 'https'

@@ -13,9 +13,9 @@
 
   <div class="resend">
     <div id="recaptcha-container2"></div>
-    <p style="color:#F6D3C1">Didn't receive code?</p> &nbsp;
-    <p *ngIf="resendOtpTime == 0" style="color: #5E0080; cursor: pointer;" (click)="sendOTP()" >Resend OTP</p>
-    <p *ngIf="resendOtpTime > 0" style="color: #85454B; cursor: pointer;" class="link">Resend OTP in {{resendOtpTime}} sec</p>
+    <p style="color:#666666">Didn't receive code?</p> &nbsp;
+    <p *ngIf="resendOtpTime == 0" style="color: #181F29; cursor: pointer;" (click)="sendOTP()" >Resend OTP</p>
+    <p *ngIf="resendOtpTime > 0" style="color: #181F29; cursor: pointer;" class="link">Resend OTP in {{resendOtpTime}} sec</p>
   </div>
-  <ion-button class="signup" style="--background:#F5ACA4;--background-activated: #A9706E;" (click)="login()">Login</ion-button>
+  <ion-button class="signup" style="--background:#589441;--background-activated: #589441;" (click)="login()">Login</ion-button>
 </ion-content>

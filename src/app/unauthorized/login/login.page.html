@@ -1,8 +1,10 @@
-<div class="main" style="height: 100%;background: linear-gradient(165deg, #FFF 1.89%, #FEFAF7 32.57%, #FAE8DE 82.07%, #F6D3C1 101.44%);">
+<div class="main" >
   <section class="header">
     <img src="assets/images/logo.svg" alt="">
-    <p>KITTY CONNECT</p>
-
+    <div>
+    <p style="color:#589441; display: inline;">Turban</p>
+    <p style="color:#094A28; display: inline;">Laundry</p>
+  </div>
   </section>
 
   <section class="body">
@@ -20,7 +22,7 @@
     <div class="agree-container">
       <input type="checkbox" id="terms-agree" [(ngModel)]="terms" style="zoom: 2;" >&nbsp;&nbsp;&nbsp;&nbsp;
       <label class="input-label" for="terms-agree"></label>
-      <p style="text-align: left; color:#A9706Eed"> I agree to the
+      <p style="text-align: left; color:#666"> I agree to the
         <a href="https://shreeva.com/terms-condition.html" target="_blank" rel="noopener noreferrer">Terms & Conditions,</a>&nbsp;&nbsp;
         <a href="https://shreeva.com/privacyPolicy.html" target="_blank" rel="noopener noreferrer">Privacy,</a>&nbsp;&nbsp;
         Policy
@@ -28,7 +30,7 @@
      
     </div>
     
-    <ion-button [disabled]="(phoneNumber.length < 10) || terms == false ? true : false" class="signup" style="--background:#F5ACA4;--background-activated: #A9706E;"
+    <ion-button [disabled]="(phoneNumber.length < 10) || terms == false ? true : false" class="signup" style="--background:#589441;--background-activated: #589441;"
       (click)="login()">Login/SignUp</ion-button>
   </section>
 

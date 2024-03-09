@@ -94,7 +94,7 @@
             <div class="rating">
               <img
                 class="rating-btn"
-                src="../../../assets/images/rating-star.png"
+                src="../../../assets/star-outlined.svg"
                 alt="rating"
               />
               <p class="rating-text">
@@ -221,7 +221,7 @@
       <ng-container *ngFor="let item of selectedBooking.services">
           <div class="row1" *ngFor="let variant of item.variants">
             <p class="col1">{{variant.name }} X <span >{{ variant.quantity}}</span></p>
-            <p style="color:#F5ACA4">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
+            <p style="color:#589441">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
           </div>
       </ng-container>
     </div>

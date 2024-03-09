@@ -18,11 +18,11 @@ ion-toolbar {
 
 ion-content {
   text-align: center;
-  background: linear-gradient(165deg, #FFF 1.89%, #FEFAF7 32.57%, #FAE8DE 82.07%, #F6D3C1 101.44%);
+  background: linear-gradient(165deg, #FFF 1.89%, #FEFAF7 32.57%, #FAE8DE 82.07%,  #094A28 101.44%);
 
   h1 {
     margin-top: 100px;
-    color: var(--primary,#F5ACA4 );
+    color: var(--primary,#094A28);
     text-align: center;
     font-family: Lato;
     font-size: 24px;
@@ -33,7 +33,7 @@ ion-content {
 
   p {
     margin: 0;
-    color: #F6D3C1
+    color: #666666
     ;
     text-align: center;
     font-family: Lato;
@@ -44,7 +44,7 @@ ion-content {
   }
 
   .phone-no {
-    color: #85454B ;
+    color: #181F29 ;
     text-align: center;
     font-family: Lato;
     font-size: 16px;
@@ -93,8 +93,7 @@ ion-content {
     text-transform: capitalize;
     margin-top: 50px;
     height: 45px;
-    --background: #F5ACA4;
-    --color: #844031;
+    --color: #FFF;
   }
 
   .otp-inputs {
@@ -103,7 +102,7 @@ ion-content {
     width: 100%;
     text-align: center;
     justify-content: center;
-    border-color: #F5ACA4;
+    border-color: #589441;
 
     input {
       height: 36px;

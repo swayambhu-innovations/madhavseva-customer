@@ -19,7 +19,7 @@ export class AuthorizedPage implements OnInit {
  
 
 
-  images: string[] = ['relax1.svg','Delivery-amico.svg','Product teardown-bro.svg']
+  images: string[] = ['relax1.svg','Delivery-amico.svg']
   currentImageIndex: number = 0;
   interval: any;
 

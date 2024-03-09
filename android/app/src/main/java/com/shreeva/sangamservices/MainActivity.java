@@ -1,4 +1,4 @@
-package com.shreeva.kittyconnect;
+package com.shreeva.turbanlaundry;
 import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;

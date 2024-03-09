@@ -2,10 +2,10 @@
   box-shadow: none;
 }
 ion-toolbar {
-  $secondaryTextColor: #F5ACA4;
+  $secondaryTextColor: #589441;
   ion-text {
     h4 {
-      color: #DA8281;
+      color: #094A28;
       margin: 13px 0px 0px;
       font-size: 14px;
       font-weight: 600;
@@ -34,14 +34,13 @@ ion-toolbar {
 }
 ion-buttons{
   .button_back{
-    background-color:#F5ACA4 ;
+    background:linear-gradient(180deg, #58CC2C 0%, #4ED28D 100%);
     padding: 1px 7px;
     border-radius: 30px;
   }
   
   .party{
-  --background:#F5ACA4;
-  --color:#844031;
+  --color:#FFFF;
   img{
     padding-left:12px;
   
@@ -70,7 +69,7 @@ ion-buttons{
       button {
         display: flex;
         background: white;
-        color: var(--tertiary, #85454B);
+        color: var(--tertiary, #094A28);
         font-weight: 600;
         cursor: pointer;
 

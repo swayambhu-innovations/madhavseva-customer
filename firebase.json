@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site":"kittyconnect-customer",
+    "site":"turbanlaundry-customer",
     "source": ".",
     "ignore": [
       "firebase.json",

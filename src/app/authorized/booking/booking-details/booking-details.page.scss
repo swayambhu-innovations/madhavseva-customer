@@ -1,6 +1,6 @@
 * {
   font-family: Lato;
-  color: #F5ACA4;
+  color: #589441;
   box-shadow: none !important;
 }
 .mt-20 {
@@ -27,7 +27,7 @@
     width: 37px;
     height: 24px;
     flex-shrink: 0;
-    color: #F5ACA4;
+    color: #589441;
     display: inline-block;
     vertical-align: middle;
     margin: 0px 10px;
@@ -58,7 +58,7 @@
 
   .row {
     float: left;
-    color: var(--primary, #F6D3C1);
+    color: var(--primary,  #094A28);
 
     .order {
       display: flex;
@@ -97,7 +97,7 @@
   }
 
   h6 {
-    color: var(--primary, #F5ACA4);
+    color: var(--primary, #589441);
     font-family: Lato;
     font-size: 12px;
     font-style: normal;
@@ -134,7 +134,7 @@
     .details {
       padding: 1px 17px;
       h2 {
-        color: #F5ACA4;
+        color: #589441;
         font-family: Lato;
         font-size: 16px;
         font-style: normal;
@@ -142,7 +142,7 @@
       }
 
       p {
-        color: var(--Neutral-04, #F6D3C1);
+        color: var(--Neutral-04,  #094A28);
         font-family: Lato;
         font-size: 14px;
         font-style: normal;
@@ -210,11 +210,11 @@
           display: flex;
           p {
             margin-left: 3px;
-            color: var(--Neutral-07, #F5ACA4);
+            color: var(--Neutral-07, #589441);
             font-size: 10px;
 
             span {
-              color: var(--Neutral-04, #F6D3C1);
+              color: var(--Neutral-04,  #094A28);
             }
           }
         }
@@ -229,12 +229,12 @@
           width: 36px;
           height: 36px;
           border-radius: 100px;
-          border: 1px solid var(--primary, #F5ACA4);
+          border: 1px solid var(--primary, #589441);
           background: #fff;
         }
       }
       .call-text p {
-        color: #F6D3C1;
+        color:  #094A28;
         font-family: Lato !important;
         font-size: 12px;
         font-weight: 400;
@@ -275,8 +275,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        border: 1px solid var(--primary, #F5ACA4);
-        background: var(--primary, #F5ACA4);
+        border: 1px solid var(--primary, #589441);
+        background: var(--primary, #589441);
         color: white;
       }
     }
@@ -336,7 +336,7 @@
     padding: 9px 11px;
 
     .head {
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-family: Lato;
       font-size: 18px;
       font-style: normal;
@@ -373,7 +373,7 @@
   //       // display: inline;
 
   //       margin-left: 5px;
-  //       color: #F5ACA4;
+  //       color: #589441;
   //       font-family: Lato;
   //       font-size: 16px;
   //       font-style: normal;
@@ -383,7 +383,7 @@
   //     }
 
   //     .body {
-  //       color: var(--neutral-04, #F6D3C1);
+  //       color: var(--neutral-04,  #094A28);
   //       font-family: Lato;
   //       font-size: 12px;
   //       font-style: normal;
@@ -397,7 +397,7 @@
   //     }
 
   //     .body1 {
-  //       color: var(--neutral-04, #F6D3C1);
+  //       color: var(--neutral-04,  #094A28);
   //       font-family: Lato;
   //       font-size: 12px;
   //       font-style: normal;
@@ -433,13 +433,13 @@
       padding-left: 7px;
       h3 {
         margin: 0;
-        color: #F5ACA4;
+        color: #589441;
         font-size: 16px;
         font-weight: 700;
         letter-spacing: -0.32px;
       }
       span {
-        color: var(--Neutral-04, #F6D3C1);
+        color: var(--Neutral-04,  #094A28);
         font-family: Lato;
         font-size: 12px;
         font-style: normal;
@@ -497,7 +497,7 @@
     }
 
     h6 {
-      color: var(--secondry-text-color, #F6D3C1);
+      color: var(--secondry-text-color,  #094A28);
       font-family: Lato;
       font-size: 12px;
       font-style: normal;
@@ -507,7 +507,7 @@
     }
 
     h5 {
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-family: Lato;
       font-size: 14px;
       font-style: normal;
@@ -528,7 +528,7 @@
   .row-1 {
     .head {
       font-size: 18px;
-      color: var(--neutral-04, #F5ACA4);
+      color: var(--neutral-04, #589441);
       font-weight: 700;
     }
   }
@@ -543,7 +543,7 @@
 
     .head {
       font-size: 14px;
-      color: var(--neutral-04, #F6D3C1);
+      color: var(--neutral-04,  #094A28);
       font-weight: 500;
     }
 
@@ -565,7 +565,7 @@
     .head {
       font-size: 18px;
       font-weight: 700;
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
     }
   }
 
@@ -577,24 +577,24 @@
     box-shadow: -1px 4px 10px -4px rgba(22, 22, 22, 0.08);
     // display: flex;
     h2{
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-size: 14px;
       font-weight: 700;
     }
     p{
       margin-top: 4px;
-      color: #F6D3C1;
+      color:  #094A28;
       font-size: 14px;
       font-weight: 400;
     }
     .head {
       font-size: 14px;
       font-weight: 700;
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
     }
 
     .body {
-      color: #F6D3C1;
+      color:  #094A28;
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.36px;
@@ -620,7 +620,7 @@
       font-size: 13px;
       margin-bottom: 3px;
       p{
-        color: #F6D3C1;
+        color:  #094A28;
       }
     }
   }
@@ -638,14 +638,14 @@
     justify-content: space-between;
 
     span {
-      color: var(--primary-text-color, #F6D3C1);
+      color: var(--primary-text-color,  #094A28);
     }
 
     button {
       width: 30px;
       height: 30px;
       border-radius: 53px;
-      border: 1px solid #F5ACA4;
+      border: 1px solid #589441;
       background: #fff;
     }
   }
@@ -658,7 +658,7 @@
       text-align: left;
       flex: 0 0 50%;
       font-weight: 500;
-      color: #F6D3C1;
+      color:#589441;
     }
     .payment-value {
       text-align: right;
@@ -668,7 +668,7 @@
   .head {
     float: left;
     display: inline;
-    color: var(--secondry-text-color, #F6D3C1);
+    color: var(--secondry-text-color,  #094A28);
     text-align: center;
     font-family: Lato;
     margin-top: -18px;
@@ -740,7 +740,7 @@
 
     .head {
       margin-left: 16px;
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-family: Lato;
       font-size: 18px;
       font-style: normal;
@@ -751,7 +751,7 @@
     }
 
     p {
-      color: var(--Neutral-04, #F6D3C1);
+      color: var(--Neutral-04,  #094A28);
       font-family: Lato;
       font-size: 12px;
       font-style: normal;
@@ -804,7 +804,7 @@
         .service-head {
           h3 {
             // margin-left: 5px;
-            color: #F5ACA4;
+            color: #589441;
             font-family: Lato;
             font-size: 16px;
             font-style: normal;
@@ -815,7 +815,7 @@
           }
 
           span {
-            color: var(--neutral-04, #F6D3C1);
+            color: var(--neutral-04,  #094A28);
             font-family: Lato;
             font-size: 12px;
             font-style: normal;
@@ -876,7 +876,7 @@
     cursor: pointer;
 
     p {
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       text-align: center;
       font-size: 12px;
       font-family: Lato;
@@ -915,7 +915,7 @@ input {
     gap: 8px;
     flex-shrink: 0;
     border-radius: 12px;
-    border: 1px solid var(--primary, #F5ACA4);
+    border: 1px solid var(--primary, #589441);
     background: #fff;
   }
   .cancel-button {
@@ -937,7 +937,7 @@ input {
   padding: 0 10px 16px;
   background: white;
   h3 {
-    color: #F5ACA4;
+    color: #589441;
     font-family: Lato;
     font-size: 18px;
     font-style: normal;
@@ -976,8 +976,8 @@ ion-content {
   --background: #f7f7f7;
   // --ion-background-color:red;
   font-family: Lato;
-  $primary: #F5ACA4;
-  $secondary: #F6D3C1;
+  $primary: #589441;
+  $secondary:  #094A28;
   $green: #579540;
 
   .container {
@@ -1087,7 +1087,7 @@ ion-content {
         }
 
         .body {
-          color: #F6D3C1;
+          color:  #094A28;
           font-size: 12px;
           font-family: Nunito Sans;
           font-weight: 400;
@@ -1110,7 +1110,7 @@ li.pargraph {
   line-height: 14px;
   letter-spacing: 0em;
   text-align: left;
-  color: #85454B;
+  color: #094A28;
 }
 .row-discarded {
   display: grid;
@@ -1132,7 +1132,7 @@ li.pargraph {
 .ion-padding {
   .container {
     h2 {
-      color: var(--primary, #F5ACA4);
+      color: var(--primary, #589441);
       font-family: Lato;
       font-size: 18px;
       font-style: normal;
@@ -1193,14 +1193,14 @@ li.pargraph {
       }
       .skipbtn {
         background: white;
-        color: #F5ACA4;
-        border: 1px solid var(--primary, #F5ACA4);
+        color: #589441;
+        border: 1px solid var(--primary, #589441);
       }
 
       .submitbtn {
-        background: var(--primary, #F5ACA4);
+        background: var(--primary, #589441);
         color: white;
-        border: 1px solid var(--primary, #F5ACA4);
+        border: 1px solid var(--primary, #589441);
       }
     }
   }
@@ -1241,7 +1241,7 @@ li.pargraph {
   background: #fff;
   margin-bottom: 13px;
   .heading {
-    color: var(--primary, #F5ACA4);
+    color: var(--primary, #589441);
     font-family: Lato;
     font-size: 14px;
     font-style: normal;
@@ -1250,7 +1250,7 @@ li.pargraph {
   }
 
   .sub-title {
-    color: var(--secondry-text-color, #F6D3C1);
+    color: var(--secondry-text-color,  #094A28);
     font-family: Lato;
     font-size: 12px;
     font-style: normal;

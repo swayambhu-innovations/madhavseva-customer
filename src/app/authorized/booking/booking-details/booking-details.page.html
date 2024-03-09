@@ -256,7 +256,7 @@
           <ng-container *ngFor="let item of currentBooking?.services">
               <div class="row1" *ngFor="let variant of item.variants">
                 <p class="col1">{{variant.name }} X <span style="color: #7e8083;">{{ variant.quantity}}</span></p>
-                <p style="color: #F5ACA4;">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
+                <p style="color: #589441;">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
               </div>
           </ng-container>
         </div>
@@ -407,7 +407,8 @@
       </button>
     </div>
     <div class="container" *ngIf="currentBooking?.stage == 'allotmentPending' || currentBooking?.stage == 'acceptancePending' || currentBooking?.stage == 'inProgress'" style="margin-bottom: 25px;">
-      <ion-card style="margin: 0px;  background-color:#F6D3C1;">
+      <ion-card style="margin: 0px;  background-color: #EDF2EB
+      ;">
         <ion-card-content>
           <ul>
             <li class="pargraph">
@@ -436,13 +437,13 @@
 
             <div class="container-fluid">
               <div class="row text-center" style="background-color:#e4e3f7">
-                <p class="mt-3" style="color: #F6D3C1">
+                <p class="mt-3" style="color:  #094A28">
                   We won't be charging you a cancellation fee
                 </p>
               </div>
             </div>
             <div class="bottom mt-4">
-              <ion-button class="text-light bg-blue" [disabled]="CancelForm.invalid" expand="block" style="--background:#F5ACA4;--background-activated: #A9706E;"  (click)="cancelSubmit()">
+              <ion-button class="text-light bg-blue" [disabled]="CancelForm.invalid" expand="block" style="--background:#589441;--background-activated: #094A28;"  (click)="cancelSubmit()">
                 Cancel Booking
               </ion-button>
             </div>

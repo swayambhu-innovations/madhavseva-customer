@@ -15,19 +15,18 @@ login css
   margin-top: 20px;
 
   span{
-    color:#A9706E;
+    color:#094A28;
     font-weight: 500;
   }
 
   img {
-    width: 50px;
+    width:70px;
     border-radius: 10px;
     margin-bottom: 10px;
   }
 
   p {
     margin: 0;
-    color:#844031;
     font-family: "Josefin Sans", sans-serif;
     font-size: x-large;
     font-weight: 600;
@@ -36,11 +35,11 @@ login css
 }
 
 .body {
-  margin-top: 10px;
+  margin-top: 18%;
   img {
     width:70%;
     margin:0px 15%;
-    margin-bottom: 20px;
+    margin-bottom: 18%;
   }
 }
 
@@ -52,31 +51,31 @@ login css
     margin: 0;
     font-size: 20px;
     font-weight: bold;
-    color: #A9706E;
+    color: #094A28;
   }
 
   h6 {
     margin: 0;
     font-size: 12px;
-    color: #FDA39A;
+    color: #666666;
     margin-top: 5px;
   }
 
   .image {
     width: 90%;
-    border: 1px solid #FDA39A;
+    border: 1px solid #666666;
     border-radius: 5px;
     padding: 5px;
     margin: 0 auto;
     margin-top: 12px;
     height: 50px;
-    border: 1px solid #FDA39A;
     display: flex;
     input{
       background:transparent;
     }
     .styled-input::placeholder {
-      color:#FDA39A ; /* Change the color to your preferred color */
+      color:#666666
+ ; /* Change the color to your preferred color */
     }
 
     ion-icon {
@@ -85,7 +84,8 @@ login css
       margin-top: 8px;
     }
     ion-icon[name="call"] {
-      color: #FDA39A;
+      color: #666666
+;
     }
 
     input {
@@ -94,7 +94,7 @@ login css
       font-size: 12px;
       width: 80%;
       margin-left: 5px;
-      color: #A9706E;
+      color: #666666;
 
     }
   }
@@ -106,8 +106,7 @@ login css
     margin: 0 auto;
     margin-top: 5px;
     height: 45px;
-    --background:#F5ACA4;
-    --color:#844031;
+    --color:white;
     
   }
 }
@@ -118,7 +117,7 @@ footer {
   height: 100px;
 }
 a{
-  color: #EB7156;
+  color: #094A28;
 }
 .agree-container{
   display: flex;
@@ -147,7 +146,7 @@ a{
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
-    border: 2px solid #FDA39A;
+    border: 2px solid #094A28;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
     padding: 11px;
     display: inline-block;
@@ -156,7 +155,6 @@ a{
     cursor: pointer;
     margin-right: 5px;
     border-radius: 2px;
-    border-color: #FDA39A;
 
   }
   
@@ -168,7 +166,7 @@ a{
     left: 11px;
     width: 6px;
     height: 13px;
-    border: solid #FDA39A;
+    border: solid #094A28;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

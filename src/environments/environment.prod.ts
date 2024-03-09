@@ -1,24 +1,24 @@
 export const environment = {
   firebase: {
-    apiKey: "AIzaSyAtJsXpfRm_JYPRDIvXzswKE2mmmUY0V54",
-  authDomain: "kittyconnect-68a81.firebaseapp.com",
-  projectId: "kittyconnect-68a81",
-  storageBucket: "kittyconnect-68a81.appspot.com",
-  messagingSenderId: "672760272300",
-  appId: "1:672760272300:web:183e680e6506acf349d609",
-  measurementId: "G-6P5VCTFRMG",
+    apiKey: "AIzaSyBbNRIxV4pW5Vz3-IkQp7fg3keDJVZHYNc",
+    authDomain: "turbanlaundry.firebaseapp.com",
+    projectId: "turbanlaundry",
+    storageBucket: "turbanlaundry.appspot.com",
+    messagingSenderId: "595946248747",
+    appId: "1:595946248747:web:767466559de5d7969a286e",
+    measurementId: "G-Y07B97SZW2",
 
-    functionURL: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/',
+    functionURL: 'https://us-central1-turbanlaundry.cloudfunctions.net/',
   },
 
   cloudFunctions : {
-    createOrder: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/createOrder',
-    getOrderById: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/getOrderById?id=',
-    capturePayment: 'https://us-central1-kittyconnect-68a81.cloudfunctions.net/capturePayments',
+    createOrder: 'https://us-central1-turbanlaundry.cloudfunctions.net/createOrder',
+    getOrderById: 'https://us-central1-turbanlaundry.cloudfunctions.net/getOrderById?id=',
+    capturePayment: 'https://us-central1-turbanlaundry.cloudfunctions.net/capturePayments',
 
     
-    createRefund:'https://us-central1-kittyconnect-68a81.cloudfunctions.net/createRefund',
-    getRefundDetails:'https://us-central1-kittyconnect-68a81.cloudfunctions.net/getRefundDetails',
+    createRefund:'https://us-central1-turbanlaundry.cloudfunctions.net/createRefund',
+    getRefundDetails:'https://us-central1-turbanlaundry.cloudfunctions.net/getRefundDetails',
   },
 
   RAZORPAY_KEY_ID: 'rzp_test_A9Kod2RLWyBi4k',

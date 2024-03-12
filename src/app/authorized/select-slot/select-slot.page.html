@@ -72,7 +72,7 @@
         </div>
       </ng-template>
       
-      <h2 style="margin-top: 20px;">Select Preferred Agent Arrival Time</h2>
+      <h2 style="margin-top: 20px;">Select Preferred Sevak Arrival Time</h2>
       <div class="third-btns">
         <button *ngFor="let btn of agentArrivalArray" (click) = "selectAgentArrivalTime = btn; setTimeSlot()" [ngClass]="{active:selectAgentArrivalTime==btn}">
           {{btn | date:'hh:mm'}} <br> {{btn | date:'aaa'}}

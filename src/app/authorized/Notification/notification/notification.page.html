@@ -1,5 +1,5 @@
 <app-header-with-back [title]="'Notification'" [showNotificationIcon]="false"></app-header-with-back>
-<div class="container page-container" style="color:#589441;">
+<div class="container page-container" style="color:#FB9F14;">
   <div class="d-flex justify-content-end">
     <div class="icon-container" (click)="openMenu()">
       <ion-icon name="ellipsis-vertical"></ion-icon>
@@ -36,7 +36,7 @@
             <img src="../../../../assets/notification-icon/timer.svg" alt="">
           </div>
           <div class="col-2">
-            <h1 [ngStyle]="{'color' : item.read ? '#589441': '#589441' }">{{item.title}}</h1>
+            <h1 [ngStyle]="{'color' : item.read ? '#FB9F14': '#FB9F14' }">{{item.title}}</h1>
             <p>{{item.body}}</p>
           </div>
         </div>
@@ -83,8 +83,8 @@
             <img src="../../../../assets/notification-icon/timer.svg" alt="">
           </div>
           <div class="col-2">
-            <h1   [ngStyle]="{'color' : item.read ? ' #094A28': '#589441' }">{{item.title}}</h1>
-            <p style="color: #094A28">{{item.body}}</p>
+            <h1   [ngStyle]="{'color' : item.read ? ' #FB9F14': '#FB9F14' }">{{item.title}}</h1>
+            <p style="color: #FB9F14">{{item.body}}</p>
           </div>
         </div>
       </ion-item>
@@ -120,7 +120,7 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col">
-          <ion-button routerLink="../../authorized/home" expand="block" style="--background:#589441;--background-activated: #094A28;" >
+          <ion-button routerLink="../../authorized/home" expand="block" style="--background:#FB9F14;--background-activated: #FB9F14;" >
             View all services
           </ion-button>
           

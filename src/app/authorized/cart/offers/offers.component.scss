@@ -8,19 +8,19 @@ ion-toolbar.toolbar,ion-item,ion-content{
 }
 
 .page-body {
-    background-color:  #094A28;
-    color:  #094A28;
+    background-color:  #FB9F14;
+    color:  #FB9F14;
 }
 
 h2,p,h1,h3,h4,h5, h6{
-    color: #589441;
+    color: #FB9F14;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     padding: 0;
     margin: 0;
 }
 ion-back-button,ion-icon,ion-title{
-    color: #589441;
+    color: #FB9F14;
 }
 
 .coupon-input{
@@ -29,7 +29,7 @@ ion-back-button,ion-icon,ion-title{
     margin: 16px;
     margin-right: 16px;
     .coupon-text::placeholder{
-        color:  #094A28;
+        color:  #FB9F14;
         font-family: 'Lato', sans-serif;
         font-size: 14px;
     }
@@ -37,7 +37,7 @@ ion-back-button,ion-icon,ion-title{
 }
 .coupon-button{
     flex: end;
-    color:  #094A28;
+    color:  #FB9F14;
     font-family: 'Lato', sans-serif;
     font-size: 14px;    
     margin-right: 10px 12px;
@@ -77,18 +77,18 @@ ion-back-button,ion-icon,ion-title{
             line-height: 20px;
             // margin: 12px;
             ::placeholder{
-                color: #094A28;
+                color: #FB9F14;
             }
             .card-name-text{
                 font-size: 13px;
                 font-weight: 600;
-                color: #589441;
+                color: #FB9F14;
                 font-family: 'Lato', sans-serif;
             }
             .min-order-text{
                 font-size: 12px;
                 font-weight: 500;
-                color:  #094A28;
+                color:  #FB9F14;
                 font-family: 'Lato', sans-serif;
             }
             .discount-text{
@@ -102,7 +102,7 @@ ion-back-button,ion-icon,ion-title{
         .apply-button{
             font-size: 12px;
             font-weight: 700;
-            color: #589441;
+            color: #FB9F14;
             font-family: 'Lato', sans-serif;
             width: 100%;
             flex: end;
@@ -121,7 +121,7 @@ ion-back-button,ion-icon,ion-title{
 .select-address-button, .got-it-button {
     width: 90%;
     margin: 0 5%;
-    background-color: #589441;
+    background-color: #FB9F14;
     color: #ffffff;
     border: none;
     padding: 16px 20px;
@@ -135,7 +135,7 @@ ion-back-button,ion-icon,ion-title{
 }
 
 .heading-name{
-    color: var(--primary, #589441);
+    color: var(--primary, #FB9F14);
     font-family: Lato;
     font-size: 16px;
     font-style: normal;
@@ -145,7 +145,7 @@ ion-back-button,ion-icon,ion-title{
 }
 
 .coupon-title{
-    color: #589441;
+    color: #FB9F14;
     font-family: Lato;
     font-size: 20px;
     font-style: normal;

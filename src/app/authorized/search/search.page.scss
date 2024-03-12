@@ -1,6 +1,6 @@
 
 ion-content {
-    $secondaryTextColor: #589441;
+    $secondaryTextColor: #FB9F14;
     $primaryBackgroundColor: black;
     font-family: 'Lato', sans-serif;;
     --padding-top: -6px;
@@ -51,7 +51,7 @@ ion-content {
             align-items: center;
             
             p{
-                color:#589441;
+                color:#FB9F14;
             }
         
         }
@@ -87,10 +87,10 @@ ion-content {
             text-align: center;
 
             h3{
-               color: #589441;
+               color: #FB9F14;
             }
             p{
-               color:  #094A28;
+               color:  #FB9F14;
             }
         }
     }
@@ -159,7 +159,7 @@ ion-label{
 
 }
 .clear:hover{
-    color: #589441;
+    color: #FB9F14;
 }
 .rating {
     font-size: small;
@@ -184,7 +184,7 @@ ion-label{
 
     .service-price-col-1{
         margin-bottom: 4px;
-        color:#589441;
+        color:#FB9F14;
     }
     .price{
         font-size: 14px;

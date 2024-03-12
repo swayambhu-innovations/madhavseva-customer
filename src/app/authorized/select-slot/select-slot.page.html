@@ -17,13 +17,13 @@
   <div class="row-2">
     <div class="top">
       <h2>When should the professional arrive?</h2>
-      <p>Your service will take approx. {{totalTimeNeeded}}</p>
+      <p>Your seva will take approx. {{totalTimeNeeded}}</p>
       <div class="first-btns">
         <button *ngFor="let btn of dates" (click)="onSelectDate(btn)" [ngClass]="{active:selectedDate==btn}">
           {{btn | date:'dd'}}<br>{{btn | date:'E'}}
         </button>
       </div>
-      <h2>Select Job Starting Slot</h2>
+      <h2>Select Seva Starting Slot</h2>
       <div class="second-btns" *ngIf="(activeSlotCount > 0); else noSlots">
         <button *ngFor="let items of slotsArray" (click)="startTime = items.start; endTime = items.end; setSlot(items)"
           [ngClass]="{active:startTime==items.start}"
@@ -80,7 +80,7 @@
       </div>          
       <div class="box">
         <img src="assets/icon/select-slot/card.svg" alt="">
-        <p style="color: #589441">Free cancellation till 3 hrs before the booked slot, post that ₹100 chargeable</p>
+        <p style="color: #FB9F14">Free cancellation till 3 hrs before the booked slot, post that ₹100 chargeable</p>
       </div>
     </div>
     <!-- <div class="bottom" (click)="createBooking()">
@@ -96,7 +96,7 @@
           Pay Now
         </button>
         <button class="payafter" [ngClass]="{active: (selectedDate && selectedTimeState)}"  [disabled]="!(selectedDate && selectedTimeState)" (click)="createBookingWithoutPay()">
-          Pay After Job
+          Pay After Seva
         </button>
       </div>
       <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">

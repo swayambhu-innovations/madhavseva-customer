@@ -7,7 +7,7 @@ ion-content {
 }
 
 ion-card {
-  background:#589441;
+  background:#FB9F14;
   padding-top: 50px;
   overflow-y: scroll;
   box-shadow: none;
@@ -98,7 +98,7 @@ ion-card {
   p {
     display: flex;
 
-    color: var(--primary, #094A28);
+    color: var(--primary, #FB9F14);
     font-feature-settings: "clig" off, "liga" off; 
     font-family: Lato;
     font-size: 14px;
@@ -126,7 +126,7 @@ ion-modal {
   .subtitle {
     text-align: center;
     margin-top: 10px;
-    color:#589441 ;
+    color:#FB9F14 ;
     font-weight: 600;
     font-size: 16px;
     font-style: normal;
@@ -134,9 +134,9 @@ ion-modal {
   }
 
   .cancel-btn {
-    border: 1px solid var(--primary, #589441);
+    border: 1px solid var(--primary, #FB9F14);
 
-    color: #589441;
+    color: #FB9F14;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -152,9 +152,9 @@ ion-modal {
   }
 
   .logout-btn {
-    border: 1px solid var(--primary, #589441);
+    border: 1px solid var(--primary, #FB9F14);
     font-style: normal;
-    background:#589441;
+    background:#FB9F14;
     color: #ffffff;
     font-size: 16px;
     font-weight: 600;
@@ -180,7 +180,7 @@ ion-modal {
   p {
     margin-left: 0px;
     margin-top: 6px;
-    color: #094A28;
+    color: #6F767E;
   }
   // }
 }

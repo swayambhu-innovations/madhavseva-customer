@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.shreeva.turbanlaundry',
-  appName: 'turbanlaundry',
+  appId: 'com.shreeva.madhavseva',
+  appName: 'madhavseva',
   webDir: 'www',
   server: {
     androidScheme: 'https'

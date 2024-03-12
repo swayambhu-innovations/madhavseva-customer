@@ -30,7 +30,7 @@
           <ion-icon name="star" *ngIf="matchingService?.averageRating" style="zoom: 1.3; margin-right: 5px;"></ion-icon>
 							<strong *ngIf="matchingService?.averageRating">{{matchingService?.averageRating}}</strong>
 							<span ><img src="../../../assets/star-outlined.svg" alt="" class="no-rating" *ngIf="!matchingService?.averageRating"/></span>
-							<strong *ngIf="!matchingService?.averageRating" style="color:#589441"> No Rating</strong>
+							<strong *ngIf="!matchingService?.averageRating" style="color:#FB9F14"> No Rating</strong>
         </p>
       </div>
       <div class="col-4 text-end">
@@ -46,7 +46,7 @@
           <div class="fixed-cart-inner">
             <div class="col-6 cart-details">
               <div class="">
-                <span style="color:#094A28">
+                <span style="color:#FB9F14">
                   {{this.cartService.getServiceBill(matchingService!,matchingMainCategory!.id,matchingSubCategory!.id) |
                     currency:'INR'}}
                 </span> <p>{{
@@ -56,7 +56,7 @@
             </div>
             <div class="col-6 see-all-variants">
               <p class="view-cart">
-                <ion-button class="service-common-button w-100" style="--background:#589441;--background-activated: #094A28;" (click)="ViewCart(modal3)">
+                <ion-button class="service-common-button w-100" style="--background:#FB9F14;--background-activated: #FB9F14;" (click)="ViewCart(modal3)">
                   View Cart
                 </ion-button>
               </p>
@@ -122,7 +122,7 @@
     <ion-accordion-group #accordionGroup class="page-accordion">
       <ion-accordion value="first">
         <ion-item slot="header" color="light">
-          <ion-label style="color:#589441">Description</ion-label>
+          <ion-label style="color:#FB9F14">Description</ion-label>
         </ion-item>
         <div class="ion-padding descriptionBody" slot="content">
           <div class="pdt-desc">
@@ -146,7 +146,7 @@
       </ion-accordion>
       <ion-accordion value="second">
         <ion-item slot="header" color="light">
-          <ion-label style="color:#589441">Type</ion-label>
+          <ion-label style="color:#FB9F14">Type</ion-label>
         </ion-item>
         <div class="ion-padding service-types" slot="content">
           <div class="service-box">

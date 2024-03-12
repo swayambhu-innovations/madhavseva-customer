@@ -32,8 +32,8 @@
 }
 
 ion-card {
-  --color: #2B780E;
-    --background: #E9E9E9;
+  --color: #F77411;
+    --background: #FFEBCB;
     border-radius: 12px;
     box-shadow: none;
     ion-card-content{
@@ -46,10 +46,10 @@ ion-card {
   display: block;
   margin-top: 10px;
   width: 100%;
-  color: #094A28;
+  color: #FB9F14;
   padding: 14px 18px;
   border-radius: 8px;
-  border: 1px solid var(--disappear, #094A28);
+  border: 1px solid var(--disappear, #FB9F14);
 }
 
 .map-div {
@@ -74,10 +74,10 @@ img {
   display: block;
   margin-top: 10px;
   width: 100%;
-  color: #094A28;
+  color: #FB9F14;
   padding: 12px 18px;
   border-radius: 8px;
-  border: 1px solid var(--disappear, #094A28);
+  border: 1px solid var(--disappear, #FB9F14);
 }
 
 .map-div {
@@ -123,13 +123,13 @@ ion-content {
       }
     }
     .input {
-      ::placeholder { color:  #094A28; }
+      ::placeholder { color:  #FB9F14; }
       display: flex;
-      color:#094A28;
+      color:#FB9F14;
       padding-inline-start: 15px;
       align-items: center;
       border-radius: 8px;
-      border: 1px solid  #094A28;
+      border: 1px solid  #FB9F14;
       background: #fff;
       ion-select {
         --highlight-color-focused: transparent;
@@ -137,7 +137,7 @@ ion-content {
         --highlight-color-valid: transparent;
       }
       ion-icon {
-        color: #094A28;
+        color: #FB9F14;
         font-size: 20px;
       }
       input {

@@ -1,13 +1,13 @@
 {
   "projects": {
-    "default": "turbanlaundry",
-    "customer": "turbanlaundry-customer"
+    "default": "madhavseva-67565",
+    "customer": "madhavseva-customer"
   },
   "targets": {
-    "turbanlaundry-6d6e8": {
+    "madhavseva-6d6e8": {
       "hosting": {
         "customer": [
-          "turbanlaundry-admin"
+          "madhavseva-admin"
         ]
       }
     }

@@ -2,8 +2,8 @@
 <app-home-header [MAX_ADDRESS_LINE_LENGTH]="30" [showUnreadNotification]="unreadNotifications.length > 0"></app-home-header>
 
 <ion-content #content class="ion-padding home-main" [fullscreen]="true">
-  <button id="search" style="border-color:#589441;color: #589441;" routerLink="../search">
-    <p style="color:#589441">Search what you need</p>
+  <button id="search" style="border-color:#FB9F14;color: #FB9F14;" routerLink="../search">
+    <p style="color:#FB9F14">Search what you need</p>
     <span>
       <img src="assets/ui_icons/search.svg" alt="" />
     </span>
@@ -46,7 +46,7 @@
                 </ion-row>
                 <ion-row class="row-2">
                   <ion-col class="row-2-col-1">
-                    <span>Serviced By</span>
+                    <span>Seva By</span>
                     <h3>{{data.assignedAgent ? data.agentData.name : 'NA'}}</h3>
                   </ion-col>
                   <ion-col class="row-2-col-1">
@@ -70,7 +70,7 @@
 
   <div>
     <hr class="horizontalRow">
-    <h4 style="color:#094A28"> Categories of Services</h4>
+    <h4 style="color:#FB9F14"> Categories of Seva</h4>
     <!-- <ion-row>
       <ion-col size='3' class="serviceCategoriesImages" *ngFor="let mainCategory of categories | slice:0:3">
         <div class="category-det">
@@ -121,7 +121,7 @@
             <h4>{{mainCategory.name}}</h4>
           </div>
           <div class="see-all-button">
-            <span routerLink="../sub-Categories/{{mainCategory.id}}" style="color: #094A28;">See All</span>
+            <span routerLink="../sub-Categories/{{mainCategory.id}}" style="color: #FB9F14;">See All</span>
             <img src="assets/icon/rightArrow/rightArrow.svg">
           </div>
         </div>
@@ -220,11 +220,11 @@
       <ion-row>
         <ion-col>
           <img src="assets/covidprotection.svg" alt="">
-          <ion-label style="color: #094A28">Covid Protection</ion-label>
+          <ion-label style="color: #FB9F14">Transparency</ion-label>
         </ion-col>
         <ion-col>
           <img src="assets/hasselfreebooking.svg" alt="">
-          <ion-label style="color: #094A28">Fast Booking</ion-label>
+          <ion-label style="color: #FB9F14">Fast Booking</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -238,11 +238,11 @@
             </div>
           </div>
 
-          <ion-label style="color: #094A28">24x7 Support</ion-label>
+          <ion-label style="color: #FB9F14">24x7 Support</ion-label>
         </ion-col>
         <ion-col>
           <img src="assets/cancellation.svg" alt="">
-          <ion-label  style="color: #094A28">Easy Cancellation</ion-label>
+          <ion-label  style="color: #FB9F14">Easy Cancellation</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -254,7 +254,7 @@
     <ion-content class="ion-padding">
       <div class="no-catalogue-center-container">
         <p>
-          Sorry, we do not provide services to the selected area, please select a valid serviceable address.
+          Sorry, we do not provide seva to the selected area, please select a valid valid address.
         </p>
         <button (click)="onGotItClick()" class="got-it-button">
           Okay, Got It

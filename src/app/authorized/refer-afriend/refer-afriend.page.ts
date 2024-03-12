@@ -19,7 +19,7 @@ export class ReferAfriendPage implements OnInit {
   }
 
   shareLink(){
-    this.socialSharing.share('Please try out Turban Laundary app for all types of house maintenance services.', 'Subject', undefined, 'https://play.google.com/store/apps/details?id=com.shreeva.turbanlaundry')
+    this.socialSharing.share('Please try out Madhav Seva app for all types of house maintenance services.', 'Subject', undefined, 'https://play.google.com/store/apps/details?id=com.shreeva.madhavseva')
     .then(() => {
       
     })

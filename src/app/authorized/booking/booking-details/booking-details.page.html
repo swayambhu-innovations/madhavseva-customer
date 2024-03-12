@@ -69,7 +69,7 @@
       <hr>
       <!-- OTP -->
         <div class="row-4" *ngIf="(currentBooking?.stage !== 'discarded') && (currentBooking?.stage !== 'completed') && (currentBooking?.stage !== 'expired') && jobOtp.length > 0">
-          <h5>OTP to start the service</h5>
+          <h5>OTP to start the seva</h5>
           <div class="otp-div">
             <!-- {{(currentBooking?.jobOtp)?.length}} -->
             <div class="otp-digit" *ngFor="let otp of jobOtp">
@@ -102,7 +102,7 @@
   <div class="Service-section">
     <!-- Card header -->
     <div class="row-5">
-      <p class="head">Services </p>
+      <p class="head">Seva </p>
       <!-- <div class="row-6"> -->
       <p class="body {{currentBooking?.stage}}">{{ utils[currentBooking?.stage || 'allotmentPending'].text }}</p>
       <!-- </div> -->
@@ -255,8 +255,8 @@
         <div class="items">
           <ng-container *ngFor="let item of currentBooking?.services">
               <div class="row1" *ngFor="let variant of item.variants">
-                <p class="col1">{{variant.name }} X <span style="color: #7e8083;">{{ variant.quantity}}</span></p>
-                <p style="color: #589441;">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
+                <p class="col1">{{variant.name }} X <span style="color: #FB9F14;">{{ variant.quantity}}</span></p>
+                <p style="color: #FB9F14;">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
               </div>
           </ng-container>
         </div>
@@ -362,7 +362,7 @@
     <!-- Card header -->
     <div class="row-5" *ngIf="currentBooking?.stage !== 'discarded' ">
       <h3 class="head">Rating</h3>
-      <p>(Ratings can be given/changed within 2 hours after the completion of Service)</p>
+      <p>(Ratings can be given/changed within 2 hours after the completion of Seva)</p>
     </div>
     <div *ngIf="currentBooking?.stage === 'completed' ">
       <div class="service-review-cont"  *ngFor="let service of currentBooking?.services">
@@ -413,7 +413,7 @@
           <ul>
             <li class="pargraph">
               No charge if you reschedule or cancel until 3 hours before the
-              service
+              seva
             </li>
             <li  class="pargraph">Within 3hrs, a cancellation fee of ₹100 is applicable</li>
           </ul>
@@ -436,14 +436,14 @@
             </div>
 
             <div class="container-fluid">
-              <div class="row text-center" style="background-color:#e4e3f7">
-                <p class="mt-3" style="color:  #094A28">
+              <div class="row text-center" style="background-color:#FFEBCB">
+                <p class="mt-3" style="color:  #FB9F14">
                   We won't be charging you a cancellation fee
                 </p>
               </div>
             </div>
             <div class="bottom mt-4">
-              <ion-button class="text-light bg-blue" [disabled]="CancelForm.invalid" expand="block" style="--background:#589441;--background-activated: #094A28;"  (click)="cancelSubmit()">
+              <ion-button class="text-light bg-blue" [disabled]="CancelForm.invalid" expand="block" style="--background:#FB9F14;--background-activated: #FB9F14;"  (click)="cancelSubmit()">
                 Cancel Booking
               </ion-button>
             </div>

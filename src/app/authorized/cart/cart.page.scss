@@ -10,8 +10,8 @@ ion-item {
 }
 
 .page-body {
-  background-color:  #094A28;
-  color:  #094A28;
+  background-color:  #FB9F14;
+  color:  #FB9F14;
 }
 
 h2,
@@ -21,7 +21,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #589441;
+  color: #FB9F14;
   font-family: "Lato", sans-serif;
   font-weight: 600;
   padding: 0;
@@ -30,7 +30,7 @@ h6 {
 ion-back-button,
 ion-icon,
 ion-title {
-  color: #589441;
+  color: #FB9F14;
   padding: 0;
 }
 
@@ -58,7 +58,7 @@ ion-content {
     font-size: 16px;
     font-weight: 600;
     font-family: "Lato", sans-serif;
-    color: #589441;
+    color: #FB9F14;
     margin: 0px;
     padding: 10px 30px;
     background: #f5f5f5;
@@ -87,7 +87,7 @@ ion-content {
   }
 
   .card-subtitle {
-    color:  #094A28;
+    color:  #FB9F14;
     font-size: 11px;
   }
 
@@ -108,11 +108,11 @@ ion-content {
 
   .rating-text {
     font-size: 12px;
-    color: #094A28;
+    color: #FB9F14;
   }
 
   .rating-user {
-    color:  #094A28;
+    color:  #FB9F14;
   }
 
   .discounted-price {
@@ -121,7 +121,7 @@ ion-content {
   }
 
   .original-price {
-    color: #589441;
+    color: #FB9F14;
     // text-decoration: line-through;
     font-weight: 600;
     font-size: 12px;
@@ -151,7 +151,7 @@ ion-content {
         height: 24px;
         border-radius: 6px;
         border: 0px solid #3b71fe;
-        background: var(--primary, #589441);
+        background: var(--primary, #FB9F14);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -193,7 +193,7 @@ ion-content {
     p{
       font-weight: bold;
       font-size: 16px;
-      color: #589441;
+      color: #FB9F14;
       img{
         width: 16px;
       }
@@ -207,7 +207,7 @@ ion-content {
     background: #ebffe3;
     padding: 6px 56px;
     p {
-      color: #2b780e;
+      color: #F77411;
       font-size: 12px;
     }
   }
@@ -219,7 +219,7 @@ ion-content {
       font-size: 13px;
       margin-bottom: 3px;
       p{
-        color:  #094A28;
+        color:  #FB9F14;
       }
     }
   }
@@ -237,18 +237,18 @@ ion-content {
 }
 
 .left-title {
-  color:  #094A28;
+  color:  #FB9F14;
   font-size: 13px;
 }
 
 .right-sub {
   font-size: 13px;
-  color: #589441;
+  color: #FB9F14;
 }
 .apply-coupon-text {
   font-size: 14px;
   font-family: "Lato", sans-serif;
-  color: #094A28;
+  color: #FB9F14;
 }
 .offer-count-text {
   color: #51295C;
@@ -268,7 +268,7 @@ ion-content {
 }
 
 .total-text {
-  color: #589441;
+  color: #FB9F14;
   font-size: 16px;
 }
 
@@ -292,7 +292,7 @@ ion-content {
 }
 
 .btn-select-addr {
-  --background-color: #589441;
+  --background-color: #FB9F14;
 }
 .background-none {
   background: none;
@@ -302,7 +302,7 @@ ion-content {
 .got-it-button {
   width: 90%;
   margin: 0 5%;
-  background-color: #589441;
+  background-color: #FB9F14;
   color: #ffffff;
   border: none;
   padding: 16px 20px;
@@ -387,7 +387,7 @@ ion-content {
     flex-direction: column;
     justify-content: space-between;
     .saved-rs {
-      color: #589441;
+      color: #FB9F14;
       font-weight: 600;
       font-size: 14px;
       font-family: "Lato", sans-serif;
@@ -407,7 +407,7 @@ ion-content {
     justify-content: space-between;
 
     .applied-text {
-      color: #589441;
+      color: #FB9F14;
       font-weight: 600;
       font-size: 14px;
       font-family: "Lato", sans-serif;
@@ -441,7 +441,7 @@ ion-content {
 
   .action-sheet-header-text {
     margin: 12px 0px;
-    color: #589441;
+    color: #FB9F14;
     font-size: 16px;
     font-weight: 600;
     font-family: "Lato", sans-serif;
@@ -509,7 +509,7 @@ ion-content {
         margin-bottom: 5px;
 
         p {
-          color: var(--primary, #589441);
+          color: var(--primary, #FB9F14);
           text-align: right;
           font-family: Lato;
           font-size: 18px;
@@ -605,7 +605,7 @@ ion-content.noItems {
       font-size: 18px;
       font-weight: 700;
       font-family: "Lato", sans-serif;
-      color: #589441;
+      color: #FB9F14;
       margin: -10px;
       // line-height: 10px;
     }
@@ -614,7 +614,7 @@ ion-content.noItems {
       // font-weight: 700;
       line-height: 15px;
       font-family: "Lato", sans-serif;
-      color:  #094A28;
+      color:  #FB9F14;
       line-height: 20px;
       text-align: center;
       width: 80%;
@@ -630,7 +630,7 @@ ion-content.noItems {
 
   .recommended-text {
     margin-bottom: 12px;
-    color: var(--neutral-07, #589441);
+    color: var(--neutral-07, #FB9F14);
     font-size: 18px;
   }
   .recommended-items-box-parent {

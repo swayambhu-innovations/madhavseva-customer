@@ -221,7 +221,7 @@
       <ng-container *ngFor="let item of selectedBooking.services">
           <div class="row1" *ngFor="let variant of item.variants">
             <p class="col1">{{variant.name }} X <span >{{ variant.quantity}}</span></p>
-            <p style="color:#589441">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
+            <p style="color:#FB9F14">{{(variant.billing.totalPrice) | currency:'INR' : 'symbol' : '1.0-0'}}</p>
           </div>
       </ng-container>
     </div>
@@ -288,7 +288,7 @@
   <span class="text-content">
     <p class="cart-empty-text">Your cart is empty</p>
     <p class="bottom-text">
-      Looks like you have not added any services to your cart yet.
+      Looks like you have not added any seva to your cart yet.
     </p>
   </span>
 </ion-content>

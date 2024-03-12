@@ -1,4 +1,4 @@
-package com.shreeva.turbanlaundry;
+package com.shreeva.madhavseva;
 import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;

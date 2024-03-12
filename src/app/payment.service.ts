@@ -191,7 +191,7 @@ export class PaymentService {
       image: 'https://shreeva.com/images/logo.png',
       order_id: order.id,//Order ID generated in Step 1
       currency:  order.currency,
-      name: 'Turban Laundary',
+      name: 'Madhav Seva',
       prefill: {
         name: this.dataProvider.currentUser!.userData.name,
         contact: booking.user.phone,

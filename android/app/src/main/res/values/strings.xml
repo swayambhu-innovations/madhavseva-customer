@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">turbanlaundry</string>
-    <string name="title_activity_main">turbanlaundry</string>
-    <string name="package_name">com.shreeva.turbanlaundry</string>
-    <string name="custom_url_scheme">com.shreeva.turbanlaundry</string>
+    <string name="app_name">madhavseva</string>
+    <string name="title_activity_main">madhavseva</string>
+    <string name="package_name">com.shreeva.madhavseva</string>
+    <string name="custom_url_scheme">com.shreeva.madhavseva</string>
 </resources>

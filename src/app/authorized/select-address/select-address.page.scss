@@ -23,13 +23,13 @@ ion-button {
 .new-add-button {
   display: flex;
   float: right;
-  border: 1px solid #094A28;
+  border: 1px solid #FB9F14;
   padding: 5px 8px;
   border-radius: 23px;
   button {
     display: flex;
     background: transparent;
-    color: var(--tertiary, #094A28);
+    color: var(--tertiary, #FB9F14);
     font-weight: 600;
     cursor: pointer;
 
@@ -57,7 +57,7 @@ ion-button {
     margin-top: 7px;
     .address-box {
       border-radius: 12px;
-      border: 1px solid var(--Line, #579540);
+      border: 1px solid var(--Line, #FFEBCB);
       background: #fff;
       padding: 10px;
       box-shadow: -1px 4px 10px -4px rgba(22, 22, 22, 0.08);
@@ -71,7 +71,7 @@ ion-button {
           display: flex;
           cursor: pointer;
           input[type="radio"] {
-            accent-color:#579540;
+            accent-color:#FB9F14;
             
           }
         }
@@ -81,14 +81,14 @@ ion-button {
             font-size: 14px;
             font-weight: 700;
             margin: 7px 0;
-            color:#579540;
+            color:#DAA556;
           }
 
           p {
             font-size: 12px;
             font-weight: 400;
             margin: 1px 0;
-            color:#589441;
+            color:#FB9F14;
 
           }
         }

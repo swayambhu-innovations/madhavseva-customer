@@ -155,7 +155,11 @@ const routes: Routes = [
   {
     path: 'plan-a-party',
     loadChildren: () => import('./plan-a-party/plan-a-party.module').then( m => m.PlanAPartyPageModule)
+  },  {
+    path: 'sample',
+    loadChildren: () => import('./sample/sample.module').then( m => m.SamplePageModule)
   },
+
 
 ];
 

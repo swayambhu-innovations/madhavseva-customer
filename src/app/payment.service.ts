@@ -11,6 +11,7 @@ import {
   CreateRefund,
 } from './authorized/models/payment.structure';
 import { LoadingController } from '@ionic/angular';
+const axios = require('axios').default;
 
 @Injectable({
   providedIn: 'root',
@@ -36,9 +37,148 @@ export class PaymentService {
     return this.WindowRef;
   }
 
+  generateIdempotentKey() {
+    return Math.random() * 5123 * 43 + 10;
+  }
+
+  generateInvoiceNumber() {
+    return `INV${Date.now().toString()}`;
+  }
+
   generateRecipetNumber() {
     return `Receipt#${Math.floor(Math.random() * 5123 * 43) + 10}`;
   }
+
+  async authJM(booking: booking) {
+    let _headers = {
+      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
+    };
+    try {
+      const { data } = await axios({
+        method: 'post',
+        url: 'https://pp-apig.jiomoney.com/jfs/v1/app/authenticate',
+        headers: _headers,
+        data: {
+          application: {
+            clientId: '988f2f4e55ec3843fa12d6b8e25338f8',
+          },
+          authenticateList: [
+            {
+              mode: 22,
+              value:
+                '255aaf0bd759d72de9f916660eb52bd6f610516aa4c63e480e382d5894e0fa30',
+            },
+          ],
+          scope: 'SESSION',
+          purpose: 2,
+        },
+      });
+      const resData = await this.intentJM(booking, data);
+      return resData;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  async intentJM(booking: booking, authdata: any) {
+    let _headers = {
+      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
+      'x-app-access-token': authdata.session.accessToken.tokenValue,
+      'x-appid-token': authdata.session.appIdentifierToken,
+    };
+
+    // let orderDetails: CreateOrder = {
+    //   amount: Math.round(booking.grandTotal! * 100),
+    //   receipt: this.generateRecipetNumber(),
+    //   currency: 'INR',
+    //   notes: {},
+    // };
+
+    booking.user.phone = booking.user.phone?.replace(/\D/g, '').slice(-10);
+    const date = new Date();
+    try {
+      const { data } = await axios({
+        method: 'post',
+        url: 'https://pp-apig.jiomoney.com/payments/jfs/v1/payments/intent',
+        headers: _headers,
+        data: {
+          transaction: {
+            idempotentKey: this.generateIdempotentKey().toString(),
+            invoice: this.generateInvoiceNumber(),
+            initiatingEntityTimestamp: date.toISOString(),
+            initiatingEntity: {
+              returnUrl:
+                'https://psp-mandate-merchant-sit.jiomoney.com:3003/merchantsimulator/pp/merchantstatus',
+            },
+          },
+          amount: {
+            netAmount: Math.round(booking.grandTotal! * 100),
+          },
+          payer: {
+            externalId: this.generateRecipetNumber(),
+            name: 'Atul Singh',
+            email: booking.user?.email || 'temp@gmail.com',
+            mobile: {
+              number: booking.user.phone,
+              countryCode: '91',
+            },
+          },
+          payee: {
+            merchantId: '100001000233342',
+          },
+          checkout: {
+            template: {
+              id: '',
+            },
+            notAllowed: [
+              {
+                methodType: '110',
+                methodSubType: '580',
+              },
+            ],
+          },
+        },
+      });
+      console.log(data);
+      const retData: any = {
+        MID: '100001000233342',
+        intentID: data.transaction.intentId,
+        authdata: authdata,
+      };
+      return retData;
+      // this.payJm('100001000233342', data.transaction.intentId, authdata);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  // async payJm(MID: string, intentID: string, authdata: any) {
+  //   let _headers = {
+  //     'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
+  //     'x-app-access-token': authdata.session.accessToken.tokenValue,
+  //     'x-appid-token': authdata.session.appIdentifierToken,
+  //   };
+  //   try {
+  //     const { data } = await axios({
+  //       method: 'post',
+  //       url: 'https://pp-checkout.jiopay.com:8443',
+  //       headers: _headers,
+  //       data: {
+  //         merchantID: MID,
+  //         appidtoken: authdata.session.appIdentifierToken,
+  //         appaccesstoken: authdata.session.accessToken.tokenValue,
+  //         intentid: intentID,
+  //         brandColor: '#ffc670',
+  //         bodyBgColor: '#ffc670',
+
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // Step 1 of Payment Flow
   handlePayment(data: booking) {
@@ -274,3 +414,9 @@ export interface booking {
 //       },
 //     });
 // }
+
+export interface checkoutData {
+  authdata: any;
+  merchantID: string;
+  intentID: string;
+}

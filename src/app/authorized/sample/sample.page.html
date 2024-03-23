@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <form
+    name="payment"
+    method="POST"
+    action="https://pp-checkout.jiopay.com:8443"
+    enctype="application/x-www-form-urlencoded"
+  >
+    <input type="hidden" name="mid" [value]="checkoutData" />
+    <input
+      type="hidden"
+      name="appidtoken"
+      value="42385fb1-9039-4574-8d00- 79ccd7f72935APPACCESS"
+    />
+    <input
+      type="hidden"
+      name="appaccesstoken"
+      value="42385fb1-9039-4574-8d00- 79ccd7f72935"
+    />
+    <input type="hidden" name="intentid" value="102425102452" />
+    <input type="hidden" id="brandColor" name="brandColor" value="#24fd24" />
+    <input type="hidden" id="bodyBgColor" name="bodyBgColor" value="#ffeede" />
+    <input
+      type="hidden"
+      id="bodyTextColor"
+      name="bodyTextColor"
+      value="#a15814"
+    />
+    <input type="hidden" id="headingText" name="headingText" value="#a15814" />
+    <input type="submit" value="Jio Pay" />
+  </form>
+</ion-content>

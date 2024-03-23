@@ -25,7 +25,7 @@ export class UserNotificationService {
     },
     bookingAccepted: {
       title: 'Booking Accepted',
-      body: 'Your booking has been accepted by the Agent',
+      body: 'Your booking has been accepted by the Sevak',
       icon: '',
       ...this.notificationBase
     },
@@ -37,7 +37,7 @@ export class UserNotificationService {
     },
     bookingCompleted: {
       title: 'Booking Completed',
-      body: 'Your booking has been completed by the Agent',
+      body: 'Your booking has been completed by the Sevak',
       icon: '',
       ...this.notificationBase
     },

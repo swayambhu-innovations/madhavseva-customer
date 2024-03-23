@@ -25,7 +25,7 @@
             </div>
             <div class="col-6 booking-name">
               <h6>{{details.services[0].name}}</h6>
-              <p>Booking ID:#{{details.id}}</p>
+              <p>Booking ID:{{details.id}}</p>
             </div>
             <div class="col-3 price">
               <p>{{details.billing.grandTotal | currency:'INR' : 'symbol' : '1.0-0'}}</p>
@@ -87,7 +87,7 @@
                     {{details.timeSlot?.time?.endTime?.toDate() | date:'shortTime'}},</p>
                   <h6>{{details.timeSlot?.date?.toDate() | date:'MMM d'}}</h6>
                 </div>
-                <div class="det">(Preferred Agent Arrival Time - {{details.timeSlot?.agentArrivalTime?.toDate() | date: "shortTime" }})</div>
+                <div class="det">(Preferred Seva Start Time - {{details.timeSlot?.agentArrivalTime?.toDate() | date: "shortTime" }})</div>
                 <span >Schedule</span>
               </div>
             </div>

@@ -26,8 +26,8 @@
   <div class="Profile">
     <div class="agent-not-assigned" *ngIf="assignedAgent === undefined">
       <div class="details">
-        <h2>Finding A Professional</h2>
-        <p>Waiting for the professional to accept your booking</p>
+        <h2>Finding A Sevak</h2>
+        <p>Waiting for the sevak to accept your booking</p>
       </div>
       <div class="icon">
         <div class="icon-div">
@@ -38,7 +38,7 @@
     </div>
     <div class="icon-text" *ngIf="assignedAgent !== undefined">
       <img class="profile-icon" src="../../../assets/profile-sign.svg" alt="" />
-      <p>Professional Assigned</p>
+      <p>Sevak Assigned</p>
     </div>
     <!-- Profile image & Name -->
     <div class="agent-det-div" *ngIf="assignedAgent !== undefined">
@@ -94,7 +94,7 @@
   <div class="water" *ngIf="assignedAgent !== undefined && currentBooking?.stage !== 'discarded' && currentBooking?.stage !== 'completed' && currentBooking?.stage !== 'expired'">
     <img class="glass-image" src="../../../assets/glass1.svg" alt="" />
     <span>
-      <p>Offer drinking water to the professional</p>
+      <p>Offer your regards to the sevak</p>
     </span>
   </div>
 
@@ -132,7 +132,7 @@
         <div *ngFor="let variant of service.variants" class="service-det-div" >
           <div class="img-div">
             <div class="img-circle-div">
-              <img src="{{currentBooking?.mainCategory?.icon}}" alt="" style="padding-top: 12px; padding-left: 12px;">
+              <img src="{{currentBooking?.mainCategory?.icon}}" alt="" >
             </div>
           </div>
           <div class="category-det-div">
@@ -188,7 +188,7 @@
       <section style="margin-left: 10px">
         <span class="head">Time</span><br />
         <span class="body">{{currentBooking?.timeSlot?.time?.startTime?.toDate() | date:'hh:mm'}} To {{currentBooking?.timeSlot?.time?.endTime?.toDate() | date:'shortTime'}}</span><br/>
-        <span class="body">(Preferred Agent Arrival Time - {{currentBooking?.timeSlot?.agentArrivalTime?.toDate() | date: "shortTime" }})</span>
+        <span class="body">(Preferred Seva Start Time - {{currentBooking?.timeSlot?.agentArrivalTime?.toDate() | date: "shortTime" }})</span>
       </section>
     </div>
   </div>
@@ -333,7 +333,7 @@
         <div class="payment-row">
           <div class="payment-heading">Payment Mode</div>
           <div class="payment-value" *ngIf="currentBooking?.isPaid || currentBooking?.isPaylater == false">Pre Paid Online</div>
-          <div class="payment-value"  *ngIf="currentBooking?.isPaid == false && currentBooking?.isPaylater">Pay After Job</div>
+          <div class="payment-value"  *ngIf="currentBooking?.isPaid == false && currentBooking?.isPaylater">Pay After Seva</div>
         </div>
         <div class="payment-row">
           <div class="payment-heading">Transaction ID</div>
@@ -402,9 +402,9 @@
 
     <div class="reschedule-container mt-4" *ngIf="currentBooking?.stage == 'allotmentPending' || currentBooking?.stage == 'acceptancePending'  || currentBooking?.stage == 'jobAccepted'">
       <button class = "reschedule-button" type="button"  (click)="rescheduleSubmit()">Reschedule</button>
-      <button class = "cancel-button" type="button" (click)="onClickCancelBooking()" >
+      <!-- <button class = "cancel-button" type="button" (click)="onClickCancelBooking()" >
         Cancel Booking
-      </button>
+      </button> -->
     </div>
     <div class="container" *ngIf="currentBooking?.stage == 'allotmentPending' || currentBooking?.stage == 'acceptancePending' || currentBooking?.stage == 'inProgress'" style="margin-bottom: 25px;">
       <ion-card style="margin: 0px;  background-color: #EDF2EB

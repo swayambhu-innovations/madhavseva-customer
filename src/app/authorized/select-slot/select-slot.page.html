@@ -16,7 +16,7 @@
 
   <div class="row-2">
     <div class="top">
-      <h2>When should the professional arrive?</h2>
+      <h2>When should the seva begin?</h2>
       <p>Your seva will take approx. {{totalTimeNeeded}}</p>
       <div class="first-btns">
         <button *ngFor="let btn of dates" (click)="onSelectDate(btn)" [ngClass]="{active:selectedDate==btn}">
@@ -78,10 +78,10 @@
           {{btn | date:'hh:mm'}} <br> {{btn | date:'aaa'}}
         </button>
       </div>          
-      <div class="box">
+      <!-- <div class="box">
         <img src="assets/icon/select-slot/card.svg" alt="">
         <p style="color: #FB9F14">Free cancellation till 3 hrs before the booked slot, post that ₹100 chargeable</p>
-      </div>
+      </div> -->
     </div>
     <!-- <div class="bottom" (click)="createBooking()">
       <ion-button [disabled]="!(selectedDate && selectedTimeState)" expand="block">
@@ -92,9 +92,9 @@
 
     <div class="temp" >
       <div class="bottom1" *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule == false">
-        <button class="paynow" [ngClass]="{active: (selectedDate && selectedTimeState)}"   [disabled]="!(selectedDate && selectedTimeState)" (click)="createBooking()">
+        <!-- <button class="paynow" [ngClass]="{active: (selectedDate && selectedTimeState)}"   [disabled]="!(selectedDate && selectedTimeState)" (click)="createBooking()">
           Pay Now
-        </button>
+        </button> -->
         <button class="payafter" [ngClass]="{active: (selectedDate && selectedTimeState)}"  [disabled]="!(selectedDate && selectedTimeState)" (click)="createBookingWithoutPay()">
           Pay After Seva
         </button>

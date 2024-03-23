@@ -1,45 +1,78 @@
-<div class="main" style="background: linear-gradient(163deg, #FFF2EC 0.69%, #FFE5B9 95.79%);">
-  <section class="header">
-    <img src="assets/images/logo.svg" alt="">
-    <div>
-    <p style="color:#FB9F14; display: inline;">Madhav Seva</p>
-  </div>
-  </section>
+<div class="login-container">
+  <div
+    class="main"
+    style="background: linear-gradient(163deg, #fff2ec 0.69%, #ffe5b9 95.79%)"
+  >
+    <section class="header">
+      <img src="assets/images/logo.svg" alt="Madahv Seva" />
+      <div>
+        <p style="color: #fb9f14; display: inline">Madhav Seva</p>
+      </div>
+    </section>
 
-  <section class="body">
-    <img src="assets/images/login.svg" alt="">
-  </section>
+    <section class="body">
+      <img src="assets/images/login.svg" alt="" />
+    </section>
 
-  <section class="login" *ngIf="!this.dataProvider.checkingAuth && !this.dataProvider.loggedIn">
-    <h3>Welcome Back</h3>
-    <h6>Please Enter Your Mobile Number</h6>
-    <div class="image">
-      <ion-icon name="call"></ion-icon>
-      <input type="text" placeholder="Mobile Number" inputmode="tel" [(ngModel)]="phoneNumber" class="styled-input" required maxlength="10">
-    </div>
-    <div id="recaptcha-container"></div>
-    <div class="agree-container">
-      <input type="checkbox" id="terms-agree" [(ngModel)]="terms" style="zoom: 2;" >&nbsp;&nbsp;&nbsp;&nbsp;
-      <label class="input-label" for="terms-agree"></label>
-      <p style="text-align: left; color:#666"> I agree to the
-        <a href="https://shreeva.com/terms-condition.html" target="_blank" rel="noopener noreferrer">Terms & Conditions,</a>&nbsp;&nbsp;
-        <a href="https://shreeva.com/privacyPolicy.html" target="_blank" rel="noopener noreferrer">Privacy,</a>&nbsp;&nbsp;
-        Policy
-      </p>
-     
-    </div>
-    
-    <ion-button [disabled]="(phoneNumber.length < 10) || terms == false ? true : false" class="signup" style="--background:#FB9F14;--background-activated: #FB9F14;"
-      (click)="login()">Login/SignUp</ion-button>
-  </section>
+    <section
+      class="login"
+      *ngIf="!this.dataProvider.checkingAuth && !this.dataProvider.loggedIn"
+    >
+      <h3>Welcome Back</h3>
+      <h6>Please Enter Your Mobile Number</h6>
+      <div class="image">
+        <ion-icon name="call"></ion-icon>
+        <input
+          type="text"
+          placeholder="Mobile Number"
+          inputmode="tel"
+          [(ngModel)]="phoneNumber"
+          class="styled-input"
+          required
+          maxlength="10"
+        />
+      </div>
+      <div id="recaptcha-container"></div>
+      <div class="agree-container">
+        <input
+          type="checkbox"
+          id="terms-agree"
+          [(ngModel)]="terms"
+          style="zoom: 2"
+        />&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="input-label" for="terms-agree"></label>
+        <p style="text-align: left; color: #666">
+          I agree to the
+          <a
+            href="https://shreeva.com/terms-condition.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Terms & Conditions,</a
+          >&nbsp;&nbsp;
+          <a
+            href="https://shreeva.com/privacyPolicy.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy,</a
+          >&nbsp;&nbsp; Policy
+        </p>
+      </div>
 
-  <section class="login" *ngIf="this.dataProvider.checkingAuth">
-    <h3>Checking Status</h3>
-    <h6>Please wait till we verify you.</h6>
-  </section>
+      <ion-button
+        [disabled]="(phoneNumber.length < 10) || terms === false ? true : false"
+        class="signup"
+        style="--background: #fb9f14; --background-activated: #fb9f14"
+        (click)="login()"
+        >Login/SignUp</ion-button
+      >
+    </section>
 
-  <div style="position: fixed; bottom: 0; width: 100%;">
-    
+    <section class="login" *ngIf="this.dataProvider.checkingAuth">
+      <h3>Checking Status</h3>
+      <h6>Please wait till we verify you.</h6>
+    </section>
+
+    <div style="position: fixed; bottom: 0; width: 100%"></div>
   </div>
 </div>
 <!-- <footer>

@@ -33,7 +33,7 @@
             <img src="assets/icon/navbar/home1.svg" alt="">
           </ng-template>
           
-          <ion-label>Home</ion-label>
+          <ion-label [ngStyle]="{ color: router.url == '/authorized/home'? '#FB9F14' : '#B4A997' }">Home</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="booking/upcoming-history" class="footer-ion-tab-button">
           <ng-container *ngIf = "router.url == '/authorized/booking/upcoming-history' else calender">
@@ -43,7 +43,8 @@
             <img src="assets/icon/navbar/calendar.svg" alt="">
           </ng-template>
           
-          <ion-label>Bookings</ion-label>
+          <ion-label [ngStyle]="{ color: router.url == '/authorized/booking/upcoming-history'? '#FB9F14' : '#B4A997' }">Bookings</ion-label>
+
         </ion-tab-button>
         <ion-tab-button tab="cart/all/all" class="footer-ion-tab-button">
           <ng-container *ngIf = "router.url == '/authorized/cart/all/all' else cart">
@@ -53,7 +54,7 @@
             <img src="assets/icon/navbar/cart.svg" alt="">
           </ng-template>
 
-          <ion-label>Cart</ion-label>
+          <ion-label [ngStyle]="{ color: router.url == '/authorized/cart/all/all'? '#FB9F14' : '#B4A997' }">Cart</ion-label>
           
         </ion-tab-button>
         <ion-tab-button (click)="close('/authorized/profile')" class="footer-ion-tab-button">
@@ -63,7 +64,7 @@
           <ng-template #profile>
             <img src="assets/icon/navbar/profile.svg" alt="">
           </ng-template>
-          <ion-label>Profile</ion-label>
+          <ion-label [ngStyle]="{ color: router.url == '/authorized/profile/profile-info'|| router.url == '/authorized/profile'? '#FB9F14' : '#B4A997' }">Profile</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
 </ion-tabs>

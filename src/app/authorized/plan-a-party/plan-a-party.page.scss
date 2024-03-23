@@ -2,23 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50%;
+    padding-top: 15vh;
     
 
     img {
         
-        margin-bottom: 20%;
+        margin-bottom: 8vh;
 
     }
 
     p {
         text-align: center;
         color: #FB9F14;
-        margin-bottom: 5%;
     }
 
     .back_btn {
-        margin-top: 10%;
+        margin-top: 4vh;
         color: var(--Primary-Text, #fff);
         font-size: 16px;
         font-style: normal;

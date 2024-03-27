@@ -12,12 +12,16 @@ import { LoadingController } from '@ionic/angular';
 })
 export class SelectAddressPage implements OnInit {
   temp: any = {};
-  addressLineTwoVisible:boolean = false;
+  addressLineTwoVisible: boolean = false;
+
+  deviceinfo: any;
+  isModalOpen: boolean = false;
+  mobileView: boolean = false;
   constructor(
     private router: Router,
     public addressService: AddressService,
     public dataProvider: DataProviderService,
-    private loadingController:LoadingController
+    private loadingController: LoadingController
   ) {}
 
   newAddress() {
@@ -27,7 +31,20 @@ export class SelectAddressPage implements OnInit {
 
   ngOnInit() {}
 
-  
+  ionViewDidEnter() {
+    this.systeminfo();
+  }
+
+  systeminfo() {
+    if (this.dataProvider.deviceInfo.deviceType === 'desktop') {
+      this.isModalOpen = true;
+      this.mobileView = false;
+    }
+    if (this.dataProvider.deviceInfo.deviceType === 'mobile') {
+      this.mobileView = true;
+      this.isModalOpen = false;
+    }
+  }
 
   setValue(event: any) {
     this.dataProvider.currentBooking!.address = event.detail.value;
@@ -50,36 +67,38 @@ export class SelectAddressPage implements OnInit {
     this.router.navigate(['/authorized/new-address']);
   }
 
-
-  async changeAddress(address:Address){
-    let addressId = "";
-    let userId = "";
-    let loader = await this.loadingController.create({message:'Changing  Location...'});
+  async changeAddress(address: Address) {
+    let addressId = '';
+    let userId = '';
+    let loader = await this.loadingController.create({
+      message: 'Changing  Location...',
+    });
     loader.present();
-    if(this.dataProvider.currentUser?.user.uid){
+    if (this.dataProvider.currentUser?.user.uid) {
       userId = this.dataProvider.currentUser?.user.uid;
-      await this.addressService.getAddresses2(this.dataProvider.currentUser?.user.uid).then((addressRequest) => {
-        const addresses = addressRequest.docs.map((notification:any) => {
-          return { ...notification.data(),id: notification.id };
+      await this.addressService
+        .getAddresses2(this.dataProvider.currentUser?.user.uid)
+        .then((addressRequest) => {
+          const addresses = addressRequest.docs.map((notification: any) => {
+            return { ...notification.data(), id: notification.id };
+          });
+          addresses.map((res) => {
+            if (address.id === res.id) {
+              addressId = res.id;
+            }
+            if (res.isDefault) {
+              res.isDefault = false;
+              this.addressService.editAddress(userId, res.id, res);
+            }
+          });
         });
-        addresses.map(res=>{
-          if(address.id === res.id){
-            addressId = res.id;
-          }
-          if(res.isDefault){
-            res.isDefault = false;
-            this.addressService.editAddress(userId, res.id,res);
-          }
-        });
-      });
     }
-    if(userId !== "" && addressId !== ""){
+    if (userId !== '' && addressId !== '') {
       address.isDefault = true;
-      this.addressService.editAddress(userId, addressId,address);
+      this.addressService.editAddress(userId, addressId, address);
       loader.dismiss();
       this.addressService.clearCart(userId).then(() => {});
-
-    }else{
+    } else {
       loader.dismiss();
     }
   }

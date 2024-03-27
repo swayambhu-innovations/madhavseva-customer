@@ -1,13 +1,21 @@
-.footer{
-    display: flex;
-    justify-content: space-between;
+.footer {
+  display: flex;
+  justify-content: space-between;
 
-    .footer-ion-tab-button{
-        max-width: 90px !important;
-        padding: 6px 0px;
+  .footer-ion-tab-button {
+    max-width: 90px !important;
+    padding: 6px 0px;
 
-        ion-label{
-            color:#FB9F14;
-        }
+    ion-label {
+      color: #fb9f14;
     }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  ion-tabs {
+    .footer {
+      display: none;
+    }
+  }
 }

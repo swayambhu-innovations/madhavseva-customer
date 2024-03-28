@@ -1,36 +1,52 @@
-
-<app-home-header [MAX_ADDRESS_LINE_LENGTH]="30" [showUnreadNotification]="unreadNotifications.length > 0"></app-home-header>
+<app-home-header
+  [MAX_ADDRESS_LINE_LENGTH]="30"
+  [showUnreadNotification]="unreadNotifications.length > 0"
+></app-home-header>
 
 <ion-content #content class="ion-padding home-main" [fullscreen]="true">
-  <button id="search" style="border-color:#FB9F14;color: #FB9F14;" routerLink="../search">
-    <p style="color:#FB9F14">Search sevas and event</p>
+  <button
+    id="search"
+    style="border-color: #fb9f14; color: #fb9f14"
+    routerLink="../search"
+  >
+    <p style="color: #fb9f14">Search what you need</p>
     <span>
       <img src="assets/ui_icons/search.svg" alt="" />
     </span>
   </button>
-    <div class="banner-container" [hidden]="!bannerObject.showBanner || !bannerObject.showTop">
-      <div #swiperContainer2 class="swiper-container">
-        <div class="swiper-wrapper">
-          <ng-container *ngIf="topBanner.length > 0">
-            <div class="swiper-slide" *ngFor="let items of topBanner">
-              <a href="{{items?.redirectUrl}}">
-                <img src="{{items?.imageUrl}}" alt="">
-              </a>
-            </div>
-          </ng-container>
-        </div>
-        <div class="swiper-pagination swiper-pagination2"></div>
+  <div
+    class="banner-container"
+    [hidden]="!bannerObject.showBanner || !bannerObject.showTop"
+  >
+    <div #swiperContainer2 class="swiper-container">
+      <div class="swiper-wrapper">
+        <ng-container *ngIf="topBanner.length > 0">
+          <div class="swiper-slide" *ngFor="let items of topBanner">
+            <a href="{{items?.redirectUrl}}">
+              <img src="{{items?.imageUrl}}" alt="" />
+            </a>
+          </div>
+        </ng-container>
       </div>
+      <div class="swiper-pagination swiper-pagination2"></div>
     </div>
+  </div>
 
-  <div class="recent-container" [ngClass]="{'no-booking': !(bookingService.bookingsSubject && upcomingBookings.length > 0) }">
+  <div
+    *ngIf="upcomingBookings.length > 0"
+    class="recent-container"
+    [ngClass]="{'no-booking': !(bookingService.bookingsSubject && upcomingBookings.length > 0) }"
+  >
     <ion-label class="label">Upcoming Bookings</ion-label>
     <div class="banner-container">
       <div #swiperContainer1 class="swiper-container">
         <div class="swiper-wrapper recent-container-details">
           <ng-container *ngIf="upcomingBookings.length > 0">
             <div class="swiper-slide" *ngFor="let data of upcomingBookings">
-              <ion-grid width="100" routerLink="../booking/booking-details/{{data.id}}">
+              <ion-grid
+                width="100"
+                routerLink="../booking/booking-details/{{data.id}}"
+              >
                 <ion-row class="row-1">
                   <ion-col>
                     <ion-label class="row-1label">
@@ -41,7 +57,12 @@
                     <p>{{data.billing.grandTotal | currency:'INR'}}</p>
                   </ion-col>
                   <ion-col class="row-1-col-2">
-                    <p class="body {{data?.stage}}" style="height: 38px;display: flex;align-items: center;">{{ utils[data?.stage || 'allotmentPending'].text }}</p>
+                    <p
+                      class="body {{data?.stage}}"
+                      style="height: 38px; display: flex; align-items: center"
+                    >
+                      {{ utils[data?.stage || 'allotmentPending'].text }}
+                    </p>
                   </ion-col>
                 </ion-row>
                 <ion-row class="row-2">
@@ -51,11 +72,14 @@
                   </ion-col>
                   <ion-col class="row-2-col-1">
                     <span>Time</span>
-                    <h3>{{tConvert(data.timeData.start)}} to </h3>
+                    <h3>{{tConvert(data.timeData.start)}} to</h3>
                     <h3>{{tConvert(data.timeData.end)}}</h3>
                   </ion-col>
                   <ion-col>
-                    <span>{{data.timeSlot?.date?.toDate() | date: 'longDate'}}</span>
+                    <span
+                      >{{data.timeSlot?.date?.toDate() | date:
+                      'longDate'}}</span
+                    >
                     <h3>{{data.timeSlot?.date?.toDate() | date: 'EEEE'}}</h3>
                   </ion-col>
                 </ion-row>
@@ -64,119 +88,102 @@
           </ng-container>
         </div>
         <div class="swiper-pagination swiper-pagination1"></div>
-      </div>    
+      </div>
     </div>
   </div>
 
-  <div>
-    <hr class="horizontalRow">
-    <h4 style="color:#FB9F14"> Categories of Seva</h4>
-    <!-- <ion-row>
-      <ion-col size='3' class="serviceCategoriesImages" *ngFor="let mainCategory of categories | slice:0:3">
-        <div class="category-det">
-          <a routerLink="../sub-Categories/{{mainCategory.id}}">
-            <img src="{{mainCategory.icon}}" alt="">
-          </a>
-          <span>{{mainCategory.name}}</span>
-        </div>
-      </ion-col>
-      
-      
-      <ion-col class="serviceCategoriesImages" *ngIf="categories.length > 3? true: false">
-        <div class="category-det">
-          <a>
-            <img class="seeall-img" src="assets/images/SeeAll.png" routerLink="../all-categories/" alt="">
-          </a>
-          <span>See All</span>
-        </div>
-      </ion-col>
-    </ion-row> -->
+  <div class="categories-container">
+    <hr class="horizontalRow" />
+    <h4 class="cat-title">Categories of Seva</h4>
+
     <div class="category-services-cont">
-        <div class="col-4 service-det" *ngFor="let mainCategory of categories">
+      <ng-container *ngFor="let mainCategory of categories;index as index">
+        <div class="col-4 service-det" *ngIf="index<2">
           <div class="det-container">
             <div class="det" routerLink="../sub-Categories/{{mainCategory.id}}">
-              <img src="{{mainCategory.icon}}" alt="">
+              <img src="{{mainCategory.icon}}" alt="" />
             </div>
           </div>
           <h3>{{mainCategory.name}}</h3>
         </div>
-        <div class="col-4 service-det">
-          <div class="det-container">
-            <div class="det" routerLink="../all-categories/" alt="">
-              <img class="seeall-img" src="assets/images/SeeAll.svg" >
-            </div>
+      </ng-container>
+
+      <div class="col-4 service-det">
+        <div class="det-container">
+          <div class="det" routerLink="../all-categories/" alt="">
+            <img class="seeall-img" src="assets/images/SeeAll.svg" />
           </div>
-          <h3 >See All</h3>
         </div>
+        <h3>See All</h3>
+      </div>
     </div>
-    <hr class="horizontalRow">
+    <hr class="horizontalRow" />
   </div>
 
   <ng-container *ngIf="categories.length > 0">
-    <div class="mainCategory" *ngFor="let mainCategory of categories">
-      <!-- <div *ngIf="mainCategory.name !== '' "></div> -->
-      <div class="container">
-        <div class="heading">
-          <div class="col-9">
-            <h4>{{mainCategory.name}}</h4>
-          </div>
-          <div class="see-all-button">
-            <span routerLink="../sub-Categories/{{mainCategory.id}}" style="color: #FB9F14;">See All</span>
-            <img src="assets/icon/rightArrow/rightArrow.svg">
-          </div>
-        </div>
-      </div>
-      <!-- <h3>{{mainCategory.name}}</h3> -->
-      <img class="banner" [src]="mainCategory.image" alt="">
-      <!-- <div class="container">
-        <div class="heading">
-          <div class="col-9">
-            <h4>Services</h4>
-          </div>
-          <div class="see-all-button">
-            <span routerLink="../sub-Categories/{{mainCategory.id}}">See All</span>
-            <img src="assets/icon/rightArrow/rightArrow.svg">
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="servicecontainer mt-2">
-        <div class="row serviceRowOverflow">
-          <div class="col text-center" *ngFor="let subCategory of mainCategory.subCategories">
-            <div class="service-det" routerLink="../services/{{mainCategory.id}}/{{subCategory.id}}">
-              <img alt="" src="{{subCategory.image}}" />
-              <h3>{{subCategory.name}}</h3>
+    <div class="mainCategory-div">
+      <div class="mainCategory" *ngFor="let mainCategory of categories">
+        <div class="container">
+          <div class="heading">
+            <div class="col-9">
+              <h4>{{mainCategory.name}}</h4>
+            </div>
+            <div
+              *ngIf="mainCategory.subCategories.length>3"
+              class="see-all-button"
+            >
+              <span routerLink="../sub-Categories/{{mainCategory.id}}"
+                >See All</span
+              >
+              <img src="assets/icon/rightArrow/rightArrow.svg" />
             </div>
           </div>
         </div>
-      </div> -->
-  
-      <div class="services">
-        <div class="services-cont">
-          <ng-container *ngFor="let subCategory of mainCategory.subCategories">
-            <div class="col-4 service-det" *ngIf="subCategory.enabled">
-              <div class="det"   routerLink="../services/{{mainCategory.id}}/{{subCategory.id}}">
-                <img alt="" src="{{subCategory.image}}" />
-              
-              </div>
-              <h3>{{subCategory.name}}</h3>
-            </div>
-            
-          </ng-container>
+        <img class="banner" [src]="mainCategory.image" alt="" />
+
+        <div class="services">
+          <div class="services-cont">
+            <ng-container
+              *ngFor="let subCategory of mainCategory.subCategories; let i = index;"
+            >
+              <ng-container *ngIf="i<3">
+                <div
+                  class="col-4 service-det"
+                  title="{{subCategory.name}}"
+                  *ngIf="subCategory.enabled"
+                >
+                  <div
+                    class="det"
+                    routerLink="../services/{{mainCategory.id}}/{{subCategory.id}}"
+                  >
+                    <img
+                      alt="{{subCategory.name}}"
+                      src="{{subCategory.image}}"
+                    />
+                  </div>
+                  <h3>{{subCategory.name}}</h3>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
   </ng-container>
 
-    <div class="banner-container" [hidden]="!bannerObject.showBanner || !bannerObject.showMiddle">
-      <div #swiperContainer class="swiper-container">
-        <div class="swiper-wrapper">
-          <div *ngFor="let items of middleBanner" class="swiper-slide">
-            <img style="width: 100%" src="{{items?.imageUrl}}" alt="">
-          </div>
+  <div
+    class="banner-container"
+    [hidden]="!bannerObject.showBanner || !bannerObject.showMiddle"
+  >
+    <div #swiperContainer class="swiper-container">
+      <div class="swiper-wrapper">
+        <div *ngFor="let items of middleBanner" class="swiper-slide">
+          <img style="width: 100%" src="{{items?.imageUrl}}" alt="" />
         </div>
-        <div class="swiper-pagination"></div>
-      </div>    
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
+  </div>
 
   <div class="client-section">
     <ion-label class="label">Featured Members</ion-label>
@@ -184,30 +191,29 @@
       <div class="marquee">
         <ion-row>
           <ion-col size="4">
-            <img src="assets/images/clientImg/ramada.png" alt="">
+            <img src="assets/images/clientImg/ramada.png" alt="" />
           </ion-col>
           <ion-col size="4">
-            <img src="assets/images/clientImg/radisson.png" alt="">
+            <img src="assets/images/clientImg/radisson.png" alt="" />
           </ion-col>
           <ion-col size="4">
-            <img src="assets/images/clientImg/marriott.png" alt="">
+            <img src="assets/images/clientImg/marriott.png" alt="" />
           </ion-col>
         </ion-row>
       </div>
     </ion-grid>
 
     <ion-grid>
-
       <div class="marquee1">
         <ion-row>
           <ion-col size="4">
-            <img src="assets/images/clientImg/royalOrchid.png" alt="">
+            <img src="assets/images/clientImg/royalOrchid.png" alt="" />
           </ion-col>
           <ion-col size="4">
-            <img src="assets/images/clientImg/trident.png" alt="">
+            <img src="assets/images/clientImg/trident.png" alt="" />
           </ion-col>
           <ion-col size="4">
-            <img src="assets/images/clientImg/itcHotels.png" alt="">
+            <img src="assets/images/clientImg/itcHotels.png" alt="" />
           </ion-col>
         </ion-row>
       </div>
@@ -219,12 +225,12 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <img src="assets/covidprotection.svg" alt="">
-          <ion-label style="color: #FB9F14">Transparency</ion-label>
+          <img src="assets/covidprotection.svg" alt="" />
+          <ion-label style="color: #fb9f14">Transparency</ion-label>
         </ion-col>
         <ion-col>
-          <img src="assets/hasselfreebooking.svg" alt="">
-          <ion-label style="color: #FB9F14">Fast Booking</ion-label>
+          <img src="assets/hasselfreebooking.svg" alt="" />
+          <ion-label style="color: #fb9f14">Fast Booking</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -234,35 +240,118 @@
         <ion-col>
           <div class="supportImg">
             <div class="Imgcontainer">
-              <img src="assets/support.svg" alt="">
+              <img src="assets/support.svg" alt="" />
             </div>
           </div>
 
-          <ion-label style="color: #FB9F14">24x7 Support</ion-label>
+          <ion-label style="color: #fb9f14">24x7 Support</ion-label>
         </ion-col>
         <ion-col>
-          <img src="assets/cancellation.svg" alt="">
-          <ion-label  style="color: #FB9F14">Easy Rescheduling</ion-label>
+          <img src="assets/cancellation.svg" alt="" />
+          <ion-label style="color: #fb9f14">Easy Rescheduling</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+
+  <!-- <app-footer-web class="footer-div"></app-footer-web> -->
 </ion-content>
 
-<ion-modal [isOpen]="isNotServiceableModalOpen" (willDismiss)="onNotServiceableDismiss($event)">
+<ion-modal
+  [isOpen]="isNotServiceableModalOpen"
+  (willDismiss)="onNotServiceableDismiss($event)"
+>
   <ng-template>
     <ion-content class="ion-padding">
       <div class="no-catalogue-center-container">
         <p>
-          Sorry, we do not provide seva to the selected area, please select a valid valid address.
+          Sorry, we do not provide seva to the selected area, please select a
+          valid valid address.
         </p>
         <button (click)="onGotItClick()" class="got-it-button">
           Okay, Got It
         </button>
       </div>
-      
     </ion-content>
   </ng-template>
 </ion-modal>
+<!-- 
+<ion-content #content class="ion-padding home-main" [fullscreen]="true">
+  <div class="categories-container">
+    <hr class="horizontalRow" />
+    <p class="cat-title">Categories of Services</p>
 
+    <div class="category-services-cont">
+      <ng-container *ngFor="let mainCategory of categories;index as index">
+        <div class="col-4 service-det" *ngIf="index<2">
+          <div class="det-container">
+            <div class="det" (click)="showSubCategories(mainCategory.id)">
+              <img src="{{mainCategory.icon}}" alt="" />
+            </div>
+          </div>
+          <h3>{{mainCategory.name}}</h3>
+        </div>
+      </ng-container>
+      <div class="col-4 service-det">
+        <div class="det-container">
+          <div class="det" (click)="allCategory()" alt="">
+            <img class="seeall-img" src="assets/images/SeeAll.png" />
+          </div>
+        </div>
+        <h3>See All</h3>
+      </div>
+    </div>
+    <hr class="horizontalRow" />
+  </div>
 
+  <ng-container *ngIf="categories.length > 0">
+    <div class="mainCategory-div">
+      <div class="mainCategory" *ngFor="let mainCategory of categories">
+        <div class="container">
+          <div class="heading">
+            <div class="col-9">
+              <h4>{{mainCategory.name}}</h4>
+            </div>
+            <div
+              *ngIf="mainCategory.subCategories.length>3"
+              class="see-all-button"
+            >
+              <span (click)="showSubCategories(mainCategory.id)">See All</span>
+              <img src="assets/icon/rightArrow/rightArrow.svg" />
+            </div>
+          </div>
+        </div>
+        <img class="banner" [src]="mainCategory.image" alt="" />
+
+        <div class="services">
+          <div class="services-cont">
+            <ng-container
+              *ngFor="let subCategory of mainCategory.subCategories; let i = index;"
+            >
+              <ng-container *ngIf="i<3">
+                <div
+                  class="service-det"
+                  title="{{subCategory.name}}"
+                  *ngIf="subCategory.enabled"
+                >
+                  <div
+                    class="det"
+                    (click)="openSubCategory(mainCategory.id , subCategory.id)"
+                  >
+                    <img
+                      alt="{{subCategory.name}}"
+                      src="{{subCategory.image}}"
+                    />
+                  </div>
+                  <h3>{{subCategory.name}}</h3>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <app-footer-web class="footer-div"></app-footer-web>
+</ion-content> -->

@@ -36,8 +36,8 @@
   <div class="Profile">
     <div class="agent-not-assigned" *ngIf="assignedAgent === undefined">
       <div class="details">
-        <h2>Finding A Professional</h2>
-        <p>Waiting for the professional to accept your booking</p>
+        <h2>Finding A Sevak</h2>
+        <p>Waiting for the sevak to accept your booking</p>
       </div>
       <div class="icon">
         <div class="icon-div">
@@ -52,7 +52,7 @@
     </div>
     <div class="icon-text" *ngIf="assignedAgent !== undefined">
       <img class="profile-icon" src="../../../assets/profile-sign.svg" alt="" />
-      <p>Professional Assigned</p>
+      <p>Sevak Assigned</p>
     </div>
     <!-- Profile image & Name -->
     <div class="agent-det-div" *ngIf="assignedAgent !== undefined">
@@ -121,7 +121,7 @@
   >
     <img class="glass-image" src="../../../assets/glass1.svg" alt="" />
     <span>
-      <p>Offer drinking water to the professional</p>
+      <p>Offer your regards to the sevak</p>
     </span>
   </div>
 
@@ -607,7 +607,7 @@
         (click)="onClickCancelBooking()"
       >
         Cancel Booking
-      </button>
+      </button> -->
     </div>
     <div
       class="container"

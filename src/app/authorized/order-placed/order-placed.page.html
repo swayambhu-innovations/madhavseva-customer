@@ -11,8 +11,8 @@
 
         <img style="display: none" [src]="paymentFailedLogo" alt="" />
 
-        <h2>Your order has been Placed</h2>
-        <p>Order ID: #{{this.dataProvider.currentBooking?.id}}</p>
+        <h2>Your booking has been Placed</h2>
+        <p>Booking ID: {{this.dataProvider.currentBooking?.id}}</p>
       </section>
     </div>
     <div
@@ -22,7 +22,7 @@
       <section>
         <img [src]="failiarLogo" alt="" />
         <h2>Payment Failed. Booking Cancelled.</h2>
-        <p>Order ID: #{{this.dataProvider.currentBooking?.id}}</p>
+        <p>Booking ID: {{this.dataProvider.currentBooking?.id}}</p>
       </section>
     </div>
 

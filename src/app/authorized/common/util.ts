@@ -3,7 +3,7 @@ import * as moment from 'moment';
 export default class Utils {
     static stageMaster:any = {
       'availableAgents' : {
-        'text' : 'Available Agents',
+        'text' : 'Available Sevaks',
         'gradient' : '',
         'color' : '',
         'textColor' : '',
@@ -24,14 +24,14 @@ export default class Utils {
         'key' : 'acceptancePending'
       },
       'jobAccepted' : {
-        'text' : 'Job Accepted',
+        'text' : 'Seva Accepted',
         'gradient' : 'yellow-gradient',
         'color' : 'yellow-background',
         'textColor' : 'yellow-color',
         'key' : 'jobAccepted'
       },
       'jobStarted' : {
-        'text' : 'Job Started',
+        'text' : 'Seva Started',
         'gradient' : 'yellow-gradient',
         'color' : 'yellow-background',
         'textColor' : 'yellow-color',
@@ -45,7 +45,7 @@ export default class Utils {
         'key' : 'otpVerificationPending'
       },
       'workStarted' : {
-        'text' : 'Work Started',
+        'text' : 'Seva Started',
         'gradient' : 'yellow-gradient',
         'color' : 'yellow-background',
         'textColor' : 'yellow-color',

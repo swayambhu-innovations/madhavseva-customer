@@ -75,10 +75,14 @@
 }
 
 .social-media {
+  background: url("../../../assets/icon/contactUs/contactusFooter.png");
+}
+
+.social-media,
+.sm {
   display: flex;
   justify-content: space-evenly;
   min-height: 335px;
-  background: url("../../../assets/icon/contactUs/contactusFooter.svg");
   background-size: contain;
   width: 100%;
   background-position: 0px 20px;

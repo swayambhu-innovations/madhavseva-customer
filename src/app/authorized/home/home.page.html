@@ -38,7 +38,7 @@
     [ngClass]="{'no-booking': !(bookingService.bookingsSubject && upcomingBookings.length > 0) }"
   >
     <ion-label class="label">Upcoming Bookings</ion-label>
-    <div class="banner-container">
+    <div *ngIf="mobileView" class="banner-container">
       <div #swiperContainer1 class="swiper-container">
         <div class="swiper-wrapper recent-container-details">
           <ng-container *ngIf="upcomingBookings.length > 0">
@@ -89,6 +89,56 @@
         </div>
         <div class="swiper-pagination swiper-pagination1"></div>
       </div>
+    </div>
+
+    <div class="upcoming-slide" *ngIf="isWebModalOpen">
+      <ng-container *ngIf="upcomingBookings.length > 0">
+        <div
+          class="booking-card recent-container-details"
+          *ngFor="let data of upcomingBookings"
+        >
+          <ion-grid
+            width="100"
+            routerLink="../booking/booking-details/{{data.id}}"
+          >
+            <ion-row class="row-1">
+              <ion-col>
+                <ion-label class="row-1label">
+                  <div class="label-text-ellipsis">
+                    {{data.subCategory.name}}
+                  </div>
+                </ion-label>
+                <p>{{data.billing.grandTotal | currency:'INR'}}</p>
+              </ion-col>
+              <ion-col class="row-1-col-2">
+                <p
+                  class="body allotment {{data?.stage}}"
+                  style="height: 38px; display: flex; align-items: center"
+                >
+                  {{ utils[data?.stage || 'allotmentPending'].text }}
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-row class="row-2">
+              <ion-col class="row-2-col-1">
+                <span>Serviced By</span>
+                <h3>{{data.assignedAgent ? data.agentData.name : 'NA'}}</h3>
+              </ion-col>
+              <ion-col class="row-2-col-1">
+                <span>Time</span>
+                <h3>{{tConvert(data.timeData.start)}} to</h3>
+                <h3>{{tConvert(data.timeData.end)}}</h3>
+              </ion-col>
+              <ion-col>
+                <span
+                  >{{data.timeSlot?.date?.toDate() | date: 'longDate'}}</span
+                >
+                <h3>{{data.timeSlot?.date?.toDate() | date: 'EEEE'}}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ng-container>
     </div>
   </div>
 
@@ -222,39 +272,41 @@
 
   <div class="why-choose-us-section">
     <ion-label class="label">Why Choose Us</ion-label>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <img src="assets/covidprotection.svg" alt="" />
-          <ion-label style="color: #fb9f14">Transparency</ion-label>
-        </ion-col>
-        <ion-col>
-          <img src="assets/hasselfreebooking.svg" alt="" />
-          <ion-label style="color: #fb9f14">Fast Booking</ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <div class="row1">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <img src="assets/covidprotection.svg" alt="" />
+            <ion-label style="color: #fb9f14">Transparency</ion-label>
+          </ion-col>
+          <ion-col>
+            <img src="assets/hasselfreebooking.svg" alt="" />
+            <ion-label style="color: #fb9f14">Fast Booking</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div class="supportImg">
-            <div class="Imgcontainer">
-              <img src="assets/support.svg" alt="" />
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="supportImg">
+              <div class="Imgcontainer">
+                <img src="assets/support.svg" alt="" />
+              </div>
             </div>
-          </div>
 
-          <ion-label style="color: #fb9f14">24x7 Support</ion-label>
-        </ion-col>
-        <ion-col>
-          <img src="assets/cancellation.svg" alt="" />
-          <ion-label style="color: #fb9f14">Easy Rescheduling</ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+            <ion-label style="color: #fb9f14">24x7 Support</ion-label>
+          </ion-col>
+          <ion-col>
+            <img src="assets/cancellation.svg" alt="" />
+            <ion-label style="color: #fb9f14">Easy Rescheduling</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
-  <!-- <app-footer-web class="footer-div"></app-footer-web> -->
+  <app-footer-web class="footer-div"></app-footer-web>
 </ion-content>
 
 <ion-modal

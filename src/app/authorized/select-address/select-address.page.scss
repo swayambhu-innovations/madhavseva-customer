@@ -6,7 +6,7 @@
   width: 90%;
 }
 
-ion-toolbar{
+ion-toolbar {
   position: fixed;
   top: 0px;
   width: 124px;
@@ -23,13 +23,13 @@ ion-button {
 .new-add-button {
   display: flex;
   float: right;
-  border: 1px solid #FB9F14;
+  border: 1px solid #fb9f14;
   padding: 5px 8px;
   border-radius: 23px;
   button {
     display: flex;
     background: transparent;
-    color: var(--tertiary, #FB9F14);
+    color: var(--tertiary, #fb9f14);
     font-weight: 600;
     cursor: pointer;
 
@@ -57,7 +57,7 @@ ion-button {
     margin-top: 7px;
     .address-box {
       border-radius: 12px;
-      border: 1px solid var(--Line, #FFEBCB);
+      border: 1px solid var(--Line, #ffebcb);
       background: #fff;
       padding: 10px;
       box-shadow: -1px 4px 10px -4px rgba(22, 22, 22, 0.08);
@@ -71,8 +71,7 @@ ion-button {
           display: flex;
           cursor: pointer;
           input[type="radio"] {
-            accent-color:#FB9F14;
-            
+            accent-color: #fb9f14;
           }
         }
 
@@ -81,15 +80,14 @@ ion-button {
             font-size: 14px;
             font-weight: 700;
             margin: 7px 0;
-            color:#DAA556;
+            color: #daa556;
           }
 
           p {
             font-size: 12px;
             font-weight: 400;
             margin: 1px 0;
-            color:#FB9F14;
-
+            color: #fb9f14;
           }
         }
 
@@ -103,5 +101,14 @@ ion-button {
         }
       }
     }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .add-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 0;
   }
 }

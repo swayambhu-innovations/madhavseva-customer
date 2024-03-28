@@ -20,7 +20,7 @@
 
   <div class="row-2">
     <div class="top">
-      <h2>When should the seva begin?</h2>
+      <h2>Select Seva Date</h2>
       <p>Your seva will take approx. {{totalTimeNeeded}}</p>
       <div class="first-btns">
         <button
@@ -90,7 +90,7 @@
         </div>
       </ng-template>
 
-      <h2 style="margin-top: 20px">Select Preferred Sevak Arrival Time</h2>
+      <h2 style="margin-top: 20px">Select Seva Start Time</h2>
       <div class="third-btns">
         <button
           *ngFor="let btn of agentArrivalArray"
@@ -171,7 +171,7 @@
 
     <div class="row-2">
       <div class="top">
-        <h2>When should the professional arrive?</h2>
+        <h2>Select Seva Date</h2>
         <p>Your seva will take approx. {{totalTimeNeeded}}</p>
         <div class="first-btns">
           <button
@@ -242,7 +242,9 @@
           </div>
         </ng-template>
 
-        <h2 style="margin-top: 20px">Select Preferred Sevak Arrival Time</h2>
+        <h2 *ngIf="agentArrivalArray.length>0" style="margin-top: 20px">
+          Select Seva Start Time
+        </h2>
         <div class="third-btns">
           <button
             *ngFor="let btn of agentArrivalArray"

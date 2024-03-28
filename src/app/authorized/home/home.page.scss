@@ -152,7 +152,7 @@ ion-thumbnail {
       justify-content: space-evenly;
       margin-top: 8px;
       cursor: pointer;
-      color:  #fb9f14;
+      color: #fb9f14;
       font-family: Lato;
       font-size: 12px;
       font-style: normal;
@@ -639,7 +639,7 @@ homepage.scss .serviceCategory {
     .recent-container {
       width: 80%;
       margin: 0 auto;
-      background: #ffebcb;
+      background: #fff;
       margin-top: 15px;
       border-radius: 10px;
       padding: 25px;
@@ -656,7 +656,7 @@ homepage.scss .serviceCategory {
       .recent-container-details {
         .row-1 {
           padding-bottom: 35px;
-          background: var(--Light-tertiary, #fae8ff);
+          background: var(--Light-tertiary, #ffebcb);
 
           p {
             padding-left: 5px;
@@ -772,6 +772,14 @@ homepage.scss .serviceCategory {
       border-radius: 12px;
       padding: 10px 13px;
     }
+  }
+
+  .upcoming-slide {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 32px 0;
   }
 
   .client-section {

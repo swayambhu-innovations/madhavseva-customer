@@ -152,7 +152,7 @@ export class BookingDetailsPage implements OnInit {
   RADIO_LIST = [
     { name: 'Hired someone else.', value: '100CP', checked: false },
     { name: 'Service no longer required', value: '101TR', checked: false },
-    { name: 'Professional not assigned', value: '102MO', checked: false },
+    { name: 'Sevak not assigned', value: '102MO', checked: false },
     { name: 'Booking address is incorrect', value: '103BE', checked: false },
    
   ];

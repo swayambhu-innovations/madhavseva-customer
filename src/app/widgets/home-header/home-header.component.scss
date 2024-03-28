@@ -30,6 +30,11 @@ ion-toolbar {
     }
   }
 }
+
+.jsc-logo {
+  display: none;
+}
+
 ion-buttons {
   .button_back {
     background: linear-gradient(180deg, #fb9f14 0%, #f77411 100%);
@@ -156,7 +161,7 @@ ion-buttons {
     margin: 0;
   }
   span {
-    background-color: black;
+    background-color: #fb9f14;
     border-radius: 8px;
     color: white;
     width: 32px;
@@ -166,12 +171,10 @@ ion-buttons {
   }
 }
 
-.jsc-logo {
-  display: none;
-}
-
 .location-det {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -190,27 +193,28 @@ ion-buttons {
   }
 
   .jsc-logo {
-    width: 40%;
     display: flex;
+    align-items: center;
+
     img {
-      width: 47px;
-      height: 47px;
-      border-radius: 12px;
+      width: 71px;
+      height: 65px;
     }
+
     span {
-      display: block;
-      color: #000;
-      font-family: Roboto;
-      font-size: 18px;
+      width: 193px;
+      color: var(--primary-button, #fb9f14);
+      font-family: Poppins;
+      font-size: 20px;
       font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      margin-left: 7px;
+      font-weight: 400;
+      line-height: 150%; /* 30px */
+      letter-spacing: 5.6px;
     }
   }
 
   .location-det {
-    width: 55%;
+    width: 35%;
     border-radius: 10.951px;
     border: 1.095px solid #bebebe;
     background: #fff;

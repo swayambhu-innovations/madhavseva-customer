@@ -7,7 +7,7 @@ ion-content {
 }
 
 ion-card {
-  background:#FB9F14;
+  background: #fb9f14;
   padding-top: 50px;
   overflow-y: scroll;
   box-shadow: none;
@@ -98,8 +98,8 @@ ion-card {
   p {
     display: flex;
 
-    color: var(--primary, #FB9F14);
-    font-feature-settings: "clig" off, "liga" off; 
+    color: var(--primary, #fb9f14);
+    font-feature-settings: "clig" off, "liga" off;
     font-family: Lato;
     font-size: 14px;
     font-style: normal;
@@ -126,7 +126,7 @@ ion-modal {
   .subtitle {
     text-align: center;
     margin-top: 10px;
-    color:#FB9F14 ;
+    color: #fb9f14;
     font-weight: 600;
     font-size: 16px;
     font-style: normal;
@@ -134,9 +134,9 @@ ion-modal {
   }
 
   .cancel-btn {
-    border: 1px solid var(--primary, #FB9F14);
+    border: 1px solid var(--primary, #fb9f14);
 
-    color: #FB9F14;
+    color: #fb9f14;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -152,9 +152,9 @@ ion-modal {
   }
 
   .logout-btn {
-    border: 1px solid var(--primary, #FB9F14);
+    border: 1px solid var(--primary, #fb9f14);
     font-style: normal;
-    background:#FB9F14;
+    background: #fb9f14;
     color: #ffffff;
     font-size: 16px;
     font-weight: 600;
@@ -180,7 +180,7 @@ ion-modal {
   p {
     margin-left: 0px;
     margin-top: 6px;
-    color: #6F767E;
+    color: #6f767e;
   }
   // }
 }
@@ -191,5 +191,73 @@ ion-modal {
   .footer-ion-tab-button {
     max-width: 90px !important;
     padding: 6px 0px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  ion-card,
+  .nav {
+    display: none;
+  }
+
+  ion-modal {
+    --width: 25%;
+  }
+
+  .main-container {
+    padding: 0 !important;
+    width: 75%;
+  }
+
+  .profile-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    .img-avatar {
+      width: 50%;
+      height: 100%;
+      background-color: #fb9f14;
+      box-shadow: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .profile-pic {
+        margin-top: 0;
+        width: 210px;
+        height: 210px;
+      }
+    }
+
+    .nav-web {
+      width: 50%;
+      padding: 30px 60px;
+      height: 100%;
+
+      .side-buttons {
+        height: 50px;
+      }
+
+      .icons {
+        display: flex;
+      }
+
+      p {
+        display: flex;
+        color: var(--primary, #fb9f14);
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Lato;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        /* 114.286% */
+        text-transform: none;
+        margin-bottom: 0px;
+        margin-left: 10px;
+      }
+    }
   }
 }

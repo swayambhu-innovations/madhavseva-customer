@@ -13,6 +13,10 @@ export class SubCategoryPage implements OnInit {
   matchingMainCategory: Category | undefined;
   subCategory: SubCategory[] = [];
   mainCategoryId = "";
+  
+  deviceInfo: any;
+  isModalOpen: boolean = false;
+  mobileView: boolean = false;
   constructor(
     private dataProvider: DataProviderService,
     private activatedRoute: ActivatedRoute,
@@ -35,4 +39,21 @@ export class SubCategoryPage implements OnInit {
   }
   
   ngOnInit(): void {}
+  
+  ionViewDidEnter() {
+    this.systeminfo();
+    console.log(this.dataProvider.deviceInfo);
+  }
+
+  
+  systeminfo() {
+    if (this.dataProvider.deviceInfo.deviceType === 'desktop') {
+      this.isModalOpen = true;
+      this.mobileView = false;
+    }
+    if (this.dataProvider.deviceInfo.deviceType === 'mobile') {
+      this.isModalOpen = false;
+      this.mobileView = true;
+    }
+  }
 }

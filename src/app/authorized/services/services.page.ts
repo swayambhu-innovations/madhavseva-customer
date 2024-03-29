@@ -15,10 +15,14 @@ import {
 })
 export class ServicesPage implements OnInit {
   services: Service[] = [];
-  mainCatId = "";
-  subCatId = "";
+  mainCatId = '';
+  subCatId = '';
   matchingSubCategory: SubCategory | undefined;
   matchingMainCategory: Category | undefined;
+
+  deviceInfo: any;
+  isModalOpen: boolean = false;
+  mobileView: boolean = false;
   constructor(
     private dataProvider: DataProviderService,
     private activatedRoute: ActivatedRoute,
@@ -36,7 +40,7 @@ export class ServicesPage implements OnInit {
         this.router.navigate(['/authorized/home']);
         return;
       }
-      this.subCatId = params['subCategoryId'].trim()
+      this.subCatId = params['subCategoryId'].trim();
       this.matchingSubCategory = this.matchingMainCategory.subCategories.find(
         (subCategory) => {
           return subCategory.id == this.subCatId;
@@ -45,29 +49,53 @@ export class ServicesPage implements OnInit {
       if (!this.matchingSubCategory) {
         return;
       }
-      
-      const sortedSubCategory = this.matchingSubCategory.services.sort((a,b) => {
-        return a.variants[0].price - b.variants[0].price;
-      });
-      
+
+      const sortedSubCategory = this.matchingSubCategory.services.sort(
+        (a, b) => {
+          return a.variants[0].price - b.variants[0].price;
+        }
+      );
+
       this.services = sortedSubCategory;
     });
-    
   }
-  getJobDuration(jobDurationInMin){
-    if(jobDurationInMin <  60){
-      return jobDurationInMin+" Minutes"
-    }
-    else{
-      if(jobDurationInMin % 60 == 0){
-        return (jobDurationInMin / 60) + " Hours";
+
+  getJobDuration(jobDurationInMin) {
+    if (jobDurationInMin < 60) {
+      return jobDurationInMin + ' Minutes';
+    } else {
+      if (jobDurationInMin % 60 == 0) {
+        return jobDurationInMin / 60 + ' Hours';
+      } else {
+        return (
+          jobDurationInMin / 60 +
+          ' Hours ' +
+          (jobDurationInMin % 60 == 0) +
+          ' Minutes'
+        );
       }
-      else{
-        return (jobDurationInMin / 60) +" Hours "+ (jobDurationInMin % 60 == 0) + " Minutes"
-      }
-     
     }
   }
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter() {
+    this.systeminfo();
+    console.log(this.dataProvider.deviceInfo);
+  }
+
+  systeminfo() {
+    if (this.dataProvider.deviceInfo.deviceType === 'desktop') {
+      this.isModalOpen = true;
+      this.mobileView = false;
+    } else if (this.dataProvider.deviceInfo.deviceType === 'mobile') {
+      this.isModalOpen = false;
+      this.mobileView = true;
+    }
+  }
+
+  async openCartFunctionWithSubId(mainCatId, subCatId, resultId) {
+    this.router.navigate([
+      `/authorized/service-detail/${mainCatId}/${subCatId}/${resultId}`,
+    ]);
   }
 }

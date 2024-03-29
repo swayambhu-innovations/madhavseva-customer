@@ -8,8 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { WidgetsModule } from '../../widgets/widgets.module';
-
-
+import { FooterWebComponent } from '../footer-web/footer-web.component';
 
 // swiper
 
@@ -20,10 +19,9 @@ import { WidgetsModule } from '../../widgets/widgets.module';
     IonicModule,
     HomePageRoutingModule,
     WidgetsModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
-  declarations: [HomePage, 
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [HomePage, FooterWebComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePageModule {}

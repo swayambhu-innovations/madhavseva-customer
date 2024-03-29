@@ -1,24 +1,26 @@
-<app-header-with-back [showBackButton]="addressService.addresses.length > 0" [title]="'Select Address'" [showNotificationIcon]="false"></app-header-with-back>
-<!-- [showNotificationIcon]="addressService.addresses.length > 0" -->
-<div class="container">
-  <div class="row">
-    <ion-toolbar slot="end">
-
+<ng-container *ngIf="mobileView">
+  <app-header-with-back
+    [showBackButton]="addressService.addresses.length > 0"
+    [title]="'Select Address'"
+    [showNotificationIcon]="false"
+  ></app-header-with-back>
+  <!-- [showNotificationIcon]="addressService.addresses.length > 0" -->
+  <div class="container">
+    <div class="row">
+      <ion-toolbar slot="end">
         <div class="new-add-button">
           <button (click)="newAddress()">
             <span>Add New</span>
-            <img src="../../../assets/add-button.svg" alt="">
+            <img src="../../../assets/add-button.svg" alt="" />
           </button>
         </div>
-        
-        
-    </ion-toolbar>
+      </ion-toolbar>
+    </div>
   </div>
-</div>
-<ion-content [fullscreen]="true">
-  <!-- <div class="container" id="container"> -->
+  <ion-content [fullscreen]="true">
+    <!-- <div class="container" id="container"> -->
     <!-- <ion-header collapse="condense"> -->
-      <!-- <ion-toolbar>
+    <!-- <ion-toolbar>
         <ion-buttons slot="start">
           <ion-back-button default-href="#"></ion-back-button>
         </ion-buttons>
@@ -28,7 +30,7 @@
           </ion-button>
         </ion-buttons>
       </ion-toolbar> -->
-      <!-- <ion-toolbar>
+    <!-- <ion-toolbar>
         <h2 slot="start">Select Address</h2>
         <ion-buttons slot="secondary">
           <ion-button shape="round"
@@ -66,29 +68,102 @@
       </div>
     </ion-radio-group> -->
 
+    <!-- </div> -->
 
-    
-  <!-- </div> -->
+    <div class="main-container">
+      <div class="address-det-div">
+        <div
+          class="address-box"
+          *ngFor="let address of addressService.addresses"
+        >
+          <div class="add-cont">
+            <div class="input-div">
+              <input
+                type="radio"
+                name="defaultChange"
+                [checked]="address.isDefault"
+                (change)="changeAddress(address)"
+              />
+              <!-- <input  type="radio" > -->
+            </div>
+            <div class="address-details">
+              <h2>{{address.name}}</h2>
+              <p>{{dataProvider.currentUser?.userData.phoneNumber}}</p>
+              <p>
+                {{address.addressLine1}}, {{address.city}}, {{address.state}},
+                {{address.pincode}}
+              </p>
+            </div>
+            <div class="edit-delete-address">
+              <img
+                src="../../../assets/edit-button.svg"
+                alt=""
+                (click)="editAddress(address)"
+              />
+              <img
+                src="../../../assets/delete-button.svg"
+                alt=""
+                (click)="deleteAddress(address)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ng-container>
 
+<app-header-with-back
+  id="web-view"
+  [showBackButton]="addressService.addresses.length > 0"
+  [title]="'Select Address'"
+  [showNotificationIcon]="false"
+></app-header-with-back>
+
+<div class="back-container" id="web-view">
   <div class="main-container">
+    <div class="add-btn">
+      <div class="new-add-button">
+        <button (click)="newAddress()">
+          <span>Add new</span>
+          <img src="../../../assets/add-button.svg" alt="" />
+        </button>
+      </div>
+    </div>
     <div class="address-det-div">
       <div class="address-box" *ngFor="let address of addressService.addresses">
-        <div class="add-cont" >
+        <div class="add-cont">
           <div class="input-div">
-            <input type="radio"  name="defaultChange" [checked]="address.isDefault"  (change)="changeAddress(address)">
+            <input
+              type="radio"
+              name="defaultChange"
+              [checked]="address.isDefault"
+              (change)="changeAddress(address)"
+            />
             <!-- <input  type="radio" > -->
           </div>
           <div class="address-details">
             <h2>{{address.name}}</h2>
             <p>{{dataProvider.currentUser?.userData.phoneNumber}}</p>
-            <p>{{address.addressLine1}}, {{address.city}}, {{address.state}}, {{address.pincode}}</p>
+            <p>
+              {{address.addressLine1}}, {{address.city}}, {{address.state}},
+              {{address.pincode}}
+            </p>
           </div>
           <div class="edit-delete-address">
-            <img src="../../../assets/edit-button.svg" alt="" (click)="editAddress(address)">
-            <img src="../../../assets/delete-button.svg" alt="" (click)="deleteAddress(address)">
+            <img
+              src="../../../assets/edit-button.svg"
+              alt=""
+              (click)="editAddress(address)"
+            />
+            <img
+              src="../../../assets/delete-button.svg"
+              alt=""
+              (click)="deleteAddress(address)"
+            />
           </div>
         </div>
       </div>
     </div>
   </div>
-</ion-content>
+</div>

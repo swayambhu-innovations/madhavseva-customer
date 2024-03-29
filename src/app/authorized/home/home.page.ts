@@ -62,9 +62,12 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     showMiddle: false,
     showTop: false,
   };
+  
+  deviceInfo: any;
+  isWebModalOpen: boolean = false;
+  mobileView: boolean = true;
   topBanner: any[] = [];
   middleBanner: any[] = [];
-  deviceInfo: any;
   constructor(
     private addressService: AddressService,
     private router: Router,
@@ -186,10 +189,18 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     isDesktopDevice && console.log('Desktop Screen');
   }
 
+  systeminfo() {
+    if (this.dataProvider.deviceInfo.deviceType === 'desktop') {
+      this.isWebModalOpen = true;
+      this.mobileView = false;
+    }
+  }
+
   async ngOnInit() {
     this._navigationService.isAddressSubscription$ = true;
     this.recentActivity();
     this.fetchMainCategoryIcon(); // added by ronak
+    this.systeminfo();
     this.dataProvider.mainCategories.subscribe((categories) => {
       this.categories = categories;
       if (this.dataProvider.mainCategoriesLoaded) {

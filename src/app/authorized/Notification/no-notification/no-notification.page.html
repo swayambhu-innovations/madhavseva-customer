@@ -1,22 +1,43 @@
-<app-header-with-back [title]="'Notification'" [showNotificationIcon]="false"></app-header-with-back>
+<app-header-with-back
+  [title]="'Notification'"
+  [showNotificationIcon]="false"
+></app-header-with-back>
 <ion-content>
-  <div class="container">
+  <div id="mobile-view" class="container">
     <div class="row text-center mt-4">
       <div class="col notification-div">
-        <img src="../../../../assets/notification.svg" alt="Notification">
+        <img src="../../../../assets/notification.svg" alt="Notification" />
         <h2>No Notifications!</h2>
         <p>You don't have any notification yet. Please place booking</p>
       </div>
     </div>
-  
+
     <div class="container mt-4">
       <div class="row">
-        <div style="background-color:#FB9F14;" class="col"><ion-button w-50 expand="block" >View all seva</ion-button></div>
+        <div style="background-color: #fb9f14" class="col">
+          <ion-button w-50 expand="block">View all seva</ion-button>
+        </div>
       </div>
     </div>
-  
-  </div>  
+  </div>
+
+  <div class="back-container" id="web-view">
+    <div class="main-container container">
+      <div class="row text-center mt-4">
+        <div class="col notification-div">
+          <img src="../../../../assets/notification.svg" alt="Notification" />
+          <h2>No Notifications!</h2>
+          <p>You don't have any notification yet. Please place booking</p>
+        </div>
+      </div>
+
+      <div class="container mt-4">
+        <div class="row">
+          <div style="background-color: #fb9f14" class="col">
+            <ion-button w-50 expand="block">View all seva</ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
-
-
-

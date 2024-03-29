@@ -97,6 +97,8 @@ export class PaymentService {
 
     booking.user.phone = booking.user.phone?.replace(/\D/g, '').slice(-10);
     const date = new Date();
+    date.setHours(date.getHours() + 5);
+    date.setMinutes(date.getMinutes() + 30);
     try {
       const { data } = await axios({
         method: 'post',
@@ -146,39 +148,39 @@ export class PaymentService {
         intentID: data.transaction.intentId,
         authdata: authdata,
       };
+      this.payJm('100001000233342', data.transaction.intentId, authdata);
       return retData;
-      // this.payJm('100001000233342', data.transaction.intentId, authdata);
     } catch (err) {
       console.log(err);
       return err;
     }
   }
 
-  // async payJm(MID: string, intentID: string, authdata: any) {
-  //   let _headers = {
-  //     'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
-  //     'x-app-access-token': authdata.session.accessToken.tokenValue,
-  //     'x-appid-token': authdata.session.appIdentifierToken,
-  //   };
-  //   try {
-  //     const { data } = await axios({
-  //       method: 'post',
-  //       url: 'https://pp-checkout.jiopay.com:8443',
-  //       headers: _headers,
-  //       data: {
-  //         merchantID: MID,
-  //         appidtoken: authdata.session.appIdentifierToken,
-  //         appaccesstoken: authdata.session.accessToken.tokenValue,
-  //         intentid: intentID,
-  //         brandColor: '#ffc670',
-  //         bodyBgColor: '#ffc670',
-
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  async payJm(MID: string, intentID: string, authdata: any) {
+    let _headers = {
+      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
+      'x-app-access-token': authdata.session.accessToken.tokenValue,
+      'x-appid-token': authdata.session.appIdentifierToken,
+    };
+    try {
+      const { data } = await axios({
+        method: 'post',
+        url: 'https://pp-checkout.jiopay.com:8443',
+        headers: _headers,
+        data: {
+          merchantID: MID,
+          appidtoken: authdata.session.appIdentifierToken,
+          appaccesstoken: authdata.session.accessToken.tokenValue,
+          intentid: intentID,
+          brandColor: '#ffc670',
+          bodyBgColor: '#ffc670',
+        },
+      });
+      console.log(data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   // Step 1 of Payment Flow
   handlePayment(data: booking) {

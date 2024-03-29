@@ -1,99 +1,76 @@
-
-// *{
-//     font-family: 'Roboto', sans-serif;
-// }
-
 * {
   font-family: "Lato";
 }
-.main {
+
+.login-container{
   height: 100vh;
+  background: linear-gradient(163deg, #fff2ec 0.69%, #ffe5b9 95.79%)
 }
 
 .header {
   width: 100%;
   text-align: center;
-  margin-top: 20px;
-
-  span {
-    color: #fb9f14;
-    font-weight: 500;
-  }
 
   img {
-    width: 70px;
+    height: 50px;
     border-radius: 10px;
-    margin-bottom: 10px;
   }
 
   p {
     margin: 0;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: x-large;
-    font-weight: 600;
-    line-height: 20px;
   }
 }
 
 .body {
-  margin-top: 4vh;
+  margin-top: 30px;
+  width: 90%;
+  margin: 0 auto;
   img {
-    width: 50%;
-    margin: 0px 25%;
-    margin-bottom: 15%;
+    width: 100%;
   }
 }
 
 .login {
   text-align: center;
-  margin-top: 2px;
+  margin-top: 15px;
+  background-color: transparent;
 
   h3 {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
-    color: #fb9f14;
   }
 
   h6 {
     margin: 0;
     font-size: 12px;
-    color: #666666;
+    color: grey;
     margin-top: 5px;
   }
 
   .image {
     width: 90%;
-    border: 1px solid #666666;
+    border: 1px solid grey;
     border-radius: 5px;
     padding: 5px;
     margin: 0 auto;
     margin-top: 12px;
     height: 50px;
     display: flex;
-    input {
-      background: transparent;
-    }
-    .styled-input::placeholder {
-      color: #666666; /* Change the color to your preferred color */
-    }
 
     ion-icon {
       margin-left: 10px;
       font-size: 20px;
       margin-top: 8px;
     }
-    ion-icon[name="call"] {
-      color: #666666;
-    }
 
     input {
       outline: none;
       border: none;
       font-size: 12px;
+      background-color: transparent;
       width: 80%;
       margin-left: 5px;
-      color: #666666;
     }
   }
 
@@ -102,9 +79,8 @@
     width: 90%;
     text-transform: capitalize;
     margin: 0 auto;
-    margin-top: 5px;
+    margin-top: 25px;
     height: 45px;
-    --color: white;
   }
 }
 
@@ -120,7 +96,6 @@ a {
   display: flex;
   padding: 18px;
   align-items: center;
-
   input {
     padding: 0;
     height: initial;
@@ -167,8 +142,18 @@ a {
   p {
     margin-bottom: 0px;
     font-size: 13px;
+
+    button,
+    button:focus {
+      color: #fb9f14;
+      background-color: white;
+      border: none;
+      font-size: 13px;
+      outline: none;
+    }
   }
 }
+
 @media only screen and (min-width: 1024px) {
   .login-container {
     background: linear-gradient(117deg, #ffede5 0%, #fb9f14 100%);
@@ -187,14 +172,23 @@ a {
     align-items: center;
 
     .img-div {
-      width: 48%;
+      width: 50%;
       padding: 66px 0 0 0px;
     }
 
     .input-number {
-      color: black;
+      color: #fb9f14;
+      background-color: transparent;
       font-weight: 600;
       font-size: 16px !important;
+    }
+
+    .body {
+      width: 55%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
     }
 
     .header {

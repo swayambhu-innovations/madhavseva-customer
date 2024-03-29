@@ -3,19 +3,21 @@
     class="main"
     style="background: linear-gradient(163deg, #fff2ec 0.69%, #ffe5b9 95.79%)"
   >
-    <section class="header">
-      <img src="assets/images/logo.svg" alt="Madahv Seva" />
-      <div>
-        <p style="color: #fb9f14; display: inline">Madhav Seva</p>
-      </div>
-    </section>
+    <div class="img-div">
+      <section class="header">
+        <img src="assets/images/logo.svg" alt="Madahv Seva" />
+        <div>
+          <p style="color: #fb9f14; display: inline">Madhav Seva</p>
+        </div>
+      </section>
 
-    <section class="body">
-      <img src="assets/images/login.svg" alt="" />
-    </section>
+      <section class="body">
+        <img src="assets/images/login.svg" alt="" />
+      </section>
+    </div>
 
     <section
-      class="login"
+      class="login login-heading"
       *ngIf="!this.dataProvider.checkingAuth && !this.dataProvider.loggedIn"
     >
       <h3>Welcome Back</h3>
@@ -27,7 +29,7 @@
           placeholder="Mobile Number"
           inputmode="tel"
           [(ngModel)]="phoneNumber"
-          class="styled-input"
+          class="input-number"
           required
           maxlength="10"
         />
@@ -72,10 +74,6 @@
       <h6>Please wait till we verify you.</h6>
     </section>
 
-    <div style="position: fixed; bottom: 0; width: 100%"></div>
+    <!-- <div style="position: fixed; bottom: 0; width: 100%"></div> -->
   </div>
 </div>
-<!-- <footer>
-  <img src="assets/images/footer-1.png" style="height: 100px;">
-  <img src="assets/images/footer-2.png" style="height: 80px; margin-top:auto">
-</footer> -->

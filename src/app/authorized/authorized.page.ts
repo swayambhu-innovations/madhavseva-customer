@@ -7,22 +7,18 @@ import { DataProviderService } from '../core/data-provider.service';
   styleUrls: ['./authorized.page.scss'],
 })
 export class AuthorizedPage implements OnInit {
-  isPageLoaded: string = "";
+  isPageLoaded: string = '';
   constructor(private dataProvider: DataProviderService) {
-    this.dataProvider.isPageLoaded$.subscribe((isPageLoaded) =>{
-      if(isPageLoaded == "loaded"){
+    this.dataProvider.isPageLoaded$.subscribe((isPageLoaded) => {
+      if (isPageLoaded == 'loaded') {
         this.isPageLoaded = isPageLoaded;
       }
-    })
+    });
   }
 
- 
-
-
-  images: string[] = ['relax1.svg','Delivery-amico.svg']
+  images: string[] = ['maate.png', 'gau.png'];
   currentImageIndex: number = 0;
   interval: any;
-
 
   ngOnInit() {
     // Start the interval when the component is initialized
@@ -45,5 +41,4 @@ export class AuthorizedPage implements OnInit {
     // Move to the next image in the array
     this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
   }
-
 }

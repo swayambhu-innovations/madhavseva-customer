@@ -14,6 +14,7 @@
       <img src="assets/ui_icons/search.svg" alt="" />
     </span>
   </button>
+
   <div
     class="banner-container"
     [hidden]="!bannerObject.showBanner || !bannerObject.showTop"
@@ -33,11 +34,34 @@
   </div>
 
   <div
+    class="banner-container"
+    [hidden]="!desktopBannerObject.showBanner || !desktopBannerObject.showTop"
+  >
+    <swiper-container
+      *ngIf="topBanner.length > 0"
+      pagination="true"
+      slides-per-view="1"
+      speed="800"
+      delay="1000"
+      autoplay="true"
+      loop="true"
+      css-mode="true"
+    >
+      <swiper-slide *ngFor="let items of topBanner">
+        <a href="{{items?.redirectUrl}}">
+          <img src="{{items?.imageUrl}}" alt="" />
+        </a>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div
     *ngIf="upcomingBookings.length > 0"
     class="recent-container"
     [ngClass]="{'no-booking': !(bookingService.bookingsSubject && upcomingBookings.length > 0) }"
   >
     <ion-label class="label">Upcoming Bookings</ion-label>
+
     <div *ngIf="mobileView" class="banner-container">
       <div #swiperContainer1 class="swiper-container">
         <div class="swiper-wrapper recent-container-details">
@@ -58,7 +82,7 @@
                   </ion-col>
                   <ion-col class="row-1-col-2">
                     <p
-                      class="body {{data?.stage}}"
+                      class="body allotment {{data?.stage}}"
                       style="height: 38px; display: flex; align-items: center"
                     >
                       {{ utils[data?.stage || 'allotmentPending'].text }}
@@ -67,7 +91,7 @@
                 </ion-row>
                 <ion-row class="row-2">
                   <ion-col class="row-2-col-1">
-                    <span>Seva By</span>
+                    <span>Serviced By</span>
                     <h3>{{data.assignedAgent ? data.agentData.name : 'NA'}}</h3>
                   </ion-col>
                   <ion-col class="row-2-col-1">
@@ -235,6 +259,27 @@
     </div>
   </div>
 
+  <div
+    class="banner-container"
+    [hidden]="!desktopBannerObject.showBanner || !desktopBannerObject.showMiddle"
+  >
+    <swiper-container
+      *ngIf="middleBanner.length > 0"
+      pagination="true"
+      slides-per-view="1"
+      speed="800"
+      delay="1000"
+      autoplay="true"
+      loop="true"
+      css-mode="true"
+    >
+      <swiper-slide *ngFor="let items of middleBanner">
+        <a href="{{items?.redirectUrl}}">
+          <img src="{{items?.imageUrl}}" alt="" />
+        </a>
+      </swiper-slide>
+    </swiper-container>
+  </div>
   <div class="client-section">
     <ion-label class="label">Featured Members</ion-label>
     <ion-grid>

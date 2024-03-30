@@ -12,14 +12,10 @@ export class FooterWebComponent implements OnInit {
   ngOnInit() {}
 
   openPrivacy() {
-    this.router.navigate(['authorized/privacy-policy']);
+    this.router.navigate(['/privacy-policy']);
   }
 
   openTnC() {
-    this.router.navigate(['authorized/tnc']);
-  }
-
-  openRefund() {
-    this.router.navigate(['authorized/refund-policy']);
+    this.router.navigate(['/tnc']);
   }
 }

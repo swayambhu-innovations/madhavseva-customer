@@ -43,8 +43,10 @@ ion-content {
 
   .swiper-container {
     width: 100%;
+
     a {
       display: block;
+
       img {
         width: 100%;
       }
@@ -385,7 +387,7 @@ homepage.scss .serviceCategory {
   .label {
     color: var(--primary, #fb9f14);
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 500; 
     line-height: 150%; /* 27px */
   }
 

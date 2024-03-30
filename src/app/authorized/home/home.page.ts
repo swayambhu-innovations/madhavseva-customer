@@ -62,12 +62,17 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
     showMiddle: false,
     showTop: false,
   };
-  
+  desktopBannerObject = {
+    showBanner: false,
+    showMiddle: false,
+    showTop: false,
+  };
+  topBanner: any[] = [];
+  middleBanner: any[] = [];
+
   deviceInfo: any;
   isWebModalOpen: boolean = false;
   mobileView: boolean = true;
-  topBanner: any[] = [];
-  middleBanner: any[] = [];
   constructor(
     private addressService: AddressService,
     private router: Router,
@@ -91,75 +96,157 @@ export class HomePage implements OnInit, AfterViewInit, OnDestroy {
             return { ...notification.data(), id: notification.id };
           }
         );
-        this.homeService.showMobileBanner().then((show) => {
-          this.bannerObject.showBanner = show.data()?.['show'];
-          if (this.bannerObject.showBanner) {
-            this.homeService.showMobileTop().then((top) => {
-              this.bannerObject.showTop = top.data()?.['show'];
-              if (this.bannerObject.showTop) {
-                this.homeService.getTopBanner().then((topBan) => {
-                  this.topBanner = topBan.docs
-                    .map((item) => {
-                      return { ...item.data(), id: item.id };
-                    })
-                    .filter((item) => item?.['show']);
-                  if (this.topBanner.length > 0) {
-                    if (this.swiper2) {
-                      this.swiper2.destroy();
-                    }
-                    this.swiper2 = new Swiper(
-                      this.swiperContainer2.nativeElement,
-                      {
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                        pagination: {
-                          el: '.swiper-pagination2',
-                          clickable: true,
-                        },
-                        centeredSlides: true,
-                        autoplay: {
-                          delay: 2000,
-                        },
+
+        if (this.mobileView) {
+          //fetching mobile banners
+          this.homeService.showMobileBanner().then((show) => {
+            this.bannerObject.showBanner = show.data()?.['show'];
+            if (this.bannerObject.showBanner) {
+              this.homeService.showMobileTop().then((top) => {
+                this.bannerObject.showTop = top.data()?.['show'];
+                if (this.bannerObject.showTop) {
+                  this.homeService.getTopBanner().then((topBan) => {
+                    this.topBanner = topBan.docs
+                      .map((item) => {
+                        return { ...item.data(), id: item.id };
+                      })
+                      .filter((item) => item?.['show']);
+                    if (this.topBanner.length > 0) {
+                      if (this.swiper2) {
+                        this.swiper2.destroy();
                       }
-                    );
-                  }
-                });
-              }
-            });
-            this.homeService.showMobileMiddle().then((middle) => {
-              this.bannerObject.showMiddle = middle.data()?.['show'];
-              if (this.bannerObject.showMiddle) {
-                this.homeService.getMiddleBanner().then((middleBan) => {
-                  this.middleBanner = middleBan.docs
-                    .map((item) => {
-                      return { ...item.data(), id: item.id };
-                    })
-                    .filter((item) => item?.['show']);
-                  if (this.middleBanner.length > 0) {
-                    if (this.swiper) {
-                      this.swiper.destroy();
+                      this.swiper2 = new Swiper(
+                        this.swiperContainer2.nativeElement,
+                        {
+                          slidesPerView: 1,
+                          spaceBetween: 20,
+                          pagination: {
+                            el: '.swiper-pagination2',
+                            clickable: true,
+                          },
+                          centeredSlides: true,
+                          autoplay: {
+                            delay: 2000,
+                          },
+                        }
+                      );
                     }
-                    this.swiper = new Swiper(
-                      this.swiperContainer.nativeElement,
-                      {
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                        pagination: {
-                          el: '.swiper-pagination',
-                          clickable: true,
-                        },
-                        centeredSlides: true,
-                        autoplay: {
-                          delay: 2000,
-                        },
+                  });
+                }
+              });
+              this.homeService.showMobileMiddle().then((middle) => {
+                this.bannerObject.showMiddle = middle.data()?.['show'];
+                if (this.bannerObject.showMiddle) {
+                  this.homeService.getMiddleBanner().then((middleBan) => {
+                    this.middleBanner = middleBan.docs
+                      .map((item) => {
+                        return { ...item.data(), id: item.id };
+                      })
+                      .filter((item) => item?.['show']);
+                    if (this.middleBanner.length > 0) {
+                      if (this.swiper) {
+                        this.swiper.destroy();
                       }
-                    );
-                  }
-                });
-              }
-            });
-          }
-        });
+                      this.swiper = new Swiper(
+                        this.swiperContainer.nativeElement,
+                        {
+                          slidesPerView: 1,
+                          spaceBetween: 20,
+                          pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                          },
+                          centeredSlides: true,
+                          autoplay: {
+                            delay: 2000,
+                          },
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+            }
+          });
+        } else {
+          //fetching desktop banners
+          this.homeService.showDesktopBanner().then((show) => {
+            this.desktopBannerObject.showBanner = show.data()?.['show'];
+            if (this.desktopBannerObject.showBanner) {
+              this.homeService.showDesktopTop().then((top) => {
+                this.desktopBannerObject.showTop = top.data()?.['show'];
+                if (this.desktopBannerObject.showTop) {
+                  this.homeService.getDesktopTopBanner().then((topBan) => {
+                    this.topBanner = topBan.docs
+                      .map((item) => {
+                        return { ...item.data(), id: item.id };
+                      })
+                      .filter((item) => item?.['show']);
+                    if (this.topBanner.length > 0) {
+                      if (this.swiper2) {
+                        this.swiper2.destroy();
+                      }
+                      this.swiper2 = new Swiper(
+                        this.swiperContainer2.nativeElement,
+                        {
+                          slidesPerView: 1,
+                          spaceBetween: 20,
+                          pagination: {
+                            el: '.swiper-pagination2',
+                            clickable: true,
+                          },
+                          observer: true,
+                          observeParents: true,
+                          centeredSlides: true,
+                          autoplay: {
+                            delay: 2000,
+                          },
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+              this.homeService.showDesktopMiddle().then((middle) => {
+                this.desktopBannerObject.showMiddle = middle.data()?.['show'];
+                if (this.desktopBannerObject.showMiddle) {
+                  this.homeService
+                    .getDesktopMiddleBanner()
+                    .then((middleBan) => {
+                      this.middleBanner = middleBan.docs
+                        .map((item) => {
+                          return { ...item.data(), id: item.id };
+                        })
+                        .filter((item) => item?.['show']);
+                      if (this.middleBanner.length > 0) {
+                        if (this.swiper) {
+                          this.swiper.destroy();
+                        }
+                        this.swiper = new Swiper(
+                          this.swiperContainer.nativeElement,
+                          {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                            pagination: {
+                              el: '.swiper-pagination',
+                              clickable: true,
+                            },
+                            observer: true,
+                            observeParents: true,
+                            centeredSlides: true,
+                            autoplay: {
+                              delay: 2000,
+                            },
+                          }
+                        );
+                      }
+                    });
+                }
+              });
+            }
+          });
+        }
+
         this.unreadNotifications = this.notifications.filter(
           (notification: any) => {
             return !notification.read;

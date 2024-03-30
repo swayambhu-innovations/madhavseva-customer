@@ -77,7 +77,6 @@ export class PaymentService {
       return resData;
     } catch (err) {
       console.log(err);
-      return err;
     }
   }
 
@@ -87,13 +86,6 @@ export class PaymentService {
       'x-app-access-token': authdata.session.accessToken.tokenValue,
       'x-appid-token': authdata.session.appIdentifierToken,
     };
-
-    // let orderDetails: CreateOrder = {
-    //   amount: Math.round(booking.grandTotal! * 100),
-    //   receipt: this.generateRecipetNumber(),
-    //   currency: 'INR',
-    //   notes: {},
-    // };
 
     booking.user.phone = booking.user.phone?.replace(/\D/g, '').slice(-10);
     const date = new Date();
@@ -142,13 +134,33 @@ export class PaymentService {
           },
         },
       });
-      console.log(data);
       const retData: any = {
-        MID: '100001000233342',
-        intentID: data.transaction.intentId,
-        authdata: authdata,
+        mid: '100001000233342',
+        appidtoken: authdata.session.appIdentifierToken,
+        appaccesstoken: authdata.session.accessToken.tokenValue,
+        intentid: data?.transaction?.intentId,
+        brandColor: '#FB9F14',
+        bodyBgColor: '#FFEBCB',
+        bodyTextColor: '#FB9F14',
+        headingText: '#FB9F14',
       };
-      this.payJm('100001000233342', data.transaction.intentId, authdata);
+      // this.payJm(retData)
+      //   .then((order) => console.log(order))
+      //   .catch((err) => console.log(err));
+      (await this.payJm(retData)).subscribe(
+        (order: any) => {
+          console.log(order);
+        },
+        (error) => {
+          console.log(JSON.stringify(error), 'error');
+          // result.next({ ...orderDetails, stage: 'paymentGatewayError' });
+        },
+        () => {
+          // completed
+          console.log('error............... paymentGatewayClosed');
+          // result.next({ ...orderDetails, stage: 'paymentGatewayClosed' });
+        }
+      );
       return retData;
     } catch (err) {
       console.log(err);
@@ -156,30 +168,40 @@ export class PaymentService {
     }
   }
 
-  async payJm(MID: string, intentID: string, authdata: any) {
-    let _headers = {
-      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
-      'x-app-access-token': authdata.session.accessToken.tokenValue,
-      'x-appid-token': authdata.session.appIdentifierToken,
+  async payJm(resData: any) {
+    let orderDetails = {
+      mid: resData.mid,
+      appidtoken: resData.appidtoken,
+      appaccesstoken: resData.appaccesstoken,
+      intentid: resData.intentID,
+      brandColor: resData.brandColor,
+      bodyBgColor: resData.bodyBgColor,
+      bodyTextColor: resData.bodyTextColor,
+      headingText: resData.headingText,
     };
-    try {
-      const { data } = await axios({
-        method: 'post',
-        url: 'https://pp-checkout.jiopay.com:8443',
-        headers: _headers,
-        data: {
-          merchantID: MID,
-          appidtoken: authdata.session.appIdentifierToken,
-          appaccesstoken: authdata.session.accessToken.tokenValue,
-          intentid: intentID,
-          brandColor: '#ffc670',
-          bodyBgColor: '#ffc670',
-        },
-      });
-      console.log(data)
-    } catch (err) {
-      console.log(err);
-    }
+    let _headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Access-Control-Allow-Origin': '*',
+    };
+    return this.https.post(
+      'https://pp-checkout.jiopay.com:8443',
+      orderDetails,
+      this.httpOptions
+    );
+    // try {
+    //   const { data } = await axios({
+    //     method: 'post',
+    //     withCredentials: false,
+    //     url: 'https://pp-checkout.jiopay.com:8443',
+    //     headers: _headers,
+    //     data: orderDetails,
+    //   });
+    //   console.log(data);
+    //   return data;
+    // } catch (err) {
+    //   console.log(err);
+    //   return err;
+    // }
   }
 
   // Step 1 of Payment Flow

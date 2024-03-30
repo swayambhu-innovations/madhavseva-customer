@@ -38,6 +38,8 @@ export class SelectSlotPage implements OnInit {
     currenttime: 0,
   };
 
+  resData: any;
+
   slotsIcons = [
     {
       light: '../../../assets/icon/slots/morning1.svg',
@@ -278,7 +280,7 @@ export class SelectSlotPage implements OnInit {
     }
   }
 
-  setTimeSlot() {
+  async setTimeSlot() {
     const selectedSlotDate = new Date(this.selectedDate || '');
     this.selectedStartTime = new Date(
       selectedSlotDate.getFullYear(),
@@ -303,6 +305,16 @@ export class SelectSlotPage implements OnInit {
       id: this.selectedSlot.id,
     };
     this.selectedTimeState = true;
+    // let booking = this.dataProvider.currentBooking;
+    // if (!booking?.isUpdateSlot) {
+    // this.resData = await this.paymentService.authJM({
+    //   grandTotal: this.dataProvider.currentBooking!.billing.grandTotal,
+    //   user: {
+    //     phone: this.dataProvider.currentUser?.user.phoneNumber || '',
+    //   },
+    // });
+    // console.log(this.resData);
+    // }
   }
   async createBookingWithoutPay() {
     let loader = await this.loadingController.create({
@@ -369,12 +381,13 @@ export class SelectSlotPage implements OnInit {
     loader.present();
     let booking = this.dataProvider.currentBooking;
     if (!booking?.isUpdateSlot) {
-      this.paymentService.authJM({
+      this.resData = await this.paymentService.authJM({
         grandTotal: this.dataProvider.currentBooking!.billing.grandTotal,
         user: {
           phone: this.dataProvider.currentUser?.user.phoneNumber || '',
         },
       });
+      console.log(this.resData);
     }
     // if (!booking?.isUpdateSlot) {
     //   this.paymentService
@@ -461,7 +474,7 @@ export class SelectSlotPage implements OnInit {
     //   }else{
     //     this.bookingService.updateBookingSlot(this.dataProvider.currentUser!.user.uid, this.dataProvider.currentBooking!.id!, this.dataProvider.currentBooking).then(resp=>{
     //       this.router.navigate(['/authorized/order-placed']);
-    //       loader.dismiss();
+    loader.dismiss();
     //     });
     //   }
   }

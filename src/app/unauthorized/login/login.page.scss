@@ -4,6 +4,7 @@
 
 .login-container {
   height: 100vh;
+  overflow-y: auto;
   background: linear-gradient(163deg, #fff2ec 0.69%, #ffe5b9 95.79%);
 }
 
@@ -80,7 +81,7 @@
     width: 90%;
     text-transform: capitalize;
     margin: 0 auto;
-    margin-top: 12px;
+    margin: 12px 0;
     height: 45px;
   }
 }
@@ -164,6 +165,7 @@ a {
   }
   .main {
     height: 100%;
+    overflow-y: auto;
     background-color: white;
     display: flex;
     width: 50%;

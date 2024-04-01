@@ -1,6 +1,6 @@
 {
-    "/api": {
-    "target": "https://firestore.googleapis.com",
+  "/api/*": {
+    "target": "https://pp-checkout.jiopay.com:8100",
     "secure": false
-    }
+  }
 }

@@ -45,18 +45,22 @@
         <label class="input-label" for="terms-agree"></label>
         <p style="text-align: left; color: #666">
           I agree to the
-          <a
+          <!-- <a
             href="https://shreeva.com/terms-condition.html"
             target="_blank"
             rel="noopener noreferrer"
             >Terms & Conditions,</a
-          >&nbsp;&nbsp;
-          <a
+          > -->
+          <button (click)="openTnC()">Terms and Condition</button>
+          and
+          <button (click)="openPrivacy()">Privacy Policy</button>
+          <!-- &nbsp;&nbsp; -->
+          <!-- <a
             href="https://shreeva.com/privacyPolicy.html"
             target="_blank"
             rel="noopener noreferrer"
             >Privacy,</a
-          >&nbsp;&nbsp; Policy
+          >&nbsp;&nbsp; Policy -->
         </p>
       </div>
 

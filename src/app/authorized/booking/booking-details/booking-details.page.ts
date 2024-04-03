@@ -152,7 +152,7 @@ export class BookingDetailsPage implements OnInit {
   RADIO_LIST = [
     { name: 'Hired someone else.', value: '100CP', checked: false },
     { name: 'Service no longer required', value: '101TR', checked: false },
-    { name: 'Professional not assigned', value: '102MO', checked: false },
+    { name: 'Sevak not assigned', value: '102MO', checked: false },
     { name: 'Booking address is incorrect', value: '103BE', checked: false },
    
   ];
@@ -286,7 +286,7 @@ export class BookingDetailsPage implements OnInit {
               columns: [
                 
                 {
-                    text: 'Madhav Seva',
+                    text: 'MadhavSeva',
                     width: '50%',
                     fontSize: 18,
                     alignment: 'left',
@@ -314,7 +314,7 @@ export class BookingDetailsPage implements OnInit {
                                   text:'From:\n\n'
                               },
                               {
-                                  text:'Madhav Seva\n',
+                                  text:'MadhavSeva\n',
                                   fontSize: 9
                               },
                               {

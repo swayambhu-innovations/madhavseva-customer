@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AllCategoriesPageRoutingModule } from './all-categories-routing.module';
 
 import { AllCategoriesPage } from './all-categories.page';
+import { WidgetsModule } from 'src/app/widgets/widgets.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AllCategoriesPageRoutingModule
+    AllCategoriesPageRoutingModule,
+    WidgetsModule
   ],
   declarations: [AllCategoriesPage]
 })

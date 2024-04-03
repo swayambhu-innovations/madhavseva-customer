@@ -8,7 +8,13 @@ import {
   query,
 } from '@angular/fire/firestore';
 import { DataProviderService } from '../../core/data-provider.service';
-import { BehaviorSubject, ReplaySubject, Subject, async, debounceTime } from 'rxjs';
+import {
+  BehaviorSubject,
+  ReplaySubject,
+  Subject,
+  async,
+  debounceTime,
+} from 'rxjs';
 import { Category } from '../../core/types/category.structure';
 import { where } from 'firebase/firestore';
 import { Router } from '@angular/router';
@@ -20,8 +26,10 @@ import { CartService } from '../cart/cart.service';
   providedIn: 'root',
 })
 export class HomeService {
-  public showBanner : boolean = false;
-  mainCategories: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+  public showBanner: boolean = false;
+  mainCategories: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>(
+    []
+  );
   refetchCategories: Subject<void> = new Subject<void>();
   isCatalogueLoaded: boolean = false;
 
@@ -31,29 +39,39 @@ export class HomeService {
     private addressService: AddressService,
     private router: Router,
     private loadingController: LoadingController
-  ) {
-
-  }
+  ) {}
 
   async fetchData(serviceCatalogueId: string) {
-    let serverCatDb = doc(this.firestore, 'service-catalogue', serviceCatalogueId);
+    let serverCatDb = doc(
+      this.firestore,
+      'service-catalogue',
+      serviceCatalogueId
+    );
     this.dataProvider.selectedCatalog = serviceCatalogueId;
     const docSnap = await getDoc(serverCatDb);
     if (docSnap.exists()) {
       this.isCatalogueLoaded = true;
-      const mainCategoryArray = await this.getMainCategories(serviceCatalogueId);
-      const activeMainCategories = mainCategoryArray.filter(item => item.enabled);
-      const activeMainCategoriesSorted = activeMainCategories.map((category) => {
-        category.subCategories.map((subcategory) => {
-          subcategory.services.map((service) => {
-            const variantsMatching = service?.variants.sort((b, a) => b.price - a.price);
-            service.variants = variantsMatching;
-            return service;
+      const mainCategoryArray = await this.getMainCategories(
+        serviceCatalogueId
+      );
+      const activeMainCategories = mainCategoryArray.filter(
+        (item) => item.enabled
+      );
+      const activeMainCategoriesSorted = activeMainCategories.map(
+        (category) => {
+          category.subCategories.map((subcategory) => {
+            subcategory.services.map((service) => {
+              const variantsMatching = service?.variants.sort(
+                (b, a) => b.price - a.price
+              );
+              service.variants = variantsMatching;
+              return service;
+            });
+            return subcategory;
           });
-          return subcategory;
-        });
-        return category;
-      });
+          return category;
+        }
+      );
 
       this.dataProvider.mainCategoriesLoaded = true;
       await this.dataProvider.mainCategories.next(activeMainCategoriesSorted);
@@ -62,7 +80,14 @@ export class HomeService {
   async getMainCategories(serviceCatalogueId: string) {
     return await Promise.all(
       (
-        await getDocs(collection(this.firestore, 'service-catalogue', serviceCatalogueId, 'categories'))
+        await getDocs(
+          collection(
+            this.firestore,
+            'service-catalogue',
+            serviceCatalogueId,
+            'categories'
+          )
+        )
       ).docs.map(async (mainCategory) => {
         return {
           id: mainCategory.id,
@@ -70,14 +95,21 @@ export class HomeService {
           image: mainCategory.data()['image'],
           icon: mainCategory.data()['icon'],
           description: mainCategory.data()['description'],
-          subCategories: await this.getSubCategories(serviceCatalogueId, mainCategory.id),
-          enabled: mainCategory.data()['enabled']
+          subCategories: await this.getSubCategories(
+            serviceCatalogueId,
+            mainCategory.id
+          ),
+          enabled: mainCategory.data()['enabled'],
         };
       })
     );
   }
 
-  async getServices(serviceCatalogueId: string, mainCategoryId: string, subCategoryId: string) {
+  async getServices(
+    serviceCatalogueId: string,
+    mainCategoryId: string,
+    subCategoryId: string
+  ) {
     return await Promise.all(
       (
         await getDocs(
@@ -106,41 +138,49 @@ export class HomeService {
           allowReviews: service.data()['allowReviews'],
           taxes: service.data()['taxes'],
           tags: service.data()['tags'],
-          rating:service.data()['rating'],
+          rating: service.data()['rating'],
           taxType: service.data()['taxType'],
           discounts: service.data()['discounts'],
           variants: service.data()['variants'],
-          averageRating:service.data()['averageRating'],
+          averageRating: service.data()['averageRating'],
         };
       })
     );
   }
   async getTaxes(taxeIds: string) {
-    let citiesRef = collection(this.firestore, "taxes");
+    let citiesRef = collection(this.firestore, 'taxes');
     const q = query(citiesRef, where('id', 'in', taxeIds));
     if (taxeIds.length > 0) {
       return await Promise.all(
-        (await getDocs(q)).docs.map(async (taxes) => {
+        (
+          await getDocs(q)
+        ).docs.map(async (taxes) => {
           return {
             id: taxes.id,
             name: taxes.data()['name'],
             rate: taxes.data()['rate'],
             type: taxes.data()['type'],
             createdOn: taxes.data()['createdOn'],
-            lastUpdated: taxes.data()['lastUpdated']
+            lastUpdated: taxes.data()['lastUpdated'],
           };
         })
       );
     } else {
       return [];
     }
-
   }
   async getSubCategories(serviceCatalogueId: string, mainCategoryId: string) {
     return await Promise.all(
       (
         await getDocs(
-          collection(this.firestore, 'service-catalogue', serviceCatalogueId, 'categories', mainCategoryId, 'categories')
+          collection(
+            this.firestore,
+            'service-catalogue',
+            serviceCatalogueId,
+            'categories',
+            mainCategoryId,
+            'categories'
+          )
         )
       ).docs.map(async (subCategory) => {
         return {
@@ -149,18 +189,28 @@ export class HomeService {
           image: subCategory.data()['image'],
           icon: subCategory.data()['icon'],
           description: subCategory.data()['description'],
-          services: await this.getServices(serviceCatalogueId, mainCategoryId, subCategory.id),
-          enabled: subCategory.data()['enabled']
+          services: await this.getServices(
+            serviceCatalogueId,
+            mainCategoryId,
+            subCategory.id
+          ),
+          enabled: subCategory.data()['enabled'],
         };
       })
     );
   }
-  getCategory() { // added by ronak
-    return getDocs(collection(doc(this.firestore, "service-catalogue", "1OtfZ7RzJOyRWSGpTR3t"), 'categories'));
+  getCategory() {
+    // added by ronak
+    return getDocs(
+      collection(
+        doc(this.firestore, 'service-catalogue', '1OtfZ7RzJOyRWSGpTR3t'),
+        'categories'
+      )
+    );
   }
   // till here
   getCurrentUser() {
-    return getDocs(collection(this.firestore, 'users/${userId}/'))
+    return getDocs(collection(this.firestore, 'users/${userId}/'));
   }
   getService(mainCategoryId: string, subCategoryId: string, serviceId: string) {
     return getDoc(
@@ -179,7 +229,12 @@ export class HomeService {
   }
 
   getRecentBookings() {
-    return getDocs(collection(doc(this.firestore, "users", this.dataProvider.currentUser!.user.uid), 'bookings'));
+    return getDocs(
+      collection(
+        doc(this.firestore, 'users', this.dataProvider.currentUser!.user.uid),
+        'bookings'
+      )
+    );
   }
 
   showMobileBanner() {
@@ -187,19 +242,106 @@ export class HomeService {
   }
 
   showMobileMiddle() {
-    return getDoc(doc(this.firestore, 'customer-settings', 'mobile-banners' , 'sections' , 'middle'));
+    return getDoc(
+      doc(
+        this.firestore,
+        'customer-settings',
+        'mobile-banners',
+        'sections',
+        'middle'
+      )
+    );
   }
 
   showMobileTop() {
-    return getDoc(doc(this.firestore, 'customer-settings', 'mobile-banners' , 'sections' , 'top'));
+    return getDoc(
+      doc(
+        this.firestore,
+        'customer-settings',
+        'mobile-banners',
+        'sections',
+        'top'
+      )
+    );
   }
 
   getTopBanner() {
-    return getDocs(collection(this.firestore , 'customer-settings', 'mobile-banners' , 'sections' , 'top','banners'))
+    return getDocs(
+      collection(
+        this.firestore,
+        'customer-settings',
+        'mobile-banners',
+        'sections',
+        'top',
+        'banners'
+      )
+    );
   }
 
   getMiddleBanner() {
-    return getDocs(collection(this.firestore , 'customer-settings', 'mobile-banners' , 'sections' , 'middle','banners'))
+    return getDocs(
+      collection(
+        this.firestore,
+        'customer-settings',
+        'mobile-banners',
+        'sections',
+        'middle',
+        'banners'
+      )
+    );
   }
 
+  showDesktopBanner() {
+    return getDoc(doc(this.firestore, 'customer-settings', 'desktop-banners'));
+  }
+
+  showDesktopMiddle() {
+    return getDoc(
+      doc(
+        this.firestore,
+        'customer-settings',
+        'desktop-banners',
+        'sections',
+        'middle'
+      )
+    );
+  }
+
+  showDesktopTop() {
+    return getDoc(
+      doc(
+        this.firestore,
+        'customer-settings',
+        'desktop-banners',
+        'sections',
+        'top'
+      )
+    );
+  }
+
+  getDesktopTopBanner() {
+    return getDocs(
+      collection(
+        this.firestore,
+        'customer-settings',
+        'desktop-banners',
+        'sections',
+        'top',
+        'banners'
+      )
+    );
+  }
+
+  getDesktopMiddleBanner() {
+    return getDocs(
+      collection(
+        this.firestore,
+        'customer-settings',
+        'desktop-banners',
+        'sections',
+        'middle',
+        'banners'
+      )
+    );
+  }
 }

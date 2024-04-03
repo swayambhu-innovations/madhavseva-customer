@@ -161,3 +161,67 @@ ion-content {
   }
 }
 
+@media only screen and (min-width: 1024px) {
+  .address-container {
+    --background: linear-gradient(117deg, #ffede5 0%, #fb9f14 100%);
+    --padding-top: 5%;
+    --padding-bottom: 5%;
+
+    .main-container {
+      width: 60%;
+      margin: 0 auto;
+      background: white;
+      height: 100%;
+
+      .data-container {
+        display: flex;
+        justify-content: space-evenly;
+
+        .left-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-left: 20px;
+          padding-right: 20px;
+          width: 50%;
+
+          .google-map-container {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+          }
+        }
+
+        .right-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-left: 20px;
+          padding-right: 20px;
+          width: 50%;
+
+          .google-map-container {
+            display: none;
+          }
+
+          form {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+          }
+
+          h1 {
+            margin-top: 0px;
+            font-size: 32px;
+            font-weight: 700;
+          }
+
+          .text {
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

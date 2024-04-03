@@ -60,7 +60,7 @@
   }
 
   .clicked {
-    background-color: #EDF2EB;
+    background-color: #ffebcb;
     color: var(--primary, #FB9F14);
   }
 }
@@ -401,7 +401,7 @@
 .noItems {
   .empty-cart-img {
     margin: 40px;
-    margin-top: 100px;
+    margin-top: 5vh;
   }
   .spacer {
     height: 50px;

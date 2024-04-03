@@ -1,104 +1,78 @@
-login css
-
-// *{
-//     font-family: 'Roboto', sans-serif;
-// }
-
 * {
   font-family: "Lato";
-  
 }
-.main{
+
+.login-container {
   height: 100vh;
+  overflow-y: auto;
+  background: linear-gradient(163deg, #fff2ec 0.69%, #ffe5b9 95.79%);
 }
 
 .header {
   width: 100%;
   text-align: center;
-  margin-top: 20px;
-
-  span{
-    color:#FB9F14;
-    font-weight: 500;
-  }
 
   img {
-    width:70px;
+    height: 10vh;
     border-radius: 10px;
-    margin-bottom: 10px;
   }
 
   p {
     margin: 0;
-    font-family: "Josefin Sans", sans-serif;
-    font-size: x-large;
-    font-weight: 600;
-    line-height: 20px;
   }
 }
 
 .body {
-  margin-top: 15%;
+  margin-top: 30px;
+  width: 80%;
+  margin: 0 auto;
   img {
-    width:50%;
-    margin:0px 25%;
-    margin-bottom: 15%;
+    width: 100%;
+    height: 50vh;
   }
 }
 
 .login {
   text-align: center;
-  margin-top: 5px;
+  margin-top: 15px;
+  background-color: transparent;
 
   h3 {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
-    color: #FB9F14;
   }
 
   h6 {
     margin: 0;
     font-size: 12px;
-    color: #666666;
+    color: grey;
     margin-top: 5px;
   }
 
   .image {
     width: 90%;
-    border: 1px solid #666666;
+    border: 1px solid grey;
     border-radius: 5px;
     padding: 5px;
     margin: 0 auto;
     margin-top: 12px;
     height: 50px;
     display: flex;
-    input{
-      background:transparent;
-    }
-    .styled-input::placeholder {
-      color:#666666
- ; /* Change the color to your preferred color */
-    }
 
     ion-icon {
       margin-left: 10px;
       font-size: 20px;
       margin-top: 8px;
     }
-    ion-icon[name="call"] {
-      color: #666666
-;
-    }
 
     input {
       outline: none;
       border: none;
       font-size: 12px;
+      background-color: transparent;
       width: 80%;
       margin-left: 5px;
-      color: #666666;
-
     }
   }
 
@@ -107,10 +81,8 @@ login css
     width: 90%;
     text-transform: capitalize;
     margin: 0 auto;
-    margin-top: 5px;
+    margin: 12px 0;
     height: 45px;
-    --color:white;
-    
   }
 }
 
@@ -119,17 +91,14 @@ footer {
   justify-content: space-between;
   height: 100px;
 }
-a{
-  color: #FB9F14;
+a {
+  color: #fb9f14;
 }
-.agree-container{
+.agree-container {
   display: flex;
   padding: 18px;
   align-items: center;
-
-  
-
-  input{
+  input {
     padding: 0;
     height: initial;
     width: initial;
@@ -137,20 +106,20 @@ a{
     display: none;
     cursor: pointer;
   }
-  .input-label{
+  .input-label {
     width: 28px;
     height: 26px;
     margin-right: 10px;
     position: relative;
-
   }
-  
+
   .input-label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
-    border: 2px solid #FB9F14;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    border: 2px solid #fb9f14;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+      inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
     padding: 11px;
     display: inline-block;
     position: relative;
@@ -158,9 +127,8 @@ a{
     cursor: pointer;
     margin-right: 5px;
     border-radius: 2px;
-
   }
-  
+
   input:checked + .input-label:after {
     content: "";
     display: block;
@@ -169,12 +137,94 @@ a{
     left: 11px;
     width: 6px;
     height: 13px;
-    border: solid #FB9F14;
+    border: solid #fb9f14;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
-  p{
+  p {
     margin-bottom: 0px;
     font-size: 13px;
+
+    button,
+    button:focus {
+      color: #fb9f14;
+      background-color: transparent;
+      border: none;
+      font-size: 13px;
+      outline: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .login-container {
+    background: linear-gradient(117deg, #ffede5 0%, #fb9f14 100%);
+    height: 100%;
+    padding-top: 8%;
+    padding-bottom: 8%;
+  }
+  .main {
+    height: 100%;
+    overflow-y: auto;
+    background-color: white;
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    align-items: center;
+
+    .img-div {
+      width: 50%;
+      padding: 66px 0 0 0px;
+    }
+
+    .input-number {
+      color: #fb9f14;
+      background-color: transparent;
+      font-weight: 600;
+      font-size: 16px !important;
+    }
+
+    .body {
+      width: 55%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+
+    .header {
+      p {
+        font-size: 32px;
+        font-weight: 600;
+      }
+    }
+
+    .login {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-heading {
+      h3 {
+        font-size: 36px;
+      }
+
+      h6 {
+        font-size: 16px;
+      }
+    }
+
+    .footer-container {
+      bottom: 16% !important;
+      width: 75% !important;
+
+      .toolbox {
+        height: 105px !important;
+        width: 105px !important;
+      }
+    }
   }
 }

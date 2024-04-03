@@ -39,4 +39,12 @@ export class LoginPage implements OnInit {
       loader.dismiss();
     });
   } 
+
+  openPrivacy() {
+    this.router.navigate(['/privacy-policy']);
+  }
+
+  openTnC() {
+    this.router.navigate(['/tnc']);
+  }
 }

@@ -42,3 +42,67 @@ ion-title {
     }
   }
 }
+
+
+ion-modal {
+  --width: 76%;
+  --border-radius: 12px;
+  --height: 76%;
+
+  .subcategory-container {
+    grid-template-columns: 30% 30% 30%;
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .leftArrow {
+    cursor: pointer;
+  }
+
+  .cross-div {
+    margin-right: 29px;
+    cursor: pointer;
+
+    img {
+      width: 22px;
+      object-fit: cover;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .subcategory-container {
+    grid-template-columns: 30% 30% 30%;
+    margin-top: 5px;
+  }
+}
+
+.cross-div {
+  margin-right: 15px;
+  cursor: pointer;
+
+  img {
+    width: 22px;
+    object-fit: cover;
+  }
+}
+
+.leftArrow {
+  width: 45.086px;
+  height: 31px;
+  cursor: pointer;
+}
+
+.desktop-view-tab {
+  position: relative !important;
+  padding: 0px !important;
+  width: auto !important;
+}
+
+.desktop-header {
+  box-shadow: none;
+
+  ion-title {
+    font-weight: 700;
+  }
+}

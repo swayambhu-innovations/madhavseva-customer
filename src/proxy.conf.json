@@ -1,6 +1,8 @@
 {
-  "/api/*": {
+  "/echo": {
     "target": "https://pp-checkout.jiopay.com:8100",
-    "secure": false
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

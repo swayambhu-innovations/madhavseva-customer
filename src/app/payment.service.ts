@@ -134,10 +134,11 @@ export class PaymentService {
           },
         },
       });
+      console.log(data);
       const retData: any = {
         mid: '100001000233342',
-        appidtoken: authdata.session.appIdentifierToken,
-        appaccesstoken: authdata.session.accessToken.tokenValue,
+        appidtoken: data?.transaction?.metadata?.['x-appid-token'],
+        appaccesstoken: data?.transaction?.metadata?.['x-app-access-token'],
         intentid: data?.transaction?.intentId,
         brandColor: '#FB9F14',
         bodyBgColor: '#FFEBCB',
@@ -179,15 +180,14 @@ export class PaymentService {
       bodyTextColor: resData.bodyTextColor,
       headingText: resData.headingText,
     };
+
     let _headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
       'Access-Control-Allow-Origin': '*',
+      Accept: '*/*',
+      'Content-Type': 'application/json',
     };
-    return this.https.post(
-      'https://pp-checkout.jiopay.com:8443',
-      orderDetails,
-      this.httpOptions
-    );
+
+    return this.https.post<any[]>('/echo/post/JM', this.orderDetails);
     // try {
     //   const { data } = await axios({
     //     method: 'post',

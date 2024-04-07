@@ -196,7 +196,7 @@
       <div class="container px-0">
         <div
           class="first-section"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'faild'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'failed'"
         >
           <section>
             <img [src]="successLogo" alt="" />
@@ -209,7 +209,7 @@
         </div>
         <div
           class="payment-faild"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment.status === 'faild'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment.status === 'failed'"
         >
           <section>
             <img [src]="failiarLogo" alt="" />
@@ -365,7 +365,7 @@
         </div>
         <div
           class="temp"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment?.status === 'faild'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment?.status === 'failed'"
         >
           <div
             class="bottom1"

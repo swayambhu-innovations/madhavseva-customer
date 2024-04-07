@@ -30,6 +30,7 @@ export class SelectSlotPage implements OnInit {
   selectedSlot: any;
   startTime: any;
   endTime: any;
+  url = 'https://pp-checkout.jiopay.com:8443';
 
   agentArrivalArray: Date[] = [];
 
@@ -87,6 +88,7 @@ export class SelectSlotPage implements OnInit {
     'Night',
   ];
   activeSlotCount: number = 0;
+  orderDetails: any;
 
   constructor(
     private firestore: Firestore,
@@ -304,6 +306,13 @@ export class SelectSlotPage implements OnInit {
       id: this.selectedSlot.id,
     };
     this.selectedTimeState = true;
+
+    this.orderDetails = this.paymentService.generateOrderDetails({
+      grandTotal: this.dataProvider.currentBooking!.billing.grandTotal,
+      user: {
+        phone: this.dataProvider.currentUser?.user.phoneNumber || '',
+      },
+    });
   }
   async createBookingWithoutPay() {
     let loader = await this.loadingController.create({
@@ -355,7 +364,37 @@ export class SelectSlotPage implements OnInit {
         });
     }
   }
+
+  // async sendData() {
+  //   // Construct a FormData instance
+  //   const formData = new FormData();
+
+  //   // Add a text field
+  //   formData.append('mid', this.orderDetails?.mid);
+  //   formData.append('appidtoken', this.orderDetails?.appidtoken);
+  //   formData.append('appaccesstoken', this.orderDetails?.appaccesstoken);
+  //   formData.append('intentid', this.orderDetails?.intentid);
+  //   formData.append('brandColor', this.orderDetails?.brandColor);
+  //   formData.append('bodyBgColor', this.orderDetails?.bodyBgColor);
+  //   formData.append('bodyTextColor', this.orderDetails?.bodyTextColor);
+  //   formData.append('headingText', this.orderDetails?.headingText);
+
+  //   try {
+  //     const response = await fetch(this.url, {
+  //       method: 'POST',
+  //       // Set the FormData instance as the request body
+  //       body: formData,
+  //     });
+  //     console.log(await response.json());
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
+
   async createBooking() {
+    let loader = await this.loadingController.create({
+      message: 'Please wait...',
+    });
     if (
       this.dataProvider.currentBooking &&
       this.dataProvider.currentBooking.timeSlot
@@ -363,111 +402,101 @@ export class SelectSlotPage implements OnInit {
       this.dataProvider.currentBooking.timeSlot.agentArrivalTime =
         Timestamp.fromDate(this.selectAgentArrivalTime!);
     }
-
-    let loader = await this.loadingController.create({
-      message: 'Please wait...',
-    });
-    loader.present();
     let booking = this.dataProvider.currentBooking;
-    // if (!booking?.isUpdateSlot) {
-    //   this.resData = await this.paymentService.authJM({
-    //     grandTotal: this.dataProvider.currentBooking!.billing.grandTotal,
-    //     user: {
-    //       phone: this.dataProvider.currentUser?.user.phoneNumber || '',
-    //     },
-    //   });
-    //   console.log(this.resData);
-    // }
+    loader.present();
     if (!booking?.isUpdateSlot) {
       this.paymentService
-        .handleJMPPayment({
-          grandTotal: this.dataProvider.currentBooking!.billing.grandTotal,
-          user: {
-            phone: this.dataProvider.currentUser?.user.phoneNumber || '',
-          },
-        })
+        .handleJMPPayment(loader)
         .subscribe(async (paymentResponse) => {
           console.log(paymentResponse);
-          // if (
-          //   paymentResponse.stage == 'paymentCaptureSuccess' ||
-          //   paymentResponse.stage == 'paymentCaptureSuccess'
-          // ) {
-          //   let loader2 = await this.loadingController.create({
-          //     message: 'Please wait...',
-          //   });
-          //   loader2.present();
-          //   this.dataProvider.currentBooking!.payment = paymentResponse;
-          //   this.dataProvider.currentBooking!.isPaid = true;
-          //   this.bookingService
-          //     .addBooking(
-          //       this.dataProvider.currentBooking!,
-          //       this.dataProvider.currentUser!.user!.uid
-          //     )
-          //     .then(async () => {
-          //       await this.cartService.deleteBooking(
-          //         this.dataProvider.currentUser!.user.uid,
-          //         this.dataProvider.currentBooking!.id!
-          //       );
-          //       await this.cartService.updateCart();
-          //       loader2.dismiss();
-          //       this.router.navigate(['/authorized/order-placed']);
-          //     })
-          //     .finally(() => {
-          //       loader.dismiss();
-          //     })
-          //     .catch((error: any) => {
-          //       loader.dismiss();
-          //       console.log('errror...........: ', error);
-          //     });
-          // } else {
-          //   console.info(
-          //     'payment Response faild........: ',
-          //     JSON.stringify(paymentResponse)
-          //   );
-          //   paymentResponse.status = 'faild';
-          //   if (booking) {
-          //     if (paymentResponse.stage == 'paymentCaptureFailed') {
-          //       loader.dismiss();
-          //       booking.payment = paymentResponse;
-          //       this.router.navigate(['/authorized/order-placed']);
-          //     } else if (
-          //       paymentResponse.stage == 'paymentGatewayClosed' ||
-          //       paymentResponse.stage == 'paymentGatewayOpened'
-          //     ) {
-          //       setTimeout(() => {
-          //         loader.dismiss();
-          //       }, 5000);
-          //     } else {
-          //       loader.dismiss();
-          //     }
-          //   }
-          // }
+          if (
+            paymentResponse.stage == 'paymentCaptureSuccess' ||
+            paymentResponse.stage == 'paymentCaptureSuccess'
+          ) {
+            let loader2 = await this.loadingController.create({
+              message: 'Please wait...',
+            });
+            loader2.present();
+            this.dataProvider.currentBooking!.payment = paymentResponse;
+            this.dataProvider.currentBooking!.isPaid = true;
+            this.bookingService
+              .addBooking(
+                this.dataProvider.currentBooking!,
+                this.dataProvider.currentUser!.user!.uid
+              )
+              .then(async () => {
+                await this.cartService.deleteBooking(
+                  this.dataProvider.currentUser!.user.uid,
+                  this.dataProvider.currentBooking!.id!
+                );
+                await this.cartService.updateCart();
+                loader2.dismiss();
+                this.router.navigate(['/authorized/order-placed']);
+              })
+              .finally(() => {
+                loader.dismiss();
+              })
+              .catch((error: any) => {
+                loader.dismiss();
+                console.log('errror...........: ', error);
+              });
+          } else {
+            console.info(
+              'payment Response failed........: ',
+              JSON.stringify(paymentResponse)
+            );
+            paymentResponse.status = 'failed';
+            if (booking) {
+              if (paymentResponse.stage == 'paymentCaptureFailed') {
+                loader.dismiss();
+                booking.payment = paymentResponse;
+                this.router.navigate(['/authorized/order-placed']);
+              } else if (
+                paymentResponse.stage == 'paymentGatewayClosed' ||
+                paymentResponse.stage == 'paymentGatewayOpened'
+              ) {
+                setTimeout(() => {
+                  loader.dismiss();
+                }, 5000);
+              } else {
+                loader.dismiss();
+              }
+            }
+          }
         });
     }
-    // if(booking && !booking?.isUpdateSlot){
-    //   booking.createdAt = Timestamp.fromDate(new Date());
-    //     this.bookingService.addBooking(
-    //       this.dataProvider.currentBooking!,
-    //       this.dataProvider.currentUser!.user!.uid
-    //     )
-    //     .then(async () => {
-    //       await this.cartService.deleteBooking(
-    //         this.dataProvider.currentUser!.user.uid,
-    //         this.dataProvider.currentBooking!.id!
-    //       )
-    //       await this.cartService.updateCart();
-    //       this.router.navigate(['/authorized/order-placed']);
-    //     })
-    //     .finally(() => {
-    //       loader.dismiss();
-    //     });
-    //   }else{
-    //     this.bookingService.updateBookingSlot(this.dataProvider.currentUser!.user.uid, this.dataProvider.currentBooking!.id!, this.dataProvider.currentBooking).then(resp=>{
-    //       this.router.navigate(['/authorized/order-placed']);
-    loader.dismiss();
-    //     });
-    //   }
+    if (booking && !booking?.isUpdateSlot) {
+      booking.createdAt = Timestamp.fromDate(new Date());
+      this.bookingService
+        .addBooking(
+          this.dataProvider.currentBooking!,
+          this.dataProvider.currentUser!.user!.uid
+        )
+        .then(async () => {
+          await this.cartService.deleteBooking(
+            this.dataProvider.currentUser!.user.uid,
+            this.dataProvider.currentBooking!.id!
+          );
+          await this.cartService.updateCart();
+          this.router.navigate(['/authorized/order-placed']);
+        })
+        .finally(() => {
+          loader.dismiss();
+        });
+    } else {
+      this.bookingService
+        .updateBookingSlot(
+          this.dataProvider.currentUser!.user.uid,
+          this.dataProvider.currentBooking!.id!,
+          this.dataProvider.currentBooking
+        )
+        .then((resp) => {
+          this.router.navigate(['/authorized/order-placed']);
+          loader.dismiss();
+        });
+    }
   }
+
   async rescheduleBooking() {
     let loader = await this.loadingController.create({
       message: 'Please wait...',

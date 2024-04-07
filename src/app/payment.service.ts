@@ -24,6 +24,7 @@ export class PaymentService {
     private dataProvider: DataProviderService
   ) {}
   WindowRef: any;
+  orderDetails: any;
   orders: any[] = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -52,25 +53,23 @@ export class PaymentService {
     return `Receipt#${Math.floor(Math.random() * 5123 * 43) + 10}`;
   }
 
-  handleJMPPayment(booking: booking) {
+  generateOrderDetails(booking: booking) {
     this.WindowRef = window;
-    var result: Subject<any> = new Subject();
     var ref = this;
-    var orderDetails: any;
 
     try {
       this.authJM().then((authData) =>
         this.intentJM(booking, authData).then((initiateData) => {
-          orderDetails = {
+          this.orderDetails = {
             mid: '100001000233342',
             appidtoken: initiateData?.transaction?.metadata?.['x-appid-token'],
             appaccesstoken:
               initiateData?.transaction?.metadata?.['x-app-access-token'],
             intentid: initiateData?.transaction?.intentId,
             brandColor: '#FB9F14',
-            bodyBgColor: '#FFEBCB',
-            bodyTextColor: '#FB9F14',
-            headingText: '#FB9F14',
+            bodyBgColor: '#fff',
+            bodyTextColor: '#000',
+            headingText: '#fff',
           };
         })
       );
@@ -78,20 +77,65 @@ export class PaymentService {
       console.log(err);
     }
 
-    this.payJM(orderDetails).subscribe(
+    function preparePaymentDetails(
+      order: any,
+      orderDetails: booking,
+      result: Subject<any>
+    ) {
+      return {
+        key: environment.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
+        name: 'Pay',
+        currency: order.currency,
+        // order_id: order.id, //This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
+        image: 'https://shreeva.com/images/logo.png',
+        handler: function (response: any) {
+          ref.finalizePayment(response, result);
+        },
+        modal: {
+          ondismiss: function () {
+            result.next({
+              ...orderDetails,
+              ...order,
+              stage: 'paymentGatewayClosed',
+            });
+          },
+        },
+        prefill: {
+          name: orderDetails.user.displayName,
+          contact: orderDetails.user.phone,
+        },
+        theme: {
+          color: '#2a1234',
+        },
+      };
+    }
+    return this.orderDetails;
+  }
+
+  handleJMPPayment(loader: any) {
+    this.WindowRef = window;
+    var result: Subject<any> = new Subject();
+
+    loader.present();
+
+    this.payJM(this.orderDetails).subscribe(
       (order: any) => {
-        console.log(order);
+        if (order.response)
+          result.next({ ...order.response, stage: 'paymentCaptureSuccess' });
+        else result.next({ ...order.response, stage: 'paymentCaptureFailed' });
       },
       (error) => {
         //console.log(JSON.stringify(error.message), "error");
-        result.next({ ...orderDetails, stage: 'paymentGatewayError' });
+        result.next({ ...this.orderDetails, stage: 'paymentGatewayError' });
       },
       () => {
         // completed
         // console.log("error............... paymentGatewayClosed");
-        result.next({ ...orderDetails, stage: 'paymentGatewayClosed' });
+        result.next({ ...this.orderDetails, stage: 'paymentGatewayClosed' });
       }
     );
+    loader.dismiss();
     return result;
   }
 
@@ -152,7 +196,7 @@ export class PaymentService {
             },
           },
           amount: {
-            netAmount: Math.round(booking.grandTotal! * 100),
+            netAmount: Math.round(booking.grandTotal!),
           },
           payer: {
             externalId: this.generateRecipetNumber(),
@@ -187,7 +231,7 @@ export class PaymentService {
     }
   }
 
-  payJM(orderDetails) {
+  payJM(orderDetails: any) {
     return this.https.post(
       environment.cloudFunctions.payJM,
       orderDetails,
@@ -283,7 +327,6 @@ export class PaymentService {
     return result;
   }
 
-  orderDetails: any;
   handlePayment(data: booking) {
     this.WindowRef = window;
     var result: Subject<any> = new Subject();

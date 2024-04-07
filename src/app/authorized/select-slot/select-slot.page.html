@@ -270,83 +270,85 @@
       </div> -->
 
       <form
-        name="payment"
+        ngNoForm
+        target="_blank"
+        [action]="url"
         method="POST"
-        action="https://pp-checkout.jiopay.com:8443"
+        name="payment"
         enctype="application/x-www-form-urlencoded"
       >
-        <input type="hidden" name="mid" value="100001000233342" />
+        <input type="hidden" name="mid" [value]="orderDetails?.mid" />
         <input
           type="hidden"
           name="appidtoken"
-          value="AW6nGuFcvr9bOsmUJcs4VEIUzL+nmjzIwel5S55MTxkonMckj1FPImL2pn8iUv9Mn7l8MzuJsaXW7q+2HrVqN7pAOrv38WxWzfD01A04o9NkgrVswbyx+bIybvQTkAbCYb4t9oZwT8wnODJXemxA0eFrjcnTyCpsFUL2m+1gZ6srA34WUNfp4LiFrBDJdzuo7L3Twm4KrwuZrtBZW7uPoKAZ2Yd+amzM3TKgWV32WwyTOCjpOl2I3Y0x14sqSG6BgGSVlUi4bIyCPpqagypXXUUNbl1080FApLBl+peEoCgHhBtTTVWL82pOI7KRfqSnBdK+w6H6xLn7OPAk8vSGlaCm2GxEBsNFF8OsY0DV0b9JjumtNEvD+YlVxJ0rViVFePLCGdEvp1ONyz3LPJRYRgOOAxw4JKN+7dNz2v2C2bCtSI0HUjHocwAhNNZW3dBTOCtkaM/kQOFJoln/66VcNJnDxbd7wS3QAfGkS/mAqxCo7LKMp0JrLSKfz5bQkpUmOLL407EermrXiyL5t0YkgmWwKaVBIAOws3dV6ZCg+Lyvimakc2gi+wp3/d3mbFmpSP6mJOPOwOnnVLrYsrnB05jqPWYu6ufv3L/bWdlsINdxXjSqz54ohTLN2VffuUbhaV24WawjxcV2LP/OJluF3rh29Vp+c87f/+PhtcfS0f4JIBCDEYmU9FPAYB8HqUuZBx5IUGsX4ZSs6D2CdAEqHC/O65r1YJPFNc4EW8ryrHf+cFA2e+zVBuyaf1XFy9w3lTR0qM/Cy3AR4Tpex6VAdAK/D5sYvsFISypwEC0g6VP/Xy0jEEKIJ3kscW32Jw68TtIFlViX+QAeaz5SwRPi8uWe8S1TPIkMaq54tszYjuDBFkiFXOzEryJ7GRwbLE7GqMvN+YK+/Rmc3Ql+H/KlRqAIAyJ9JTdBH+BVt6xY7EyFxSKhPDOmGtXzFYAh/nImclpYqzPFgICsxkKPj5BjZMzg1fGdjSEWVPMIDaux2EMnVbnMt3Ok7bPiLAHZr5fB75w7jzc6vG6tPJkG0t9MqvM+83Qm65MyJl2pjU9pkcELg0WjGV4x2Q0YYoLX7w96qJKMLer7KtBCOva2MpHsSVafV+/dDrco5dsi5trFgh7T3pCvWhA0iihRzJNkATuLn4A8PRDzbBInl4eKLmScOTMCOquL5MXICjrrtdFz2AOsNHhu3WJaWFsSf7MyHvagvf66jGcMAsTVIkOc7EV9ETQ4q2jnL2CUgie5w+LaDpe4tM5W6ngyfJ+bNHg4lz6t"
+          [value]="orderDetails?.appidtoken"
         />
         <input
           type="hidden"
           name="appaccesstoken"
-          value="6b89468c-f7d4-4b42-9896-00e33609cceaAPPACCESS"
+          [value]="orderDetails?.appaccesstoken"
         />
-        <input type="hidden" name="intentid" value="10522409458700833000" />
+        <input type="hidden" name="intentid" [value]="orderDetails?.intentid" />
         <input
           type="hidden"
           id="brandColor"
           name="brandColor"
-          value="#bcbcbc"
+          [value]="orderDetails?.brandColor"
         />
         <input
           type="hidden"
           id="bodyBgColor"
           name="bodyBgColor"
-          value="#ffeede"
+          [value]="orderDetails?.bodyBgColor"
         />
         <input
           type="hidden"
           id="bodyTextColor"
           name="bodyTextColor"
-          value="#a15814"
+          [value]="orderDetails?.bodyTextColor"
         />
         <input
           type="hidden"
           id="headingText"
           name="headingText"
-          value="#a15814"
+          [value]="orderDetails?.headingText"
         />
-        <input type="submit" value="Jio Pay" />
-      </form>
 
-      <div class="temp">
-        <div
-          class="bottom1"
-          *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule === false"
-        >
-          <button
-            class="paynow"
-            [ngClass]="{active: (selectedDate && selectedTimeState)}"
-            [disabled]="!(selectedDate && selectedTimeState)"
-            (click)="createBooking()"
+        <div class="temp">
+          <div
+            class="bottom1"
+            *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule === false"
           >
-            Pay Now
-          </button>
-          <button
-            class="payafter"
-            [ngClass]="{active: (selectedDate && selectedTimeState)}"
-            [disabled]="!(selectedDate && selectedTimeState)"
-            (click)="createBookingWithoutPay()"
-          >
-            Pay After Seva
-          </button>
+            <button
+              type="submit"
+              class="paynow"
+              [ngClass]="{active: (selectedDate && selectedTimeState)}"
+              [disabled]="!(selectedDate && selectedTimeState)"
+              (click)="createBooking()"
+            >
+              Pay Now
+            </button>
+            <button
+              class="payafter"
+              [ngClass]="{active: (selectedDate && selectedTimeState)}"
+              [disabled]="!(selectedDate && selectedTimeState)"
+              (click)="createBookingWithoutPay()"
+            >
+              Pay After Seva
+            </button>
+          </div>
+          <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">
+            <button
+              class="reschedule"
+              [ngClass]="{active: (selectedDate && selectedTimeState)}"
+              [disabled]="!(selectedDate && selectedTimeState)"
+              (click)="rescheduleBooking()"
+            >
+              Reschedule
+            </button>
+          </div>
         </div>
-        <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">
-          <button
-            class="reschedule"
-            [ngClass]="{active: (selectedDate && selectedTimeState)}"
-            [disabled]="!(selectedDate && selectedTimeState)"
-            (click)="rescheduleBooking()"
-          >
-            Reschedule
-          </button>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

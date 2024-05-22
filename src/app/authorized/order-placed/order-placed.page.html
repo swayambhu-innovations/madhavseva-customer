@@ -4,7 +4,7 @@
   <div id="mobile-view" class="container px-0">
     <div
       class="first-section"
-      *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'faild'"
+      *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment !== 'failed'"
     >
       <section>
         <img [src]="successLogo" alt="" />
@@ -16,8 +16,8 @@
       </section>
     </div>
     <div
-      class="payment-faild"
-      *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment.status === 'faild'"
+      class="payment-failed"
+      *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment === 'failed'"
     >
       <section>
         <img [src]="failiarLogo" alt="" />
@@ -151,7 +151,7 @@
     </div>
     <div
       class=""
-      *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'faild'"
+      *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment !== 'failed'"
     >
       <ion-button
         routerLink="../rating"
@@ -167,7 +167,7 @@
     </div>
     <div
       class="temp"
-      *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment?.status === 'faild'"
+      *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment === 'failed'"
     >
       <div
         class="bottom1"
@@ -196,7 +196,7 @@
       <div class="container px-0">
         <div
           class="first-section"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'failed'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment !== 'failed'"
         >
           <section>
             <img [src]="successLogo" alt="" />
@@ -208,8 +208,8 @@
           </section>
         </div>
         <div
-          class="payment-faild"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment.status === 'failed'"
+          class="payment-failed"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater === false && this.dataProvider.currentBooking?.payment === 'failed'"
         >
           <section>
             <img [src]="failiarLogo" alt="" />
@@ -349,7 +349,7 @@
         </div>
         <div
           class=""
-          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment?.status !== 'faild'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater || this.dataProvider.currentBooking?.payment !== 'failed'"
         >
           <ion-button
             routerLink="../rating"
@@ -365,7 +365,7 @@
         </div>
         <div
           class="temp"
-          *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment?.status === 'failed'"
+          *ngIf="this.dataProvider.currentBooking?.isPaylater === false || this.dataProvider.currentBooking?.payment === 'failed'"
         >
           <div
             class="bottom1"

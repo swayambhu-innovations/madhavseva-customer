@@ -25,6 +25,12 @@ export const environment = {
 
     payJM: 'https://us-central1-madhavseva-67565.cloudfunctions.net/payJM',
 
+    authIntentJm:
+      'https://us-central1-madhavseva-67565.cloudfunctions.net/authIntentJm',
+
+      authJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/authJMP',
+    intentJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/intentJMP',
+
     // createSubscription: 'https://us-central1-jaipurservicecompany.cloudfunctions.net/createSubscription',
     // verifySubscription:'https://us-central1-jaipurservicecompany.cloudfunctions.net/verifySubscription',
     // checkSubscriptionStatus:'https://us-central1-jaipurservicecompany.cloudfunctions.net/checkSubscriptionStatus',

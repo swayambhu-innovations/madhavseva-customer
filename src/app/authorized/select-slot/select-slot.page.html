@@ -109,29 +109,43 @@
         </p>
       </div>
     </div>
-    <!-- <div class="bottom" (click)="createBooking()">
-      <ion-button [disabled]="!(selectedDate && selectedTimeState)" expand="block">
-        Book
-      </ion-button>
-    </div> -->
 
     <div class="temp">
       <div
         class="bottom1"
         *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule === false"
       >
+        <input
+          type="hidden"
+          id="appidtoken"
+          name="appidtoken"
+          value="b71wYilO="
+        />
+        <input
+          type="hidden"
+          id="appaccesstoken"
+          name="appaccesstoken"
+          value="SS"
+        />
+        <input
+          type="hidden"
+          id="intentid"
+          name="intentid"
+          value="10562107158140880000"
+        />
         <button
           class="paynow"
-          [ngClass]="{active: (selectedDate && selectedTimeState)}"
-          [disabled]="!(selectedDate && selectedTimeState)"
+          [ngClass]="{active: (selectedDate && selectedTimeState && orderDetails && orderDetails.transaction.intentId)}"
+          [disabled]="!(selectedDate && selectedTimeState && orderDetails && orderDetails.transaction.intentId)"
           (click)="createBooking()"
         >
-          Pay Now
+          {{orderDetails && orderDetails.transaction.status === "INITIATED" ?
+          'Pay Now': 'Processing'}}
         </button>
         <button
           class="payafter"
           [ngClass]="{active: (selectedDate && selectedTimeState)}"
-          [disabled]="!(selectedDate && selectedTimeState)"
+          [disabled]="!(selectedDate && selectedTimeState && orderDetails && orderDetails.transaction.intentId)"
           (click)="createBookingWithoutPay()"
         >
           Pay After Seva
@@ -140,7 +154,7 @@
       <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">
         <button
           class="reschedule"
-          [ngClass]="{active: (selectedDate && selectedTimeState)}"
+          [ngClass]="{active: (selectedDate && selectedTimeState && orderDetails && orderDetails.transaction.intentId)}"
           [disabled]="!(selectedDate && selectedTimeState)"
           (click)="rescheduleBooking()"
         >
@@ -269,7 +283,7 @@
         </ion-button>
       </div> -->
 
-      <form
+      <!-- <form
         ngNoForm
         target="_blank"
         [action]="url"
@@ -312,43 +326,98 @@
           id="headingText"
           name="headingText"
           [value]="orderDetails?.headingText"
-        />
+        /> -->
 
-        <div class="temp">
-          <div
-            class="bottom1"
-            *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule === false"
-          >
-            <button
-              type="submit"
-              class="paynow"
-              [ngClass]="{active: (selectedDate && selectedTimeState)}"
-              [disabled]="!(selectedDate && selectedTimeState)"
-              (click)="createBooking()"
-            >
-              Pay Now
-            </button>
-            <button
-              class="payafter"
-              [ngClass]="{active: (selectedDate && selectedTimeState)}"
-              [disabled]="!(selectedDate && selectedTimeState)"
-              (click)="createBookingWithoutPay()"
-            >
-              Pay After Seva
-            </button>
-          </div>
-          <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">
-            <button
-              class="reschedule"
-              [ngClass]="{active: (selectedDate && selectedTimeState)}"
-              [disabled]="!(selectedDate && selectedTimeState)"
-              (click)="rescheduleBooking()"
-            >
-              Reschedule
-            </button>
-          </div>
-        </div>
+      <form
+        name="payment"
+        ngNoForm
+        method="POST"
+        enctype="application/x-www-form-urlencoded"
+        class="”JM_Wallet_Button”"
+        action="https://testpg.rpay.co.in/reliance-webpay/v1.0/jiopayments"
+      >
+        <!-- General Info -->
+        <input type="hidden" name="version" value="2.0" />
+        <input type="hidden" name="merchantid" value="100001000014146" />
+        <input type="hidden" name="clientid" value="10000002" />
+        <input type="hidden" name="merchantname" value="TEST" />
+        <input type="hidden" name="channel" value="WEB" />
+        <input
+          type="hidden"
+          name="returl"
+          value="http://61.16.175.3:8089/misimul/purchaseResult.jsp"
+        />
+        <input
+          type="hidden"
+          name="checksum"
+          value="748db6f87766ce9f8aef0fe740c15ce658e614410f767a8b68a3e658f0bf05e8"
+        />
+        <input type="hidden" name="token" value="" />
+        <!-- Transaction Info -->
+        <input
+          type="hidden"
+          name="transaction.extref"
+          value="P8564G73I19I3P6"
+        />
+        <input
+          type="hidden"
+          name="transaction.timestamp"
+          value="20170203173956"
+        />
+        <input type="hidden" name="transaction.txntype" value="PURCHASE" />
+        <input type="hidden" name="transaction.amount" value="1.00" />
+        <input type="hidden" name="transaction.currency" value="INR" />
+        <input
+          type="hidden"
+          name="subscriber.mobilenumber"
+          value="7738221020"
+        />
+        <input type="hidden" name="subscriber.customerid" value="7738221020" />
+        <input type="hidden" name="productdescription" value="Product1" />
+        <input type="hidden" name="udf1" value="u1" />
+        <input type="hidden" name="udf2" value="u2" />
+        <input type="hidden" name="udf3" value="u3" />
+        <input type="hidden" name="udf4" value="u4" />
+        <input type="hidden" name="udf5" value="u5" />
+        asffs
+        <input type="submit" value="Jio Pay" />
       </form>
+
+      <div class="temp">
+        <div
+          class="bottom1"
+          *ngIf="!dataProvider.currentBooking?.isReschule || dataProvider.currentBooking?.isReschule === false"
+        >
+          <button
+            type="submit"
+            class="paynow"
+            [ngClass]="{active: (selectedDate && selectedTimeState)}"
+            [disabled]="!(selectedDate && selectedTimeState)"
+            (click)="createBooking()"
+          >
+            Pay Now
+          </button>
+          <button
+            class="payafter"
+            [ngClass]="{active: (selectedDate && selectedTimeState)}"
+            [disabled]="!(selectedDate && selectedTimeState)"
+            (click)="createBookingWithoutPay()"
+          >
+            Pay After Seva
+          </button>
+        </div>
+        <div class="bottom1" *ngIf="dataProvider.currentBooking?.isReschule">
+          <button
+            class="reschedule"
+            [ngClass]="{active: (selectedDate && selectedTimeState)}"
+            [disabled]="!(selectedDate && selectedTimeState)"
+            (click)="rescheduleBooking()"
+          >
+            Reschedule
+          </button>
+        </div>
+      </div>
+      <!-- </form> -->
     </div>
   </div>
 </div>

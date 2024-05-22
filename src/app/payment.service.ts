@@ -28,9 +28,11 @@ export class PaymentService {
   orders: any[] = [];
   httpOptions = {
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
-      Accept: '*/*',
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*', // Allow requests from all origins
+      Accept: '*/*',
+      'Access-Control-Allow-Methods': 'HEAD, GET, POST, PUT, PATCH, DELETE',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
     }),
   };
   get MainWindowRef() {
@@ -50,67 +52,7 @@ export class PaymentService {
   }
 
   generateRecipetNumber() {
-    return `Receipt#${Math.floor(Math.random() * 5123 * 43) + 10}`;
-  }
-
-  generateOrderDetails(booking: booking) {
-    this.WindowRef = window;
-    var ref = this;
-
-    try {
-      this.authJM().then((authData) =>
-        this.intentJM(booking, authData).then((initiateData) => {
-          this.orderDetails = {
-            mid: '100001000233342',
-            appidtoken: initiateData?.transaction?.metadata?.['x-appid-token'],
-            appaccesstoken:
-              initiateData?.transaction?.metadata?.['x-app-access-token'],
-            intentid: initiateData?.transaction?.intentId,
-            brandColor: '#FB9F14',
-            bodyBgColor: '#fff',
-            bodyTextColor: '#000',
-            headingText: '#fff',
-          };
-        })
-      );
-    } catch (err) {
-      console.log(err);
-    }
-
-    function preparePaymentDetails(
-      order: any,
-      orderDetails: booking,
-      result: Subject<any>
-    ) {
-      return {
-        key: environment.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
-        name: 'Pay',
-        currency: order.currency,
-        // order_id: order.id, //This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
-        image: 'https://shreeva.com/images/logo.png',
-        handler: function (response: any) {
-          ref.finalizePayment(response, result);
-        },
-        modal: {
-          ondismiss: function () {
-            result.next({
-              ...orderDetails,
-              ...order,
-              stage: 'paymentGatewayClosed',
-            });
-          },
-        },
-        prefill: {
-          name: orderDetails.user.displayName,
-          contact: orderDetails.user.phone,
-        },
-        theme: {
-          color: '#2a1234',
-        },
-      };
-    }
-    return this.orderDetails;
+    return `JIO${Math.floor(Math.random() * 5123 * 43) + 10}`;
   }
 
   handleJMPPayment(loader: any) {
@@ -118,317 +60,126 @@ export class PaymentService {
     var result: Subject<any> = new Subject();
 
     loader.present();
-
-    this.payJM(this.orderDetails).subscribe(
-      (order: any) => {
-        if (order.response)
-          result.next({ ...order.response, stage: 'paymentCaptureSuccess' });
-        else result.next({ ...order.response, stage: 'paymentCaptureFailed' });
-      },
-      (error) => {
-        //console.log(JSON.stringify(error.message), "error");
-        result.next({ ...this.orderDetails, stage: 'paymentGatewayError' });
-      },
-      () => {
-        // completed
-        // console.log("error............... paymentGatewayClosed");
-        result.next({ ...this.orderDetails, stage: 'paymentGatewayClosed' });
-      }
-    );
+    //wfig
     loader.dismiss();
     return result;
   }
 
-  async authJM() {
-    let _headers = {
-      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
-    };
-    try {
-      const { data } = await axios({
-        method: 'post',
-        url: 'https://pp-apig.jiomoney.com/jfs/v1/app/authenticate',
-        headers: _headers,
-        data: {
-          application: {
-            clientId: '988f2f4e55ec3843fa12d6b8e25338f8',
-          },
-          authenticateList: [
-            {
-              mode: 22,
-              value:
-                '255aaf0bd759d72de9f916660eb52bd6f610516aa4c63e480e382d5894e0fa30',
-            },
-          ],
-          scope: 'SESSION',
-          purpose: 2,
+  authJMP() {
+    const data = {
+      application: {
+        clientId: '988f2f4e55ec3843fa12d6b8e25338f8',
+      },
+      authenticateList: [
+        {
+          mode: 22,
+          value:
+            '255aaf0bd759d72de9f916660eb52bd6f610516aa4c63e480e382d5894e0fa30',
         },
-      });
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async intentJM(booking: booking, authdata: any) {
-    let _headers = {
-      'x-trace-id': '01c570cf-2bdf-49d0-a126-baec7038bbd1',
-      'x-app-access-token': authdata.session.accessToken.tokenValue,
-      'x-appid-token': authdata.session.appIdentifierToken,
+      ],
+      scope: 'SESSION',
+      purpose: 2,
     };
-
-    booking.user.phone = booking.user.phone?.replace(/\D/g, '').slice(-10);
-    const date = new Date();
-    date.setHours(date.getHours() + 5);
-    date.setMinutes(date.getMinutes() + 30);
-    try {
-      const { data } = await axios({
-        method: 'post',
-        url: 'https://pp-apig.jiomoney.com/payments/jfs/v1/payments/intent',
-        headers: _headers,
-        data: {
-          transaction: {
-            idempotentKey: this.generateIdempotentKey().toString(),
-            invoice: this.generateInvoiceNumber(),
-            initiatingEntityTimestamp: date.toISOString(),
-            initiatingEntity: {
-              returnUrl:
-                'https://psp-mandate-merchant-sit.jiomoney.com:3003/merchantsimulator/pp/merchantstatus',
-            },
-          },
-          amount: {
-            netAmount: Math.round(booking.grandTotal!),
-          },
-          payer: {
-            externalId: this.generateRecipetNumber(),
-            name: 'Atul Singh',
-            email: booking.user?.email || 'temp@gmail.com',
-            mobile: {
-              number: booking.user.phone,
-              countryCode: '91',
-            },
-          },
-          payee: {
-            merchantId: '100001000233342',
-          },
-          checkout: {
-            template: {
-              id: '',
-            },
-            notAllowed: [
-              {
-                methodType: '110',
-                methodSubType: '580',
-              },
-            ],
-          },
-        },
-      });
-
-      return data;
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
-  }
-
-  payJM(orderDetails: any) {
     return this.https.post(
-      environment.cloudFunctions.payJM,
-      orderDetails,
+      environment.cloudFunctions.authJMP,
+      data,
       this.httpOptions
     );
   }
 
-  // async payJm(resData: any) {
-  //   let orderDetails = {
-  //     mid: resData.mid,
-  //     appidtoken: resData.appidtoken,
-  //     appaccesstoken: resData.appaccesstoken,
-  //     intentid: resData.intentID,
-  //     brandColor: resData.brandColor,
-  //     bodyBgColor: resData.bodyBgColor,
-  //     bodyTextColor: resData.bodyTextColor,
-  //     headingText: resData.headingText,
-  //   };
-
-  //   let _headers = {
-  //     'Access-Control-Allow-Origin': '*',
-  //     Accept: '*/*',
-  //     'Content-Type': 'application/json',
-  //   };
-
-  //   // return this.https.post<any[]>('/echo/post/JM', this.orderDetails);
-  //   try {
-  //     const { data } = await axios({
-  //       method: 'post',
-  //       withCredentials: false,
-  //       url: 'https://pp-checkout.jiopay.com:8443',
-  //       headers: _headers,
-  //       data: orderDetails,
-  //     });
-  //     console.log(data);
-  //     return data;
-  //   } catch (err) {
-  //     console.log(err);
-  //     return err;
-  //   }
-  // }
-
-  handleWallet(amount: number) {
-    this.WindowRef = window;
-    var result: Subject<any> = new Subject();
-    var ref = this;
-    function preparePaymentDetails(
-      order: any,
-      orderDetails: any,
-      result: Subject<any>
-    ) {
-      return {
-        key: environment.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
-        name: 'Pay',
-        currency: order.currency,
-        order_id: order.id, //This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
-        image: 'https://shreeva.com/images/logo.png',
-        handler: function (response: any) {
-          ref.finalizePayment(response, result);
+  intentJMP(booking: any, authData: any) {
+    booking.user.phone = booking.user.phone?.replace(/\D/g, '').slice(-10);
+    const date = new Date();
+    date.setHours(date.getHours() + 5);
+    date.setMinutes(date.getMinutes() + 30);
+    const orderDetail = {
+      transaction: {
+        idempotentKey: this.generateIdempotentKey().toString(),
+        invoice: this.generateInvoiceNumber(),
+        initiatingEntityTimestamp: date.toISOString(),
+        initiatingEntity: {
+          returnUrl:
+            'https://psp-mandate-merchant-sit.jiomoney.com:3003/merchantsimulator/pp/merchantstatus',
         },
-        prefill: {
-          name: ref.dataProvider?.currentUser?.userData?.name,
-          contact: '+91' + ref.dataProvider?.currentUser?.userData?.userMobile,
-        },
-        theme: {
-          color: '#ffc670',
-        },
-      };
-    }
-    let orderDetails: CreateOrder = {
-      amount: amount * 100,
-      receipt: this.generateRecipetNumber(),
-      currency: 'INR',
-      notes: {},
-    };
-    this.createOrder(orderDetails).subscribe(
-      (order) => {
-        let orderDetail = preparePaymentDetails(order, amount, result);
-        var rzp1 = new this.WindowRef.Razorpay(orderDetail);
-        this.orders.push(orderDetail);
-        rzp1.open();
-        result.next({ ...orderDetails, stage: 'paymentGatewayOpened' });
       },
-      (error) => {
-        result.next({ ...orderDetails, stage: 'paymentGatewayError' });
+      amount: {
+        // netAmount: Math.round(booking.grandTotal!),
+        // grossAmount: Math.round(booking.grandTotal!),
+        netAmount: 1,
+        grossAmount: 1,
       },
-      () => {
-        // completed
-        result.next({ ...orderDetails, stage: 'paymentGatewayClosed' });
-      }
-    );
-    return result;
-  }
-
-  handlePayment(data: booking) {
-    this.WindowRef = window;
-    var result: Subject<any> = new Subject();
-    var ref = this;
-    function preparePaymentDetails(
-      order: any,
-      orderDetails: booking,
-      result: Subject<any>
-    ) {
-      return {
-        key: environment.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
-        name: 'Pay',
-        currency: order.currency,
-        // order_id: order.id, //This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
-        image: 'https://shreeva.com/images/logo.png',
-        handler: function (response: any) {
-          ref.finalizePayment(response, result);
+      payer: {
+        externalId: this.generateRecipetNumber(),
+        name: booking.user?.displayName || 'Temp',
+        email: booking.user?.email || 'temp@gmail.com',
+        mobile: {
+          number: booking.user.phone,
+          countryCode: '91',
         },
-        modal: {
-          ondismiss: function () {
-            result.next({
-              ...orderDetails,
-              ...order,
-              stage: 'paymentGatewayClosed',
-            });
+        type: 11,
+      },
+      payee: {
+        merchantId: '100001000233342',
+        name: 'IsconPrayagraj',
+        email: 'AutomationMerchant@gmail.com',
+        mobile: {
+          countryCode: '+91',
+          number: '9790425436',
+        },
+        vpa: 'pktest-3@jiopay',
+        type: 16,
+      },
+      checkout: {
+        template: {
+          id: '',
+        },
+        allowed: [
+          {
+            rank: '1',
+            methodType: '110',
+            methodSubType: '582',
+            cardType: [110, 130, 131],
           },
-        },
-        prefill: {
-          name: orderDetails.user.displayName,
-          contact: orderDetails.user.phone,
-        },
-        theme: {
-          color: '#2a1234',
-        },
-      };
-    }
-    let orderDetails: CreateOrder = {
-      amount: Math.round(data.grandTotal! * 100),
-      receipt: this.generateRecipetNumber(),
-      currency: 'INR',
-      notes: {},
+          {
+            rank: '2',
+            methodType: '212',
+            methodSubType: '580',
+          },
+          {
+            rank: '3',
+            methodType: '110',
+            methodSubType: '566',
+          },
+          {
+            rank: '4',
+            methodType: '110',
+            methodSubType: '579',
+          },
+          {
+            rank: '5',
+            methodType: '110',
+            methodSubType: '581',
+          },
+          {
+            rank: '6',
+            methodType: '110',
+            methodSubType: '620',
+          },
+        ],
+      },
     };
-    this.createOrder(orderDetails).subscribe(
-      (order: any) => {
-        this.payWithRazorpay(order, data, result);
-      },
-      (error) => {
-        //console.log(JSON.stringify(error.message), "error");
-        result.next({ ...orderDetails, stage: 'paymentGatewayError' });
-      },
-      () => {
-        // completed
-        // console.log("error............... paymentGatewayClosed");
-        result.next({ ...orderDetails, stage: 'paymentGatewayClosed' });
-      }
+    const data = {
+      orderDetail: { ...orderDetail },
+      accesToken: authData?.session?.accessToken?.tokenValue,
+      appIdToken: authData?.session?.appIdentifierToken,
+    };
+    return this.https.post(
+      environment.cloudFunctions.intentJMP,
+      data,
+      this.httpOptions
     );
-    return result;
+    // return data;
   }
-
-  // handleSubscription(response: any,result:Subject<any>) {
-  //   this.https.post(
-  //     environment.cloudFunctions.verifySubscription,
-  //     response,
-  //     { responseType: 'json' }
-  //   ).subscribe((res: any) => {
-  //     if (res.verified == true){
-  //       result.next({...res,response,stage:"paymentCaptureSuccess"})
-  //     } else {
-  //       result.next({...res,response,stage:"paymentCaptureFailed"})
-  //     }
-  //   });
-  // }
-
-  finalizePayment(response: any, result: Subject<any>) {
-    this.https
-      .post(environment.cloudFunctions.capturePayment, {
-        amount: this.orders.find(
-          (order) => order.order_id == response.razorpay_order_id
-        ).amount,
-        currency: 'INR',
-        payment_id: response.razorpay_payment_id,
-      })
-      .subscribe({
-        next: (res: any) => {
-          if (res.status == 'captured') {
-            result.next({
-              ...res,
-              stage: 'paymentCaptureSuccess',
-              orderDetails: this.orderDetails,
-            });
-          } else {
-            result.next({ ...res, stage: 'paymentCaptureFailed' });
-          }
-        },
-        error: (error) => {
-          return;
-        },
-      });
-  }
-
-  handleSubscriptionPayment(data: paymentDetail) {}
 
   createOrder(orderDetails: CreateOrder) {
     return this.https.post(

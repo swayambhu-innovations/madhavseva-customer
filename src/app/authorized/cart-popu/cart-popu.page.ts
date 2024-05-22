@@ -73,20 +73,20 @@ export class CartPopuPage implements OnInit {
     let loader = await this.loadingController.create({message:'Please wait...'});
     await loader.present();
     let variant = this.matchingService?.variants.find(v=>v.id == variantId);
-    this.paymentService.handlePayment({
-      grandTotal: variant?.price || 0,
-      user: {
-        displayName: "Kumar Saptam",
-        email: "saptampro2003@gmail.com",
-        phone:'9026296062'
-      }
-    }).subscribe(async (paymentResponse)=>{
-      if (JSON.parse(paymentResponse['body']).status=='captured'){
-        await loader.dismiss();
-      }
-    },(error)=>{},async ()=>{
-      await loader.dismiss();
-    })
+    // this.paymentService.handlePayment({
+    //   grandTotal: variant?.price || 0,
+    //   user: {
+    //     displayName: "Kumar Saptam",
+    //     email: "saptampro2003@gmail.com",
+    //     phone:'9026296062'
+    //   }
+    // }).subscribe(async (paymentResponse)=>{
+    //   if (JSON.parse(paymentResponse['body']).status=='captured'){
+    //     await loader.dismiss();
+    //   }
+    // },(error)=>{},async ()=>{
+    //   await loader.dismiss();
+    // })
   }
 }
 

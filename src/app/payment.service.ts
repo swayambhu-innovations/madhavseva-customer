@@ -103,10 +103,8 @@ export class PaymentService {
         },
       },
       amount: {
-        // netAmount: Math.round(booking.grandTotal!),
-        // grossAmount: Math.round(booking.grandTotal!),
-        netAmount: 1,
-        grossAmount: 1,
+        netAmount: Math.round(booking.grandTotal!),
+        grossAmount: Math.round(booking.grandTotal!),
       },
       payer: {
         externalId: this.generateRecipetNumber(),
@@ -137,8 +135,7 @@ export class PaymentService {
           {
             rank: '1',
             methodType: '110',
-            methodSubType: '582',
-            cardType: [110, 130, 131],
+            methodSubType: '566',
           },
           {
             rank: '2',
@@ -148,7 +145,8 @@ export class PaymentService {
           {
             rank: '3',
             methodType: '110',
-            methodSubType: '566',
+            methodSubType: '582',
+            cardType: [110, 130, 131],
           },
           {
             rank: '4',
@@ -178,7 +176,17 @@ export class PaymentService {
       data,
       this.httpOptions
     );
-    // return data;
+  }
+
+  validatePayment(txnId: string) {
+    const data = {
+      transactionId: txnId,
+    };
+    return this.https.post(
+      environment.cloudFunctions.intentJMP,
+      data,
+      this.httpOptions
+    );
   }
 
   createOrder(orderDetails: CreateOrder) {

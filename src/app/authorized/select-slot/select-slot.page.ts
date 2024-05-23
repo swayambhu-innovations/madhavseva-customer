@@ -400,65 +400,6 @@ export class SelectSlotPage implements OnInit {
     let booking = this.dataProvider.currentBooking;
     loader.present();
     if (!booking?.isUpdateSlot) {
-      // this.paymentService
-      //   .handleJMPPayment(loader)
-      //   .subscribe(async (paymentResponse) => {
-      //     console.log(paymentResponse);
-      //     if (
-      //       paymentResponse.stage == 'paymentCaptureSuccess' ||
-      //       paymentResponse.stage == 'paymentCaptureSuccess'
-      //     ) {
-      //       let loader2 = await this.loadingController.create({
-      //         message: 'Please wait...',
-      //       });
-      //       loader2.present();
-      //       this.dataProvider.currentBooking!.payment = paymentResponse;
-      //       this.dataProvider.currentBooking!.isPaid = true;
-      //       this.bookingService
-      //         .addBooking(
-      //           this.dataProvider.currentBooking!,
-      //           this.dataProvider.currentUser!.user!.uid
-      //         )
-      //         .then(async () => {
-      //           await this.cartService.deleteBooking(
-      //             this.dataProvider.currentUser!.user.uid,
-      //             this.dataProvider.currentBooking!.id!
-      //           );
-      //           await this.cartService.updateCart();
-      //           loader2.dismiss();
-      //           this.router.navigate(['/authorized/order-placed']);
-      //         })
-      //         .finally(() => {
-      //           loader.dismiss();
-      //         })
-      //         .catch((error: any) => {
-      //           loader.dismiss();
-      //           console.log('errror...........: ', error);
-      //         });
-      //     } else {
-      //       console.info(
-      //         'payment Response failed........: ',
-      //         JSON.stringify(paymentResponse)
-      //       );
-      //       paymentResponse.status = 'failed';
-      //       if (booking) {
-      //         if (paymentResponse.stage == 'paymentCaptureFailed') {
-      //           loader.dismiss();
-      //           booking.payment = paymentResponse;
-      //           this.router.navigate(['/authorized/order-placed']);
-      //         } else if (
-      //           paymentResponse.stage == 'paymentGatewayClosed' ||
-      //           paymentResponse.stage == 'paymentGatewayOpened'
-      //         ) {
-      //           setTimeout(() => {
-      //             loader.dismiss();
-      //           }, 5000);
-      //         } else {
-      //           loader.dismiss();
-      //         }
-      //       }
-      //     }
-      //   });
       let options = {
         appaccesstoken:
           this.orderDetails.transaction.metadata['x-app-access-token'],
@@ -489,12 +430,13 @@ export class SelectSlotPage implements OnInit {
                 scope.dataProvider.currentUser!.user!.uid
               )
               .then(async () => {
-                await scope.cartService.deleteBooking(
-                  scope.dataProvider.currentUser!.user.uid,
-                  scope.dataProvider.currentBooking!.id!
-                );
+                // await scope.cartService.deleteBooking(
+                //   scope.dataProvider.currentUser!.user.uid,
+                //   scope.dataProvider.currentBooking!.id!
+                // );
                 await scope.cartService.updateCart();
                 scope.dataProvider.currentBooking!.payment = 'success';
+                scope.dataProvider.currentBooking!.isPaid = true;
                 scope.router.navigate(['/authorized/order-placed']);
               })
               .finally(() => {
@@ -513,8 +455,7 @@ export class SelectSlotPage implements OnInit {
                 loader.dismiss();
               });
           }
-          console.log('MESSAGe...', status);
-          console.log(intentid);
+          console.log(new Date());
         },
       };
       this.WindowRef.JioPay(options);

@@ -28,8 +28,10 @@ export const environment = {
     authIntentJm:
       'https://us-central1-madhavseva-67565.cloudfunctions.net/authIntentJm',
 
-      authJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/authJMP',
-    intentJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/intentJMP',
+    authJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/authJMP',
+    validateJMP: 'https://us-central1-madhavseva-67565.cloudfunctions.net/authJMP',
+    intentJMP:
+      'https://us-central1-madhavseva-67565.cloudfunctions.net/intentJMP',
 
     // createSubscription: 'https://us-central1-jaipurservicecompany.cloudfunctions.net/createSubscription',
     // verifySubscription:'https://us-central1-jaipurservicecompany.cloudfunctions.net/verifySubscription',

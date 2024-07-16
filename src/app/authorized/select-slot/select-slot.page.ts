@@ -427,12 +427,16 @@ export class SelectSlotPage implements OnInit {
               scope.orderDetails.transaction.metadata['x-appid-token']
             )
             .subscribe(async (resData) => {
-              scope.status = resData[0];
+              scope.status = resData!['transactionList'][0];
+              console.log(scope.status);
+              console.log(resData);
             });
           if (
             booking &&
             !booking?.isUpdateSlot &&
             status &&
+            scope.status!['transaction']!['status'] &&
+            scope.status!['transaction']!['status'] === 'SUCCESS' &&
             status === 'completed'
           ) {
             booking.createdAt = Timestamp.fromDate(new Date());

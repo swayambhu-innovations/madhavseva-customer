@@ -68,13 +68,12 @@ export class PaymentService {
   authJMP() {
     const data = {
       application: {
-        clientId: '988f2f4e55ec3843fa12d6b8e25338f8',
+        clientId: environment.jioPayConfig.clientId,
       },
       authenticateList: [
         {
           mode: 22,
-          value:
-            '255aaf0bd759d72de9f916660eb52bd6f610516aa4c63e480e382d5894e0fa30',
+          value: environment.jioPayConfig.clientSecret,
         },
       ],
       scope: 'SESSION',
@@ -98,11 +97,14 @@ export class PaymentService {
         invoice: this.generateInvoiceNumber(),
         initiatingEntityTimestamp: date.toISOString(),
         initiatingEntity: {
-          returnUrl:
-            'https://psp-mandate-merchant-sit.jiomoney.com:3003/merchantsimulator/pp/merchantstatus',
+          callbackUrl:
+            'https://apig.jiomoney.com/payments/jfs/v2/payments/status',
+          returnUrl: 'https://checkout.jiopay.com/',
         },
       },
       amount: {
+        // netAmount: 0.01,
+        // grossAmount: 0.01,
         netAmount: Math.round(booking.grandTotal!),
         grossAmount: Math.round(booking.grandTotal!),
       },
@@ -117,14 +119,14 @@ export class PaymentService {
         type: 11,
       },
       payee: {
-        merchantId: '100001000233342',
-        name: 'IsconPrayagraj',
+        merchantId: environment.jioPayConfig.MID,
+        name: 'ISCONPrayagraj',
         email: 'AutomationMerchant@gmail.com',
         mobile: {
           countryCode: '+91',
           number: '9790425436',
         },
-        vpa: 'pktest-3@jiopay',
+        vpa: environment.jioPayConfig.VPA,
         type: 16,
       },
       checkout: {
@@ -178,12 +180,16 @@ export class PaymentService {
     );
   }
 
-  validatePayment(txnId: string) {
+  statusJMP(txnId: string, accesToken: string, appIdToken: string) {
     const data = {
-      transactionId: txnId,
+      payload: {
+        transactionId: txnId,
+      },
+      accesToken: accesToken,
+      appIdToken: appIdToken,
     };
     return this.https.post(
-      environment.cloudFunctions.intentJMP,
+      environment.cloudFunctions.statusJMP,
       data,
       this.httpOptions
     );

@@ -8,6 +8,7 @@ import { CartService } from '../cart/cart.service';
 import { Timestamp, collection } from 'firebase/firestore';
 import { Firestore, getDocs } from '@angular/fire/firestore';
 import { error } from 'console';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-select-slot',
@@ -26,6 +27,7 @@ export class SelectSlotPage implements OnInit {
   dates: Date[] = [];
   times: Date[] = [];
   slots: any[] = [];
+  status: any;
   slotsArray: any[] = [];
   selectedTimeState: boolean = false;
   selectedSlot: any;
@@ -129,7 +131,7 @@ export class SelectSlotPage implements OnInit {
               console.log(orderDetails);
               this.orderDetails = orderDetails;
             });
-        } else console.log('wait');
+        } else console.log('error in pay');
       });
     } catch (error) {
       console.log(error);
@@ -405,6 +407,7 @@ export class SelectSlotPage implements OnInit {
           this.orderDetails.transaction.metadata['x-app-access-token'],
         appidtoken: this.orderDetails.transaction.metadata['x-appid-token'],
         intentid: this.orderDetails.transaction.intentId,
+        merchantid: environment.jioPayConfig.MID,
         theme: {
           brandColor: '#F28322',
           bodyBgColor: '#fff',
@@ -417,6 +420,15 @@ export class SelectSlotPage implements OnInit {
           status: string,
           message: string
         ) {
+          scope.paymentService
+            .statusJMP(
+              txnId,
+              scope.orderDetails.transaction.metadata['x-app-access-token'],
+              scope.orderDetails.transaction.metadata['x-appid-token']
+            )
+            .subscribe(async (resData) => {
+              scope.status = resData[0];
+            });
           if (
             booking &&
             !booking?.isUpdateSlot &&
@@ -430,13 +442,15 @@ export class SelectSlotPage implements OnInit {
                 scope.dataProvider.currentUser!.user!.uid
               )
               .then(async () => {
-                // await scope.cartService.deleteBooking(
-                //   scope.dataProvider.currentUser!.user.uid,
-                //   scope.dataProvider.currentBooking!.id!
-                // );
+                await scope.cartService.deleteBooking(
+                  scope.dataProvider.currentUser!.user.uid,
+                  scope.dataProvider.currentBooking!.id!
+                );
                 await scope.cartService.updateCart();
                 scope.dataProvider.currentBooking!.payment = 'success';
                 scope.dataProvider.currentBooking!.isPaid = true;
+
+                scope.orderDetails = {} as any;
                 scope.router.navigate(['/authorized/order-placed']);
               })
               .finally(() => {
@@ -450,46 +464,16 @@ export class SelectSlotPage implements OnInit {
                 scope.dataProvider.currentBooking
               )
               .then((resp) => {
-                scope.dataProvider.currentBooking!.payment = 'failed';
+                scope.orderDetails = {} as any;
                 scope.router.navigate(['/authorized/order-placed']);
                 loader.dismiss();
               });
           }
-          console.log(new Date());
         },
       };
       this.WindowRef.JioPay(options);
     }
-    // if (booking && !booking?.isUpdateSlot) {
-    //   booking.createdAt = Timestamp.fromDate(new Date());
-    //   this.bookingService
-    //     .addBooking(
-    //       this.dataProvider.currentBooking!,
-    //       this.dataProvider.currentUser!.user!.uid
-    //     )
-    //     .then(async () => {
-    //       await this.cartService.deleteBooking(
-    //         this.dataProvider.currentUser!.user.uid,
-    //         this.dataProvider.currentBooking!.id!
-    //       );
-    //       await this.cartService.updateCart();
-    //       this.router.navigate(['/authorized/order-placed']);
-    //     })
-    //     .finally(() => {
-    //       loader.dismiss();
-    //     });
-    // } else {
-    //   this.bookingService
-    //     .updateBookingSlot(
-    //       this.dataProvider.currentUser!.user.uid,
-    //       this.dataProvider.currentBooking!.id!,
-    //       this.dataProvider.currentBooking
-    //     )
-    //     .then((resp) => {
-    //       this.router.navigate(['/authorized/order-placed']);
-    //       loader.dismiss();
-    //     });
-    // }
+
     loader.dismiss();
   }
 
